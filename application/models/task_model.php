@@ -122,11 +122,16 @@ class Task_model extends CI_Model {
      * Sum blood donation totals
      */
     function bloodStock() {
-        $this->db->select('tbl_donation.amount_donated_cc,tbl_donation.donation_type,tbl_donors_preexam.blood_type');
+        $this->db->select('tbl_donation.donation_type,tbl_donors_preexam.blood_type');
+        $this->db->select_sum('tbl_donation.amount_donated_cc');
+        $this->db->group_by('tbl_donation.donation_type');
+        $this->db->group_by('tbl_donors_preexam.blood_type');
         $this->db->from('tbl_donation');
-        $this->db->join('tbl_donors_preexam','tbl_donation.userid=tbl_donors_preexam.userid','left');
+        $this->db->join('tbl_donors_preexam','tbl_donation.userid=tbl_donors_preexam.userid');
         $query = $this->db->get();
         $result=$query->result();
+//        print_r($result);
+//        die();
         return $result;
         if ($result->num_rows() > 0) {
             return $result->result();

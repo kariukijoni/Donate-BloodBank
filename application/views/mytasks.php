@@ -16,11 +16,7 @@
                                 <input type="text" class="form-control required0" id="hos_location" name="hos_location" placeholder="Location">
                             </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <input type="text">
-                        
-                    </div>
+                    </div>                    
                     <div class="row">
                         <div class="col-md-offset-1">
                             <button type="submit" class="btn btn-bitbucket btn-sm">Add</button>
@@ -67,7 +63,7 @@
                                 <td class="donatedAmount">
                                     <?= $row->amount_donated_cc ?>
                                 </td>                                        
-<!--                                <td>
+    <!--                                <td>
                                     <a class="btn btn-bitbucket btn-sm fa fa-plus-circle donateBlood"></a>
                                 </td>-->
                             </tr>
@@ -93,12 +89,15 @@
                         <?php } ?>
                     </select>
                 </div>
-                 <div class="form-group">
+                <div class="form-group">
                     <select type="text" name="blood_group" id="blood_group" class="form-control">
                         <?php foreach ($donation_type as $donationType) { ?>
                             <option value="<?php echo $donationType->donation_type ?>"><?php echo $donationType->donation_type ?></option>
                         <?php } ?>
                     </select>
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control">
                 </div>
                 <div class="form-group">
                     <button type="submit" class="btn btn-bitbucket btn-sm">Give</button>

@@ -19,12 +19,20 @@ class Task extends BaseController {
     function mytasks() {
         $this->global['pageTitle'] = 'BloodDonor : MyTasks';
         $this->load->model('task_model');
-        $data['record'] = $this->task_model->bloodStock();//retrieve array with bloodstock
-        $data['hos_name']=  $this->task_model->getNameRegHos();//getHosName
-        $data['blood_type']=  $this->task_model->getBloodGroup();//GetBloodGroup
-        $data['donation_type']=  $this->task_model->getBloodType();//GetBloodType
+        $data['record'] = $this->task_model->bloodStock(); //retrieve array with bloodstock
+        $data['hos_name'] = $this->task_model->getNameRegHos(); //getHosName
+        $data['blood_type'] = $this->task_model->getBloodGroup(); //GetBloodGroup
+        $data['donation_type'] = $this->task_model->getBloodType(); //GetBloodType
         $this->loadViews("mytasks", $this->global, $data, Null);
     }
+
+    /*
+     * function transaction record
+     */
+
+    function transactBlood() {
+        
+    }   
 
     /**
      * This function is used to add new hospital to the system
