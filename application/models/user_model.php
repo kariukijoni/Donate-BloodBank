@@ -195,6 +195,7 @@ class User_model extends CI_Model {
         $this->db->select('BaseTbl.userId, BaseTbl.email, BaseTbl.name, BaseTbl.mobile, Role.role');
         $this->db->from('tbl_users as BaseTbl');
         $this->db->join('tbl_roles as Role', 'Role.roleId = BaseTbl.roleId', 'left');
+        $this->db->where('isDeleted', 0);
         $this->db->where('Role.roleId', 3);
         $query = $this->db->get();
         $result = $query->result();

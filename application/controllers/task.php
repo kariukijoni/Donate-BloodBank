@@ -16,14 +16,14 @@ class Task extends BaseController {
         $this->isLoggedIn();
     }
 
-    function mytasks() {
-        $this->global['pageTitle'] = 'BloodDonor : MyTasks';
+    function transact() {
+        $this->global['pageTitle'] = 'BloodDonor : Transact';
         $this->load->model('task_model');
         $data['record'] = $this->task_model->bloodStock(); //retrieve array with bloodstock
         $data['hos_name'] = $this->task_model->getNameRegHos(); //getHosName
         $data['blood_type'] = $this->task_model->getBloodGroup(); //GetBloodGroup
         $data['donation_type'] = $this->task_model->getBloodType(); //GetBloodType
-        $this->loadViews("mytasks", $this->global, $data, Null);
+        $this->loadViews("transact", $this->global, $data, Null);
     }
 
     /*
@@ -138,7 +138,7 @@ class Task extends BaseController {
         $this->load->library('table');
 
         //set heading
-        $this->table->set_heading('#', 'Hospital Name', 'Hospital Location', 'JoinedAt');
+        $this->table->set_heading('#', 'Hospital Name', 'Hospital Location', 'JoinedOn');
 
         //set template
         $style = array('table_open' => '<table class="table table-striped table-hover table-bordered">');

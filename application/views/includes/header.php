@@ -105,9 +105,9 @@
                                 </a>
                             </li>
                             <li class="treeview">
-                                <a href="<?php echo base_url(); ?>task/mytasks" >
+                                <a href="<?php echo base_url(); ?>task/transact" >
                                     <i class="fa fa-ticket"></i>
-                                    <span>My Tasks</span>
+                                    <span>Transact</span>
                                 </a>
                             </li>
 

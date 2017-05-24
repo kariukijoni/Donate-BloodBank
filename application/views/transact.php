@@ -40,7 +40,7 @@
                             <td>Blood Group</td>
                             <td>Type</td>
                             <td>Amount</td>
-                            <!--<td>Action</td>-->
+                            <td>Action</td>
 
                         </tr>
                     </thead>
@@ -66,6 +66,42 @@
     <!--                                <td>
                                     <a class="btn btn-bitbucket btn-sm fa fa-plus-circle donateBlood"></a>
                                 </td>-->
+                                <td>
+                                    <button class="btn btn-bitbucket btn-sm fa fa-ambulance donateBlood" data-toggle="modal" data-target="#myModal"> </button>
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                                                    <h4 class="modal-title text-center" id="myModalLabel">Give Blood Stock to Registered Hospitals</h4>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="form-group">
+                                                        <select type="text" name="blood_group" id="blood_group" class="form-control">
+                                                            <?php foreach ($hos_name as $hosName) { ?>
+                                                                <option value="<?php echo $hosName->hos_name ?>"><?php echo $hosName->hos_name ?></option>
+                                                            <?php } ?>
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <input type="text" class="form-control" value="<?= $row->blood_type ?>">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <input type="text" class="form-control" value="<?= $row->donation_type ?>">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <input type="text" class="form-control" value="<?= $row->amount_donated_cc ?>">
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">Close</button>
+                                                    <button type="button" class="btn btn-primary btn-sm">Transact</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
                             </tr>
                         <?php endforeach ?>
                     </tbody>
@@ -73,7 +109,7 @@
             </div>
         </div>
         <div class="col-md-6">
-            <div class="panel panel-default">
+<!--            <div class="panel panel-default">
                 <div class="panel-heading text-center">Give Blood Stock to Registered Hospitals</div>
                 <div class="form-group">
                     <select type="text" name="blood_group" id="blood_group" class="form-control">
@@ -102,7 +138,7 @@
                 <div class="form-group">
                     <button type="submit" class="btn btn-bitbucket btn-sm">Give</button>
                 </div>
-            </div>
+            </div>-->
         </div>
     </div>
 </div>
