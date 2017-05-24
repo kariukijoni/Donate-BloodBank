@@ -21,25 +21,32 @@ class Task extends BaseController {
         $this->load->model('task_model');
         $data['record'] = $this->task_model->bloodStock(); //retrieve array with bloodstock
         $data['hos_name'] = $this->task_model->getNameRegHos(); //getHosName
-        $data['blood_type'] = $this->task_model->getBloodGroup(); //GetBloodGroup
-        $data['donation_type'] = $this->task_model->getBloodType(); //GetBloodType
+//        $data['blood_type'] = $this->task_model->getBloodGroup(); //GetBloodGroup
+//        $data['donation_type'] = $this->task_model->getBloodType(); //GetBloodType       
         $this->loadViews("transact", $this->global, $data, Null);
     }
 
-    /*
-     * function transaction record
-     */
-
-    function transactBlood() {
-        
-    }   
+    function transactHos() {
+//        print_r($this->input->post('hos_id'));
+//        die();
+        $this->load->model('task_model');
+        $transact = array(
+            'hos_name' => $this->input->post('hos_name'),
+            'donation_type' => $this->input->post('blood_group'),
+            'blood_type' => $this->input->post('blood_type'),
+            'amount_donated_cc' => $this->input->post('amount_donated_cc'),
+            'transact_date' => date('Y-m-d')
+        );
+        $this->task_model->transactBlood($transact);
+        redirect('task/transact');
+    }
 
     /**
      * This function is used to add new hospital to the system
      */
     function addHos() {
         $this->load->library('form_validation');
-        $this->form_validation->set_rules('hos-name', 'Name', 'trim|required');
+        $this->form_validation->set_rules('hos_name', 'Name', 'trim|required');
         $this->form_validation->set_rules('hos_location', 'Location', 'trim|required');
         $this->load->model('task_model');
         $data = array(
@@ -48,7 +55,7 @@ class Task extends BaseController {
             'createdAt' => date('Y-m-d H:i:sa')
         );
         $this->task_model->addHos($data);
-        redirect('task/mytasks');
+        redirect('task/transact');
     }
 
     /*

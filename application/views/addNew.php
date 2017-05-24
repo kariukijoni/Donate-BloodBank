@@ -120,12 +120,12 @@
                                     </div>
                                 </div>
                                 <div class="col-md-4">
-                                    <label for="nextSafeDonation">Next Safe Donation</label>
+                                    <label for="dateOfBirth">Date Of Birth</label>
                                     <div class="form-group">
-                                        <input type="date" class="form-control required" id="nextSafeDonation" name="nextSafeDonation" value="<?= set_value('nextSafeDonation'); ?>" placeholder="Next Safe Donation">
+                                        <input type="date" class="form-control required" id="dateOfBirth" name="dateOfBirth" value="<?= set_value('dateOfBirth'); ?>" placeholder="Date Of Birth">
                                         <script>
                                             $(function () {
-                                                $('#nextSafeDonation').datepicker();
+                                                $('#dateOfBirth').datepicker();
                                             });
                                         </script>
                                     </div>

@@ -111,7 +111,7 @@ class User extends BaseController {
             $this->form_validation->set_rules('temperature', 'Temperature', 'trim|required');
             $this->form_validation->set_rules('blood_pressure', 'Blood Pressure', 'trim|required');
             $this->form_validation->set_rules('blood_type', 'Blood Type', 'trim|required');
-            $this->form_validation->set_rules('nextSafeDonation', 'Next Safe Donation', 'trim|required');
+            $this->form_validation->set_rules('dateOfBirth', 'Date Of Birth', 'trim|required');
             $this->form_validation->set_rules('password', 'Password', 'required|max_length[20]');
             $this->form_validation->set_rules('cpassword', 'Confirm Password', 'trim|required|matches[password]|max_length[20]');
             $this->form_validation->set_rules('role', 'Role', 'trim|required|numeric');
@@ -141,7 +141,7 @@ class User extends BaseController {
                     'temperature' => $this->input->post('temperature'),
                     'blood_pressure' => $this->input->post('blood_pressure'),
                     'blood_type' => $this->input->post('blood_type'),
-                    'nextSafeDonation' => date('Y-m-d', strtotime(str_replace('-', '/', $this->input->post('nextSafeDonation')))));
+                    'dateOfBirth' => date('Y-m-d', strtotime(str_replace('-', '/', $this->input->post('dateOfBirth')))));
                 $this->load->model('user_model');
                 $resul = $this->user_model->examineDonor($examineInfo);
                 if ($result && $resul > 0) {

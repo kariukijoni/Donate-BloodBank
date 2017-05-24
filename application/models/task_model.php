@@ -17,6 +17,16 @@ class Task_model extends CI_Model {
     }
 
     /*
+     * function used to populate tbl_transact
+     */
+
+    function transactBlood($trans) {
+        $this->db->trans_start();
+        $this->db->insert('tbl_transact', $trans);
+        $this->db->trans_complete();
+    }
+
+    /*
      * function used to insert data to table tbl_donation
      */
 
@@ -51,33 +61,36 @@ class Task_model extends CI_Model {
     /*
      * Select Blood Group
      */
-    function getBloodGroup()
-    {
+
+    function getBloodGroup() {
         $this->db->select('blood_type');
         $this->db->from('tbl_donors_preexam');
-        $query=  $this->db->get();
+        $query = $this->db->get();
         return $query->result();
     }
+
     /*
      * Select name of registered hospital
      */
-    function getNameRegHos()
-    {
+
+    function getNameRegHos() {
         $this->db->select('hos_name');
         $this->db->from('tbl_hospitals');
-        $query=  $this->db->get();
+        $query = $this->db->get();
         return $query->result();
     }
+
     /*
      * Select Blood type
      */
-    function getBloodType()
-    {
+
+    function getBloodType() {
         $this->db->select('donation_type');
         $this->db->from('tbl_donation');
-        $query=  $this->db->get();
+        $query = $this->db->get();
         return $query->result();
     }
+
     /*
      * get blood requests
      */
@@ -121,15 +134,16 @@ class Task_model extends CI_Model {
     /*
      * Sum blood donation totals
      */
+
     function bloodStock() {
         $this->db->select('tbl_donation.donation_type,tbl_donors_preexam.blood_type');
         $this->db->select_sum('tbl_donation.amount_donated_cc');
         $this->db->group_by('tbl_donation.donation_type');
         $this->db->group_by('tbl_donors_preexam.blood_type');
         $this->db->from('tbl_donation');
-        $this->db->join('tbl_donors_preexam','tbl_donation.userid=tbl_donors_preexam.userid');
+        $this->db->join('tbl_donors_preexam', 'tbl_donation.userid=tbl_donors_preexam.userid');
         $query = $this->db->get();
-        $result=$query->result();
+        $result = $query->result();
 //        print_r($result);
 //        die();
         return $result;
