@@ -117,12 +117,12 @@
                                     <span>Requests</span>
                                 </a>
                             </li>
-                            <li class="treeview">
+<!--                            <li class="treeview">
                                 <a href="#" >
                                     <i class="fa fa-upload"></i>
                                     <span>Task Uploads</span>
                                 </a>
-                            </li>
+                            </li>-->
                             <?php
                         }
                         if ($role == ROLE_ADMIN) {
@@ -134,7 +134,7 @@
                                 </a>
                             </li>
                             <li class="treeview">
-                                <a href="#" >
+                                <a href="<?php echo base_url(); ?>task/reports"/> 
                                     <i class="fa fa-files-o"></i>
                                     <span>Reports</span>
                                 </a>

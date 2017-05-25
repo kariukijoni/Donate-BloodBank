@@ -83,7 +83,6 @@ class Task extends BaseController {
         $donationRecord = array(
             'donation_date' => date('Y-m-d H:i:sa'),
             'bbid' => $this->input->post('bbid'),
-            
         );
         $this->load->model('task_model');
         $this->task_model->donationRecord($donationRecord);
@@ -92,10 +91,10 @@ class Task extends BaseController {
          * Array to input record to tbl_donation
          */
         $duration = $this->task_model->duration($this->input->post('donation_type'));
-        $next_safe = date("Y-m-d", strtotime('+ '.$duration[0]->frequency_days.' days'));//render nextSafeDonationDate
+        $next_safe = date("Y-m-d", strtotime('+ ' . $duration[0]->frequency_days . ' days')); //render nextSafeDonationDate
         $data = array(
             'donation_type' => $this->input->post('donation_type'),
-            'nextSafeDonation'=> $next_safe,
+            'nextSafeDonation' => $next_safe,
             'userid' => $this->input->post('userId'),
             'amount_donated_cc' => $this->input->post('amount_donated_cc')
         );
@@ -156,6 +155,13 @@ class Task extends BaseController {
         $this->table->set_template($style);
 
         echo $this->table->generate($this->db->get('tbl_hospitals'));
+    }
+
+    function reports() {
+        $this->global['pageTitle'] = 'BloodDonor : Transact';
+        $this->load->model('task_model');
+
+        $this->loadViews('reports', $this->global, Null, NULL);
     }
 
 }
