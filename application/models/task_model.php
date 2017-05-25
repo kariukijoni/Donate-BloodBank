@@ -152,18 +152,35 @@ class Task_model extends CI_Model {
         }
         return array();
     }
-    
+
     /*
      * function duration to set date_frequencies
      */
-    function duration($type)
-    {
+
+    function duration($type) {
         $this->db->select('frequency_days');
         $this->db->where('type', $type);
         $this->db->from('tbl_donation_types');
-        $query=  $this->db->get();
+        $query = $this->db->get();
         return $query->result();
-        
+    }
+
+    /*
+     * function count number of registered active donors
+     */
+
+    function countDonors() {
+        $q = $this->db->query("SELECT COUNT(*) as count_rows FROM tbl_users where isDeleted='0' AND roleId='3'");
+        return $q->row_array();
+    }
+
+    /*
+     * count All users of the system
+     */
+
+    function getCountAllUsers() {
+        $q=  $this->db->query("SELECT COUNT(*) as count_rows FROM tbl_users where isDeleted='0'");
+        return $q->row_array();
     }
 
 }

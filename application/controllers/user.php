@@ -28,8 +28,10 @@ class User extends BaseController {
      */
     public function index() {
         $this->global['pageTitle'] = 'BloodDonor : Dashboard';
-
-        $this->loadViews("dashboard", $this->global, NULL, NULL);
+        $this->load->model('task_model');
+        $data['countDonors']=  $this->task_model->countDonors();
+        $data['countAllUsers']=  $this->task_model->getCountAllUsers();
+        $this->loadViews("dashboard", $this->global, $data, NULL);
     }
 
     /**
@@ -40,10 +42,8 @@ class User extends BaseController {
             $this->loadThis();
         } else {
             $this->load->model('user_model');
-
             $searchText = $this->input->post('searchText');
             $data['searchText'] = $searchText;
-
             $this->load->library('pagination');
 
             $count = $this->user_model->userListingCount($searchText);

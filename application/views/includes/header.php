@@ -101,7 +101,7 @@
                             <li class="treeview">
                                 <a href="<?php echo base_url(); ?>user/donors" >
                                     <i class="fa fa-user"></i>
-                                    <span>Donors</span>
+                                    <span>All Donors</span>
                                 </a>
                             </li>
                             <li class="treeview">
