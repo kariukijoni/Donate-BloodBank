@@ -1,6 +1,6 @@
 <div class="content-wrapper" style="background-color: #ffffff">
     <div class="row">
-        <div class="col-md-5">
+        <div class="col-md-4">
             <div class="panel panel-default">
                 <div class="panel-heading">Make Requests</div>
                 <form action="<?php echo base_url() ?>task/requests" method="post" id="requestForm">
@@ -43,57 +43,54 @@
         </div>
     </div>
     <div class="row">
-        <div class="panel panel-default">
+        <div class="col-md-6">
+            <div class="panel panel-default">
 
-            <div class="panel-heading">Show Made Requests</div>
-            <div class="panel-body">
-                <div class="row">
-                    <div class="col-md-6">
-                        <table class="table table-responsive table-bordered">
-                            <thead>
+                <div class="panel-heading">Show Made Requests</div>
+                <div class="panel-body">
+                    <table class="table table-responsive table-bordered">
+                        <thead>
+                            <tr>
+                                <td>Rid</td>
+                                <!--<td>UserId</td>-->
+                                <td>Blood Group</td>
+                                <td>Blood Type</td>
+                                <td>Date Requested</td>
+                                <td>Quantity Requested</td>
+                                <!--<td>Action</td>-->
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                            foreach ($tbl_request as $row):
+                                ?>
                                 <tr>
-                                    <td>Rid</td>
-                                    <!--<td>UserId</td>-->
-                                    <td>Blood Group</td>
-                                    <td>Blood Type</td>
-                                    <td>Date Requested</td>
-                                    <td>Quantity Requested</td>
-                                    <!--<td>Action</td>-->
+                                    <td>
+                                        <?= $row->rqid ?>
+                                    </td>                                        
+    <!--                                        <td>
+                                    <?= $row->userid ?>
+                                    </td>-->
+                                    <td>
+                                        <?= $row->blood_type ?>
+                                    </td>
+                                    <td>
+                                        <?= $row->blood_type_requested ?>
+                                    </td>
+                                    <td>
+                                        <?= $row->date_requested ?>
+                                    </td>
+                                    <td>
+                                        <?= $row->quantity_requested ?>
+                                    </td>
+    <!--                                        <td>
+                                        <a class="btn btn-sm btn-info" href="<?php echo base_url() . 'editOld/' . $row->userId; ?>"><i class="fa fa-pencil"></i></a>
+                                        <a class="btn btn-sm btn-info" href="<?php echo base_url() . 'editOld/'; ?>"><i class="fa fa-pencil"></i></a>
+                                    </td>-->
                                 </tr>
-                            </thead>
-                            <tbody>
-                                <?php
-                                foreach ($tbl_request as $row):
-                                    ?>
-                                    <tr>
-                                        <td>
-                                            <?= $row->rqid ?>
-                                        </td>                                        
-<!--                                        <td>
-                                            <?= $row->userid ?>
-                                        </td>-->
-                                        <td>
-                                            <?=$row->blood_type ?>
-                                        </td>
-                                        <td>
-                                            <?= $row->blood_type_requested ?>
-                                        </td>
-                                        <td>
-                                            <?= $row->date_requested ?>
-                                        </td>
-                                        <td>
-                                            <?= $row->quantity_requested ?>
-                                        </td>
-<!--                                        <td>
-                                            <a class="btn btn-sm btn-info" href="<?php echo base_url() . 'editOld/' . $row->userId; ?>"><i class="fa fa-pencil"></i></a>
-                                            <a class="btn btn-sm btn-info" href="<?php echo base_url() . 'editOld/'; ?>"><i class="fa fa-pencil"></i></a>
-                                        </td>-->
-                                    </tr>
-                                <?php endforeach ?>
-                            </tbody>
-                        </table>  
-                        <!--</form>-->
-                    </div>
+                            <?php endforeach ?>
+                        </tbody>
+                    </table> 
                 </div>
             </div>
         </div>

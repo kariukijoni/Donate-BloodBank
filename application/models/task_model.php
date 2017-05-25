@@ -154,6 +154,31 @@ class Task_model extends CI_Model {
     }
 
     /*
+     * function report Hospitals
+     */
+
+    function reportHos() {
+        $this->db->select('trans_id,hos_name,donation_type,blood_type,amount_donated_cc,transact_date');
+        $this->db->from('tbl_transact');
+        $query=  $this->db->get();
+        $result=$query->result();
+        return $result;
+    }
+
+    /*
+     * function print donation reports
+     */
+
+    function reportDonors() {
+        $this->db->select('tbl_donation.did,tbl_donation.donation_type,tbl_donation.nextSafeDonation, tbl_donation_records.donation_date');
+        $this->db->from('tbl_donation');
+        $this->db->join('tbl_donation_records','tbl_donation_records.did=tbl_donation.did','inner');
+        $query = $this->db->get();
+        $result = $query->result();
+        return $result;
+    }
+
+    /*
      * function duration to set date_frequencies
      */
 
@@ -179,7 +204,7 @@ class Task_model extends CI_Model {
      */
 
     function getCountAllUsers() {
-        $q=  $this->db->query("SELECT COUNT(*) as count_rows FROM tbl_users where isDeleted='0'");
+        $q = $this->db->query("SELECT COUNT(*) as count_rows FROM tbl_users where isDeleted='0'");
         return $q->row_array();
     }
 

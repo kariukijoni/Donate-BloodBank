@@ -160,8 +160,9 @@ class Task extends BaseController {
     function reports() {
         $this->global['pageTitle'] = 'BloodDonor : Transact';
         $this->load->model('task_model');
-
-        $this->loadViews('reports', $this->global, Null, NULL);
+        $data['reportDonors']=$this->task_model->reportDonors();
+        $data['reportHos']=  $this->task_model->reportHos();
+        $this->loadViews('reports', $this->global, $data, NULL);
     }
 
 }
