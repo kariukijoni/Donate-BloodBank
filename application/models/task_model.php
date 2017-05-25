@@ -118,7 +118,7 @@ class Task_model extends CI_Model {
      */
 
     function getHos() {
-        $this->load->helper('url');
+//        $this->load->helper('url');
         $res = $this->db->get('tbl_hospitals')->result();
         $data_array = array();
         $i = 0;
@@ -151,6 +151,19 @@ class Task_model extends CI_Model {
             return $result->result();
         }
         return array();
+    }
+    
+    /*
+     * function duration to set date_frequencies
+     */
+    function duration($type)
+    {
+        $this->db->select('frequency_days');
+        $this->db->where('type', $type);
+        $this->db->from('tbl_donation_types');
+        $query=  $this->db->get();
+        return $query->result();
+        
     }
 
 }
