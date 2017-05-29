@@ -3,9 +3,9 @@
         <div class="col-md-6">
             <div class="panel panel-default">
                 <div class="panel-heading text-center">Donation Reports</div>
-                <div class="panel-body">
+                <div class="panel-body" style="height: 400px; overflow-y:scroll">
                     <table class="table table-responsive table-bordered">
-                        <thead>
+                        <thead style="background-color: #f9fafc">
                             <tr>
                                 <td>#</td>
                                 <!--<td>Blood Group</td>-->
@@ -38,9 +38,9 @@
         <div class="col-md-6">
             <div class="panel panel-default">
                 <div class="panel-heading text-center">Transaction Reports</div>
-                <div class="panel-body">
+                <div class="panel-body" style="height: 400px; overflow-y:scroll">
                     <table class="table table-responsive table-bordered">
-                        <thead>
+                        <thead style="background-color: #f9fafc">
                             <tr>
                                 <td>#</td>
                                 <td>Hospital name</td>

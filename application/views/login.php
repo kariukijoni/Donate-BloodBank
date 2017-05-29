@@ -27,28 +27,16 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li class=""><a href="#">Home</a></li>
-                    <li><a href="#">Donate</a></li>
-                    <li><a href="#">Give Blood</a></li>
+                    <li><a href="#" id="whyDonate">Why Donate Blood</a></li>
+                    <li><a href="#" id="giveBlood">Give Blood</a></li>
                     <li><a href="#">Contact Us</a></li>
-
-                </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Branches<span class="caret"></span></a>
-                        <ul class="dropdown-menu" role="menu">
-                            <li><a href="#">Action</a></li>
-                            <li><a href="#">Another action</a></li>
-                            <li><a href="#">Something else here</a></li>
-                            <li class="divider"></li>
-                            <li><a href="#">Separated link</a></li>
-                        </ul>
-                    </li>
-                </ul>
+                </ul>               
             </div><!-- /.navbar-collapse -->
         </nav>
         <div class="row">
             <div class="col-md-9">
-                fhusdhfushf
+                <div id="divDonate">divDonate</div>
+                <div id="blood">Blood</div>
 
             </div>
             <div class="col-md-3">
@@ -97,24 +85,36 @@
                                 <span class="glyphicon glyphicon-lock form-control-feedback"></span>
                             </div>
                             <div class="form-group">
-                                    <button type="submit" class="btn btn-bitbucket btn-sm">Sign In</button>                                
-                                    <a href="<?php echo base_url() ?>forgotPassword">Forgot Password?</a><br>
+                                <button type="submit" class="btn btn-bitbucket btn-sm">Sign In</button>                                
+                                <a href="<?php echo base_url() ?>forgotPassword">Forgot Password?</a><br>
                             </div>
                         </form>
                     </div>
-                        <div class="panel-footer">
-                            <a href="<?php echo base_url() ?>login/createAccount">Not Yet Registered? Create Account</a><br>         
-                        </div>
-                    </div><!-- /.login-box-body -->
+                    <div class="panel-footer">
+                        <a href="<?php echo base_url() ?>login/createAccount">Not Yet Registered? Create Account</a><br>         
+                    </div>
+                </div><!-- /.login-box-body -->
 
-                </div>
             </div>
         </div>
+    </div>
 
-        <!--<?php include 'includes/homeFooter.php'; ?>-->
-        <script src="<?php echo base_url(); ?>assets/js/jQuery-2.1.4.min.js"></script>
-        <script src="<?php echo base_url(); ?>assets/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+    <!--<?php include 'includes/homeFooter.php'; ?>-->
+    <script src="<?php echo base_url(); ?>assets/js/jQuery-2.1.4.min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#whyDonate").click(function () {
+                $("#blood").hide();
+                $("#divDonate").show();
+            });
 
-    </body>
+            $("#giveBlood").click(function ()
+            {
+                $("#divDonate").hide();
+                $("#blood").show();
+            });
 
-</html>
+
+        });
+    </script>

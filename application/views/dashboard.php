@@ -11,7 +11,7 @@
         <div class="row">
             <div class="col-lg-3 col-xs-6">
                 <!-- small box -->
-                <div class="small-box bg-yellow">
+                <div class="small-box bg-gray-active">
                     <div class="inner">
                         <h3><?php echo $countAllUsers['count_rows']; ?></h3>
                         <h3></h3>
@@ -26,7 +26,7 @@
             </div><!-- ./col -->
             <div class="col-lg-3 col-xs-6">
                 <!-- small box -->
-                <div class="small-box bg-aqua">
+                <div class="small-box bg-gray-active">
                     <div class="inner">
                         <!--                        <h3>150</h3>-->
                         <h3><?php echo $countDonors['count_rows']; ?></h3>
@@ -42,7 +42,7 @@
             </div><!-- ./col -->
             <div class="col-lg-3 col-xs-6">
                 <!-- small box -->
-                <div class="small-box bg-green">
+                <div class="small-box bg-gray-active">
                     <div class="inner">
                         <h3>53<sup style="font-size: 20px">%</sup></h3>
                         <p>Completed Tasks</p>
@@ -55,7 +55,7 @@
             </div><!-- ./col -->
             <div class="col-lg-3 col-xs-6">
                 <!-- small box -->
-                <div class="small-box bg-red">
+                <div class="small-box bg-gray-active">
                     <div class="inner">
                         <h3>65</h3>
                         <p>Reopened Issue</p>

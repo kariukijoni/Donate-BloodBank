@@ -114,7 +114,6 @@ class Task extends BaseController {
             $this->form_validation->set_rules('blood_type_requested', 'Blood Type', 'required');
             $this->form_validation->set_rules('quantity_requested', 'Quantity Requested', 'required');
             $request = array(
-//                'userid' => $this->input->post('userid'),
                 'blood_type' => $this->input->post('blood_group'),
                 'blood_type_requested' => $this->input->post('type_requested'),
                 'date_requested' => date('Y-m-d H:i:sa'),

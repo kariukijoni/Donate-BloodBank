@@ -47,7 +47,7 @@
             <div class="panel panel-default">
 
                 <div class="panel-heading">Show Made Requests</div>
-                <div class="panel-body">
+                <div class="panel-body" style="height: 200px; overflow-y:scroll">
                     <table class="table table-responsive table-bordered">
                         <thead>
                             <tr>

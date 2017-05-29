@@ -200,7 +200,6 @@ class Login extends CI_Controller {
     {
         $this->load->view('createAccount');
     }
-
 }
 
 ?>
