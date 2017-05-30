@@ -36,7 +36,7 @@
         <div class="row">
             <div class="col-md-9">
                 <div id="divDonate">divDonate</div>
-                <div id="blood">Blood</div>
+                <div id="divBlood">Blood</div>
 
             </div>
             <div class="col-md-3">
@@ -105,14 +105,14 @@
     <script type="text/javascript">
         $(document).ready(function () {
             $("#whyDonate").click(function () {
-                $("#blood").hide();
+                $("#divBlood").hide();
                 $("#divDonate").show();
             });
 
             $("#giveBlood").click(function ()
             {
                 $("#divDonate").hide();
-                $("#blood").show();
+                $("#divBlood").show();
             });
 
 
