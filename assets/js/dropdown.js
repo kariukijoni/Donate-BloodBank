@@ -8,14 +8,14 @@
 $(document).ready(function ()
 {
 //    alert("hello");
-    $('ul.nav li.dropdown').hover(function ()
-    {
-        $('.dropdown-menu', this).fadeIn();
-
-    }, function ()
-    {
-        $('.dropdown-menu', this).fadeOut('fast');
-    });
+$('ul.nav li.dropdown').hover(function ()
+{
+   $('.dropdown-menu',this).fadeIn();
+   
+}, function ()
+{
+$('.dropdown-menu',this).fadeOut('fast');
+});
 }
-
-);
+        
+        );

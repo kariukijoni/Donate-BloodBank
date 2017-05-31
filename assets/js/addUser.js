@@ -11,7 +11,8 @@
 $(document).ready(function () {
 
     var addUserForm = $("#addUser");
-    addUserForm.validate({
+
+    var validator = addUserForm.validate({
         rules: {
             fname: {required: true},
             email: {required: true, email: true, remote: {url: baseURL + "checkEmailExists", type: "post"}},
@@ -21,7 +22,7 @@ $(document).ready(function () {
             temperature: {required: true},
             blood_pressure: {required: true},
             blood_type: {required: true},
-            nextSafeDonation: {required: true},
+            nextSafeDonation:{required: true},
             password: {required: true},
             cpassword: {required: true, equalTo: "#password"},
             role: {required: true, selected: true}
@@ -33,11 +34,12 @@ $(document).ready(function () {
             gender: {required: "This field is required"},
             weightLBS: {required: "This field is required"},
             temperature: {required: "This field is required"},
-            blood_pressure: {required: "This field is required"},
+            blood_pressure:{required: "This field is required"},
             blood_type: {required: "This field is required"},
-            nextSafeDonation: {required: "this field is required"},
+            nextSafeDonation:{required: "this field is required"},
             password: {required: "This field is required"},
             cpassword: {required: "This field is required", equalTo: "Please enter same password"},
+            
             role: {required: "This field is required", selected: "Please select atleast one option"}
         }
     });
