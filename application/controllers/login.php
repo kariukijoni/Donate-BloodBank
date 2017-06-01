@@ -1,6 +1,7 @@
 <?php
 
-if (!defined('BASEPATH')) exit('No direct script access allowed');
+if (!defined('BASEPATH'))
+    exit('No direct script access allowed');
 
 /**
  * Class : Login (LoginController)
@@ -17,6 +18,7 @@ class Login extends CI_Controller {
     public function __construct() {
         parent::__construct();
         $this->load->model('login_model');
+        $this->load->model('task_model');
     }
 
     /**
@@ -33,7 +35,8 @@ class Login extends CI_Controller {
         $isLoggedIn = $this->session->userdata('isLoggedIn');
 
         if (!isset($isLoggedIn) || $isLoggedIn != TRUE) {
-            $this->load->view('login');
+            $data['tbl_request'] = $this->task_model->bloodRequests();
+            $this->load->view('login',$data);
         } else {
             redirect('/dashboard');
         }
@@ -70,7 +73,7 @@ class Login extends CI_Controller {
                     redirect('/dashboard');
                 }
             } else {
-                $this->session->set_flashdata('error', 'Email or password mismatch');
+                $this->session->set_flashdata('error', 'Email or Password Mismatch');
 
                 redirect('/login');
             }
@@ -196,10 +199,11 @@ class Login extends CI_Controller {
             redirect("/login");
         }
     }
-    public function createAccount()
-    {
+
+    public function createAccount() {
         $this->load->view('createAccount');
     }
+
 }
 
 ?>

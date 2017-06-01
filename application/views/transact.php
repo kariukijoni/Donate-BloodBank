@@ -78,13 +78,13 @@
                                                             </select>
                                                         </div>                                                        
                                                         <div class="form-group">
-                                                            <input type="text" class="form-control blood_group" name="blood_group" id="modalBloodGroup">
+                                                            <input type="text" class="form-control blood_group" name="blood_group" id="modalBloodGroup" style="border: none">
                                                         </div>
                                                         <div class="form-group">
-                                                            <input type="text" class="form-control blood_type" name="blood_type" id="modalBloodType">
+                                                            <input type="text" class="form-control blood_type" name="blood_type" id="modalBloodType" style="border: none">
                                                         </div>
                                                         <div class="form-group">
-                                                            <input type="text" class="form-control amount_donated_cc" name="amount_donated_cc" id="modalBloodAmount">
+                                                            <input type="text" class="form-control amount_donated_cc" name="amount_donated_cc" id="modalBloodAmount" style="border: none">
                                                         </div>
                                                     </div>
                                                     <div class="modal-footer">

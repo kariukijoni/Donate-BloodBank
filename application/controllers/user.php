@@ -29,8 +29,8 @@ class User extends BaseController {
     public function index() {
         $this->global['pageTitle'] = 'BloodDonor : Dashboard';
         $this->load->model('task_model');
-        $data['countDonors']=  $this->task_model->countDonors();
-        $data['countAllUsers']=  $this->task_model->getCountAllUsers();
+        $data['countDonors'] = $this->task_model->countDonors();
+        $data['countAllUsers'] = $this->task_model->getCountAllUsers();
         $this->loadViews("dashboard", $this->global, $data, NULL);
     }
 
@@ -294,6 +294,10 @@ class User extends BaseController {
 
         $this->loadViews("404", $this->global, NULL, NULL);
     }
+
+    /*
+     * function getAllDonors
+     */
 
     function donors() {
         $this->global['pageTitle'] = 'BloodDonor : Donors';

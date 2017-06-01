@@ -20,16 +20,13 @@ class Task extends BaseController {
         $this->global['pageTitle'] = 'BloodDonor : Transact';
         $this->load->model('task_model');
         $data['record'] = $this->task_model->bloodStock(); //retrieve array with bloodstock
-        $data['hos_name'] = $this->task_model->getNameRegHos(); //getHosName
-//        $data['blood_type'] = $this->task_model->getBloodGroup(); //GetBloodGroup
-//        $data['donation_type'] = $this->task_model->getBloodType(); //GetBloodType       
+        $data['hos_name'] = $this->task_model->getNameRegHos(); //getHosName       
         $this->loadViews("transact", $this->global, $data, Null);
     }
 
     function transactHos() {
 //        print_r($this->input->post('hos_id'));
 //        die();
-        $this->load->model('task_model');
         $transact = array(
             'hos_name' => $this->input->post('hos_name'),
             'donation_type' => $this->input->post('blood_group'),
@@ -48,7 +45,6 @@ class Task extends BaseController {
         $this->load->library('form_validation');
         $this->form_validation->set_rules('hos_name', 'Name', 'trim|required');
         $this->form_validation->set_rules('hos_location', 'Location', 'trim|required');
-        $this->load->model('task_model');
         $data = array(
             'hos_name' => $this->input->post('hos_name'),
             'hos_location' => $this->input->post('hos_location'),
@@ -64,7 +60,6 @@ class Task extends BaseController {
      */
 
     function donate() {
-        $this->load->model('task_model');
         $data['type'] = $this->task_model->getDonationType();
         $data['user_id'] = $this->input->get('user_id');
         $this->global['pageTitle'] = 'BloodDonor : Donate';
@@ -84,7 +79,6 @@ class Task extends BaseController {
             'donation_date' => date('Y-m-d H:i:sa'),
             'bbid' => $this->input->post('bbid'),
         );
-        $this->load->model('task_model');
         $this->task_model->donationRecord($donationRecord);
 
         /*
@@ -107,7 +101,6 @@ class Task extends BaseController {
      */
 
     function requests() {
-
 
         if (isset($_POST['type_requested']) & isset($_POST['quantity_requested'])) {
             $this->load->library('form_validation');
@@ -132,9 +125,11 @@ class Task extends BaseController {
         $this->loadViews("requests", $this->global, $data, Null);
     }
 
-    function donorRequest() {
+    function donorDashboard() {
         $this->global['pageTitle'] = 'BloodDonor : DonorRequests';
-        $this->loadViews('donorRequest', $this->global, Null, NULL);
+        $data['tbl_request'] = $this->task_model->bloodRequests();
+        
+        $this->loadViews('donorDashboard', $this->global, $data, NULL);
     }
 
     /*

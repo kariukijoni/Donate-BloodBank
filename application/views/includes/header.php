@@ -44,38 +44,6 @@
                     <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
                         <span class="sr-only">Toggle navigation</span>
                     </a>
-                    <div class="navbar-custom-menu">
-                        <ul class="nav navbar-nav">
-                            <!-- User Account: style can be found in drop_down.less -->
-                            <li class="dropdown user user-menu">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    <img src="<?php echo base_url(); ?>assets/dist/img/avatar.png" class="user-image" alt="User Image"/>
-                                    <span class="hidden-xs"><?php echo $name; ?></span>
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <!-- User image -->
-                                    <li class="user-header">
-                                        <img src="<?php echo base_url(); ?>assets/dist/img/avatar.png" class="img-circle" alt="User Image" />
-                                        <p>
-                                            <?php echo $name; ?>
-                                            <small><?php echo $role_text; ?></small>
-                                        </p>
-                                    </li>
-                                    <!-- Menu Footer-->
-                                    <li class="user-footer">  
-                                        <div class="row">
-                                            <div class="col-sm-4">
-                                                <a href="<?php echo base_url(); ?>loadChangePass" class="btn btn-twitter btn-sm"><i class="fa fa-key"></i> Change Password</a>
-                                            </div>
-                                            <div class="col-sm-offset-4 col-sm-4">
-                                                <a href="<?php echo base_url(); ?>logout" class="btn btn-twitter btn-sm"><i class="fa fa-sign-out"></i> Sign out</a>
-                                            </div>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </div>
                 </nav>
             </header>
             <!-- Left side column. contains the logo and sidebar -->
@@ -85,14 +53,28 @@
                     <!-- sidebar menu: : style can be found in sidebar.less -->
                     <ul class="sidebar-menu">
                         <li class="header"><b>MAIN NAVIGATION</b></li>
+                        <!-- User image -->
+                        <li class="user-header">
+                            <img src="<?php echo base_url(); ?>assets/dist/img/avatar.png" class="img-circle" alt="User Image" width="100" height="100"/>
+                            <p style="color: #FFFFFF"><?php echo $name; ?></p>
+                            <small style="color: #FFFFFF"><?php echo $role_text; ?></small>                           
+                        </li> 
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <a href="<?php echo base_url(); ?>loadChangePass" class="btn btn-twitter btn-sm"><i class="fa fa-key"></i> Change Password</a>
+                            </div>
+                            <div class="col-sm-offset-3 col-sm-4">
+                                <a href="<?php echo base_url(); ?>logout" class="btn btn-twitter btn-sm"><i class="fa fa-sign-out"></i> Log Out</a>
+                            </div>
+                        </div>
                         <li class="treeview">
                             <a href="<?php echo base_url(); ?>dashboard">
                                 <i class="fa fa-dashboard"></i> <span>Dashboard</span></i>
                             </a>
                         </li>
                         <li class="treeview">
-                            <a href="<?php echo base_url(); ?>task/donorRequest">
-                                <i class="fa fa-life-bouy"></i><span>Donor Request</span></i>
+                            <a href="<?php echo base_url(); ?>task/donorDashboard">
+                                <i class="fa fa-life-bouy"></i><span>Donor Dashboard</span></i>
                             </a>
                         </li>
                         <?php
@@ -117,12 +99,12 @@
                                     <span>Requests</span>
                                 </a>
                             </li>
-<!--                            <li class="treeview">
-                                <a href="#" >
-                                    <i class="fa fa-upload"></i>
-                                    <span>Task Uploads</span>
-                                </a>
-                            </li>-->
+                            <!--                            <li class="treeview">
+                                                            <a href="#" >
+                                                                <i class="fa fa-upload"></i>
+                                                                <span>Task Uploads</span>
+                                                            </a>
+                                                        </li>-->
                             <?php
                         }
                         if ($role == ROLE_ADMIN) {
@@ -135,8 +117,8 @@
                             </li>
                             <li class="treeview">
                                 <a href="<?php echo base_url(); ?>task/reports"/> 
-                                    <i class="fa fa-files-o"></i>
-                                    <span>Reports</span>
+                                <i class="fa fa-files-o"></i>
+                                <span>Reports</span>
                                 </a>
                             </li>
                             <?php

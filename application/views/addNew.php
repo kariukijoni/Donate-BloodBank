@@ -3,7 +3,7 @@
     <section class="content-header">
         <h3>
             <i class="fa fa-users"></i> User Management
-            <small>Add / Edit User</small>
+            <small>Add User</small>
         </h3>
     </section>
 

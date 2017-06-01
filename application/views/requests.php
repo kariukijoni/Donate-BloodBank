@@ -51,7 +51,7 @@
                     <table class="table table-responsive table-bordered">
                         <thead>
                             <tr>
-                                <td>Rid</td>
+                                <td>#</td>
                                 <!--<td>UserId</td>-->
                                 <td>Blood Group</td>
                                 <td>Blood Type</td>
