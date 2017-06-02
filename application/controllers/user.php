@@ -303,9 +303,8 @@ class User extends BaseController {
         $this->global['pageTitle'] = 'BloodDonor : Donors';
         $this->load->model("user_model");
         $data['tbl_users'] = $this->user_model->getAllDonors();
+        $data['getNextProbableDonors']=  $this->user_model->getNextProbableDonors();
         $this->loadViews("donors", $this->global, $data, NULL);
     }
 
 }
-
-?>

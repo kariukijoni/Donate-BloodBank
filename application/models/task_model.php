@@ -160,8 +160,8 @@ class Task_model extends CI_Model {
     function reportHos() {
         $this->db->select('trans_id,hos_name,donation_type,blood_type,amount_donated_cc,transact_date');
         $this->db->from('tbl_transact');
-        $query=  $this->db->get();
-        $result=$query->result();
+        $query = $this->db->get();
+        $result = $query->result();
         return $result;
     }
 
@@ -172,7 +172,7 @@ class Task_model extends CI_Model {
     function reportDonors() {
         $this->db->select('tbl_donation.did,tbl_donation.donation_type,tbl_donation.nextSafeDonation, tbl_donation_records.donation_date');
         $this->db->from('tbl_donation');
-        $this->db->join('tbl_donation_records','tbl_donation_records.did=tbl_donation.did','inner');
+        $this->db->join('tbl_donation_records', 'tbl_donation_records.did=tbl_donation.did', 'inner');
         $query = $this->db->get();
         $result = $query->result();
         return $result;
@@ -208,4 +208,13 @@ class Task_model extends CI_Model {
         return $q->row_array();
     }
 
+    /*
+     * function update donation_status after donation
+     */
+     function donStatus($userId, $userInfo) {
+        $this->db->where('userId', $userId);
+        $this->db->update('tbl_users', $userInfo);
+
+        return $this->db->affected_rows();
+    }
 }

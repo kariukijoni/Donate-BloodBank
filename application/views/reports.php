@@ -8,7 +8,6 @@
                         <thead style="background-color: #f9fafc">
                             <tr>
                                 <td>#</td>
-                                <!--<td>Blood Group</td>-->
                                 <td>Blood Type</td>
                                 <td>Donation Date</td>
                                 <td>Next Safe Donation</td>
@@ -21,7 +20,6 @@
                                 ?>
                                 <tr>
                                     <td><?= $report->did ?></td>
-                                    <!--<td><?=$report->blood_type?></td>-->
                                     <td><?= $report->donation_type ?></td>
                                     <td><?=$report-> donation_date?></td>
                                     <td><?= $report->nextSafeDonation ?></td>

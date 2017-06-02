@@ -8,7 +8,8 @@
 $(document).ready(function ()
 {
 //    alert("hello");
-$('ul.nav li.dropdown').hover(function ()
+//$('ul.nav li.dropdown').hover(function ()
+$('.dropdown').hover(function ()
 {
    $('.dropdown-menu',this).fadeIn();
    

@@ -37,11 +37,11 @@
             <div class="col-md-9">
                 <div id="divHome">
                     <div class="col-md-6">
-                        <div class="panel panel-default">
-
-                            <div class="panel-heading text-center">Made Requests</div>
-                            <div class="panel-body" style="height: 200px; overflow-y:scroll">
-                                <table class="table table-responsive table-bordered">
+                        
+                    </div>
+                    <div class="col-md-6">
+                        <p class="text-center">Made Requests</p>
+                                <table class="table table-responsive table-bordered table-striped">
                                     <thead>
                                         <tr>
                                             <td>Blood Group</td>
@@ -71,8 +71,6 @@
                                         <?php endforeach ?>
                                     </tbody>
                                 </table> 
-                            </div>
-                        </div>
                     </div>
                 </div> 
                 <div id="divDonate">

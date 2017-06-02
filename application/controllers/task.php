@@ -88,11 +88,18 @@ class Task extends BaseController {
         $next_safe = date("Y-m-d", strtotime('+ ' . $duration[0]->frequency_days . ' days')); //render nextSafeDonationDate
         $data = array(
             'donation_type' => $this->input->post('donation_type'),
-            'nextSafeDonation' => $next_safe,
             'userid' => $this->input->post('userId'),
-            'amount_donated_cc' => $this->input->post('amount_donated_cc')
+            'amount_donated_cc' => $this->input->post('amount_donated_cc'),
+            'nextSafeDonation' => $next_safe
         );
         $this->task_model->donateUser($data);
+
+        /*
+         * update don_status controller
+         */
+        $userId = $this->input->post('userId');
+        $userInfo = array('don_status' => 0);
+        $this->task_model->donStatus($userId, $userInfo);
         redirect('user/donors');
     }
 
@@ -128,7 +135,7 @@ class Task extends BaseController {
     function donorDashboard() {
         $this->global['pageTitle'] = 'BloodDonor : DonorRequests';
         $data['tbl_request'] = $this->task_model->bloodRequests();
-        
+
         $this->loadViews('donorDashboard', $this->global, $data, NULL);
     }
 
@@ -153,9 +160,8 @@ class Task extends BaseController {
 
     function reports() {
         $this->global['pageTitle'] = 'BloodDonor : Transact';
-        $this->load->model('task_model');
-        $data['reportDonors']=$this->task_model->reportDonors();
-        $data['reportHos']=  $this->task_model->reportHos();
+        $data['reportDonors'] = $this->task_model->reportDonors();
+        $data['reportHos'] = $this->task_model->reportHos();
         $this->loadViews('reports', $this->global, $data, NULL);
     }
 

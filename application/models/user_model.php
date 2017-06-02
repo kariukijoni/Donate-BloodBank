@@ -95,19 +95,19 @@ class User_model extends CI_Model {
         $insert_id = $this->db->insert_id();
         $this->db->trans_complete();
         return $insert_id;
-    }   
+    }
+
     /**
      * This function is used to feature characteristics of donor to system
      * @return number $insert_id : This is last inserted id
      */
-    function examineDonor($examineInfo)
-    {
+    function examineDonor($examineInfo) {
         $this->db->trans_start();
-        $this->db->insert('tbl_donors_preexam',$examineInfo);
-        $insert_id=  $this->db->insert_id();
+        $this->db->insert('tbl_donors_preexam', $examineInfo);
+        $insert_id = $this->db->insert_id();
         $this->db->trans_complete();
         return $insert_id;
-    }      
+    }
 
     /**
      * This function used to get user information by id
@@ -196,10 +196,26 @@ class User_model extends CI_Model {
         $this->db->from('tbl_users as BaseTbl');
         $this->db->join('tbl_roles as Role', 'Role.roleId = BaseTbl.roleId', 'left');
         $this->db->where('isDeleted', 0);
+        $this->db->where('don_status', 1);
         $this->db->where('Role.roleId', 3);
         $query = $this->db->get();
         $result = $query->result();
         return $result;
     }
-    
+
+    /*
+     * getNextPropableDonors
+     */
+
+    function getNextProbableDonors() {
+        $this->db->select('BaseTbl.email, BaseTbl.name, tbl_donation.nextSafeDonation');
+        $this->db->from('tbl_users as BaseTbl');
+        $this->db->join('tbl_donation as tbl_donation', 'tbl_donation.userid = BaseTbl.userid', 'left');
+        $this->db->where('isDeleted', 0);
+        $this->db->where('don_status', 0);
+        $query = $this->db->get();
+        $result = $query->result();
+        return $result;
+    }
+
 }

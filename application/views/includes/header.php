@@ -44,6 +44,20 @@
                     <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
                         <span class="sr-only">Toggle navigation</span>
                     </a>
+                    <div class="dropdown col-md-offset-9">
+                        <button class="btn btn-instagram btn-sm" type="button" id="dropdownMenu1" data-toggle="dropdown">
+                            More
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                            <li role="presentation"><a role="menuitem" tabindex="-1" 
+                                                       href="<?php echo base_url(); ?>loadChangePass" class="fa fa-edit">Change Password</a></li>
+                            <li role="presentation" class="divider"></li>
+                            <li role="presentation"><a role="menuitem" tabindex="-1" 
+                                                       href="<?php echo base_url(); ?>logout" class="fa fa-sign-out">Log Out</a></li>
+                        </ul>
+
+                    </div>
                 </nav>
             </header>
             <!-- Left side column. contains the logo and sidebar -->
@@ -57,16 +71,23 @@
                         <li class="user-header">
                             <img src="<?php echo base_url(); ?>assets/dist/img/avatar.png" class="img-circle" alt="User Image" width="100" height="100"/>
                             <p style="color: #FFFFFF"><?php echo $name; ?></p>
-                            <small style="color: #FFFFFF"><?php echo $role_text; ?></small>                           
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <small style="color: #FFFFFF"><?php echo $role_text; ?></small> 
+                                </div>
+                                <div class="col-md-6">
+
+                                </div>
+                            </div>
                         </li> 
-                        <div class="row">
-                            <div class="col-sm-4">
-                                <a href="<?php echo base_url(); ?>loadChangePass" class="btn btn-twitter btn-sm"><i class="fa fa-key"></i> Change Password</a>
-                            </div>
-                            <div class="col-sm-offset-3 col-sm-4">
-                                <a href="<?php echo base_url(); ?>logout" class="btn btn-twitter btn-sm"><i class="fa fa-sign-out"></i> Log Out</a>
-                            </div>
-                        </div>
+                        <!--                        <div class="row">
+                                                    <div class="col-sm-4">
+                                                        <a href="<?php echo base_url(); ?>loadChangePass" class="btn btn-twitter btn-sm"><i class="fa fa-key"></i> Change Password</a>
+                                                    </div>
+                                                    <div class="col-sm-offset-3 col-sm-4">
+                                                        <a href="<?php echo base_url(); ?>logout" class="btn btn-twitter btn-sm"><i class="fa fa-sign-out"></i> Log Out</a>
+                                                    </div>
+                                                </div>-->
                         <li class="treeview">
                             <a href="<?php echo base_url(); ?>dashboard">
                                 <i class="fa fa-dashboard"></i> <span>Dashboard</span></i>
@@ -74,7 +95,7 @@
                         </li>
                         <li class="treeview">
                             <a href="<?php echo base_url(); ?>task/donorDashboard">
-                                <i class="fa fa-life-bouy"></i><span>Donor Dashboard</span></i>
+                                <i class="fa fa-life-bouy"></i><span>Donor</span></i>
                             </a>
                         </li>
                         <?php
