@@ -44,20 +44,27 @@
                     <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
                         <span class="sr-only">Toggle navigation</span>
                     </a>
-                    <div class="dropdown col-md-offset-9">
-                        <button class="btn btn-instagram btn-sm" type="button" id="dropdownMenu1" data-toggle="dropdown">
-                            More
-                            <span class="caret"></span>
-                        </button>
-                        <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-                            <li role="presentation"><a role="menuitem" tabindex="-1" 
-                                                       href="<?php echo base_url(); ?>loadChangePass" class="fa fa-edit">Change Password</a></li>
-                            <li role="presentation" class="divider"></li>
-                            <li role="presentation"><a role="menuitem" tabindex="-1" 
-                                                       href="<?php echo base_url(); ?>logout" class="fa fa-sign-out">Log Out</a></li>
-                        </ul>
-
-                    </div>
+                    <!--                    <a href="#" class="badge">
+                                            Notifications
+                                        </a>-->
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li> <button class="btn btn-instagram btn-sm" type="button" id="dropdownMenu1" data-toggle="dropdown">
+                                Notifications
+                            </button>
+                        </li>
+                        <li class="dropdown">
+                            <button class="btn btn-instagram btn-sm" type="button" id="dropdownMenu1" data-toggle="dropdown">
+                                More
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                                <li role="presentation"><a role="menuitem" tabindex="-1" 
+                                                           href="<?php echo base_url(); ?>loadChangePass" class="fa fa-edit">Change Password</a></li>
+                                <li role="presentation" class="divider"></li>
+                                <li role="presentation"><a role="menuitem" tabindex="-1" 
+                                                           href="<?php echo base_url(); ?>logout" class="fa fa-sign-out">Log Out</a></li>
+                            </ul></li>
+                    </ul>
                 </nav>
             </header>
             <!-- Left side column. contains the logo and sidebar -->
