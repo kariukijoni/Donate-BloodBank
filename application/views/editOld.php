@@ -16,7 +16,7 @@ if (!empty($userInfo)) {
 }
 ?>
 
-<div class="content-wrapper">
+<div class="content-wrapper" style="background-color: #ffffff">
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>

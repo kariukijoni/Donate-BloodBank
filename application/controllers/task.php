@@ -120,9 +120,14 @@ class Task extends BaseController {
                 'quantity_requested' => $this->input->post('quantity_requested')
             );
 
-            $this->task_model->getRequests($request);
-        }
+            $rid = $this->task_model->getRequests($request);
 
+            $notification = array(
+                'rqid' => $rid,
+                'date_sent' => date('Y-m-d')
+            );
+            $this->task_model->notifications($notification);
+        }
 
         $data['type'] = $this->task_model->getDonationType();
         $data['tbl_request'] = $this->task_model->bloodRequests();

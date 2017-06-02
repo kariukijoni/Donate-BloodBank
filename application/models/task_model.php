@@ -44,9 +44,23 @@ class Task_model extends CI_Model {
     function getRequests($requests) {
         $this->db->trans_start();
         $this->db->insert('tbl_requests', $requests);
+        $insert_id = $this->db->insert_id();
         $this->db->trans_complete();
+        return $insert_id;
     }
 
+    /*
+     * function notifications
+     */
+
+    function notifications($notification) {
+        $this->db->trans_start();
+        $this->db->insert('tbl_notifications',$notification);
+        $insert_id = $this->db->insert_id();
+        $this->db->trans_complete();
+        return $insert_id;
+    }
+   
     /*
      * function used to getDonationTypes
      */
@@ -211,10 +225,12 @@ class Task_model extends CI_Model {
     /*
      * function update donation_status after donation
      */
-     function donStatus($userId, $userInfo) {
+
+    function donStatus($userId, $userInfo) {
         $this->db->where('userId', $userId);
         $this->db->update('tbl_users', $userInfo);
 
         return $this->db->affected_rows();
     }
+
 }

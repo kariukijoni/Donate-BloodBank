@@ -35,7 +35,7 @@
                             </div>
                         </div>
                         <div class="row">
-                            <button class="btn btn-bitbucket">Request</button>
+                            <button class="btn btn-bitbucket btn-sm">Request</button>
                         </div>
                     </div>
                 </form>

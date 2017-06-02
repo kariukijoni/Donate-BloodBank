@@ -1,4 +1,4 @@
-<div class="content-wrapper">
+<div class="content-wrapper" style="background-color: #ffffff">
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
@@ -28,7 +28,6 @@
                 <!-- small box -->
                 <div class="small-box bg-gray-active">
                     <div class="inner">
-                        <!--                        <h3>150</h3>-->
                         <h3><?php echo $countDonors['count_rows']; ?></h3>
                         <h3></h3>
                         <p>All Active Donors</p>
