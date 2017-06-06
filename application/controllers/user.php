@@ -20,6 +20,7 @@ class User extends BaseController {
     public function __construct() {
         parent::__construct();
         $this->load->model('user_model');
+        $this->load->model('task_model');
         $this->isLoggedIn();
     }
 
@@ -28,7 +29,7 @@ class User extends BaseController {
      */
     public function index() {
         $this->global['pageTitle'] = 'BloodDonor : Dashboard';
-        $this->load->model('task_model');
+
         $data['countDonors'] = $this->task_model->countDonors();
         $data['countAllUsers'] = $this->task_model->getCountAllUsers();
         $this->loadViews("dashboard", $this->global, $data, NULL);
@@ -41,7 +42,6 @@ class User extends BaseController {
         if ($this->isAdmin() == TRUE) {
             $this->loadThis();
         } else {
-            $this->load->model('user_model');
             $searchText = $this->input->post('searchText');
             $data['searchText'] = $searchText;
             $this->load->library('pagination');
@@ -53,7 +53,7 @@ class User extends BaseController {
             $data['userRecords'] = $this->user_model->userListing($searchText, $returns["page"], $returns["segment"]);
 
             $this->global['pageTitle'] = 'BloodDonor : User Listing';
-
+            $data['countAllUsers'] = $this->task_model->getCountAllUsers(); //List count users
             $this->loadViews("users", $this->global, $data, NULL);
         }
     }
@@ -65,7 +65,6 @@ class User extends BaseController {
         if ($this->isAdmin() == TRUE) {
             $this->loadThis();
         } else {
-            $this->load->model('user_model');
             $data['roles'] = $this->user_model->getUserRoles();
 
             $this->global['pageTitle'] = 'BloodDonor : Add New User';
@@ -128,7 +127,6 @@ class User extends BaseController {
                 $userInfo = array('email' => $email, 'password' => getHashedPassword($password), 'roleId' => $roleId, 'name' => $name,
                     'mobile' => $mobile, 'createdBy' => $this->vendorId, 'createdDtm' => date('Y-m-d H:i:sa'));
 
-                $this->load->model('user_model');
                 $result = $this->user_model->addNewUser($userInfo);
 
                 /**
@@ -142,7 +140,7 @@ class User extends BaseController {
                     'blood_pressure' => $this->input->post('blood_pressure'),
                     'blood_type' => $this->input->post('blood_type'),
                     'dateOfBirth' => date('Y-m-d', strtotime(str_replace('-', '/', $this->input->post('dateOfBirth')))));
-                $this->load->model('user_model');
+
                 $resul = $this->user_model->examineDonor($examineInfo);
                 if ($result && $resul > 0) {
                     $this->session->set_flashdata('success', 'New User Created Successfully');
@@ -301,9 +299,8 @@ class User extends BaseController {
 
     function donors() {
         $this->global['pageTitle'] = 'BloodDonor : Donors';
-        $this->load->model("user_model");
-        $data['tbl_users'] = $this->user_model->getAllDonors();
-        $data['getNextProbableDonors']=  $this->user_model->getNextProbableDonors();
+        $data['tbl_users'] = $this->user_model->getAllDonors();       
+        $data['getNextProbableDonors'] = $this->user_model->getNextProbableDonors();
         $this->loadViews("donors", $this->global, $data, NULL);
     }
 

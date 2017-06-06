@@ -41,7 +41,7 @@ class Task_model extends CI_Model {
      * this function is used to getRequests
      */
 
-    function getRequests($requests) {
+    function makeRequests($requests) {
         $this->db->trans_start();
         $this->db->insert('tbl_requests', $requests);
         $insert_id = $this->db->insert_id();
@@ -55,12 +55,21 @@ class Task_model extends CI_Model {
 
     function notifications($notification) {
         $this->db->trans_start();
-        $this->db->insert('tbl_notifications',$notification);
+        $this->db->insert('tbl_notifications', $notification);
         $insert_id = $this->db->insert_id();
         $this->db->trans_complete();
         return $insert_id;
     }
-   
+
+    /*
+     * function count notifications
+     */
+
+    function countNotifications() {
+        $q = $this->db->query("SELECT COUNT(*) as count_rows FROM tbl_notifications where status='unread'");
+        return $q->row_array();
+    }
+
     /*
      * function used to getDonationTypes
      */
@@ -106,7 +115,7 @@ class Task_model extends CI_Model {
     }
 
     /*
-     * get blood requests
+     * get blood all requests
      */
 
     function bloodRequests() {
@@ -118,6 +127,20 @@ class Task_model extends CI_Model {
     }
 
     /*
+     * get blood requests for a specific user
+     */
+
+    function specificRequest() {
+        $this->db->select('tbl_requests.blood_type,tbl_requests.blood_type_requested,tbl_requests.date_requested,'
+                . 'tbl_requests.quantity_requested,tbl_donors_preexam.userid');
+        $this->db->from('tbl_requests');
+        $this->db->join('tbl_donors_preexam', 'tbl_donors_preexam.blood_type=tbl_requests.blood_type');
+        $query = $this->db->get();
+        $result = $query->result();
+        return $result;
+    }
+
+    /*
      * fuction used to keep donationRecords
      */
 
@@ -125,24 +148,6 @@ class Task_model extends CI_Model {
         $this->db->trans_start();
         $this->db->insert('tbl_donation_records', $record);
         $this->db->trans_complete();
-    }
-
-    /*
-     * function used to get Registered hospitals
-     */
-
-    function getHos() {
-//        $this->load->helper('url');
-        $res = $this->db->get('tbl_hospitals')->result();
-        $data_array = array();
-        $i = 0;
-        foreach ($res as $r) {
-            $data_array[$i]['hos_id'] = $r->hos_id;
-            $data_array[$i]['hos_name'] = $r->hos_name;
-            $data_array[$i]['hos_location'] = $r->hos_location;
-            $i++;
-        }
-        echo json_encode($data_array);
     }
 
     /*
@@ -184,7 +189,8 @@ class Task_model extends CI_Model {
      */
 
     function reportDonors() {
-        $this->db->select('tbl_donation.did,tbl_donation.donation_type,tbl_donation.nextSafeDonation, tbl_donation_records.donation_date');
+        $this->db->select('tbl_donation.did,tbl_donation.donation_type,tbl_donation.nextSafeDonation, '
+                . 'tbl_donation_records.donation_date');
         $this->db->from('tbl_donation');
         $this->db->join('tbl_donation_records', 'tbl_donation_records.did=tbl_donation.did', 'inner');
         $query = $this->db->get();
@@ -228,6 +234,18 @@ class Task_model extends CI_Model {
 
     function donStatus($userId, $userInfo) {
         $this->db->where('userId', $userId);
+        $this->db->update('tbl_users', $userInfo);
+
+        return $this->db->affected_rows();
+    }
+
+    /*
+     * update donation_status after a period of time
+     */
+
+    function donStatusDonate($userId, $userInfo) {
+        $this->db->where('userId', $userId);
+        $this->db->where();
         $this->db->update('tbl_users', $userInfo);
 
         return $this->db->affected_rows();

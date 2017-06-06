@@ -63,7 +63,8 @@
                                 <li role="presentation" class="divider"></li>
                                 <li role="presentation"><a role="menuitem" tabindex="-1" 
                                                            href="<?php echo base_url(); ?>logout" class="fa fa-sign-out">Log Out</a></li>
-                            </ul></li>
+                            </ul>
+                        </li>
                     </ul>
                 </nav>
             </header>

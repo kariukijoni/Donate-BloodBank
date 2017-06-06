@@ -2,7 +2,14 @@
     <div class="col-md-6">
         <div class="panel panel-default">
 
-            <div class="panel-heading text-center">Made Requests</div>
+            <div class="panel-heading text-center">Made Requests            
+                <div class="badge" style="background-color: #000000">
+                    <a href="#">
+                        Notifications
+                        <?php echo $notifications['count_rows']; ?>
+                    </a>
+                </div>
+            </div>
             <div class="panel-body" style="height: 200px; overflow-y:scroll">
                 <table class="table table-responsive table-bordered">
                     <thead>
@@ -17,11 +24,11 @@
                     </thead>
                     <tbody>
                         <?php
-                        foreach ($tbl_request as $row):
+                        foreach ($specific_request as $row):
                             ?>
                             <tr>
-<!--                                <td>
-                                    <?= $row->rqid ?>
+    <!--                                <td>
+                                <?= $row->rqid ?>
                                 </td> -->
                                 <td>
                                     <?= $row->blood_type ?>

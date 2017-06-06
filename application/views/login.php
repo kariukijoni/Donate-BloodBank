@@ -136,7 +136,7 @@
                 <!--<div class= "login-box">-->
                 <div class="panel panel-default">
                     <div class="page-header text-center">
-                        <a href="#"><b>Blood Donor</b></a>
+                        <a href="#"><b style="color: #f00000">BloodDonor</b></a>
                     </div><!-- /.login-logo -->
                     <div class="panel-body">
                         <p class="login-box-msg">SIGN IN</p>

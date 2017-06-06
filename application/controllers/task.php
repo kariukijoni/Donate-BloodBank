@@ -18,7 +18,6 @@ class Task extends BaseController {
 
     function transact() {
         $this->global['pageTitle'] = 'BloodDonor : Transact';
-        $this->load->model('task_model');
         $data['record'] = $this->task_model->bloodStock(); //retrieve array with bloodstock
         $data['hos_name'] = $this->task_model->getNameRegHos(); //getHosName       
         $this->loadViews("transact", $this->global, $data, Null);
@@ -120,7 +119,7 @@ class Task extends BaseController {
                 'quantity_requested' => $this->input->post('quantity_requested')
             );
 
-            $rid = $this->task_model->getRequests($request);
+            $rid = $this->task_model->makeRequests($request);
 
             $notification = array(
                 'rqid' => $rid,
@@ -139,8 +138,8 @@ class Task extends BaseController {
 
     function donorDashboard() {
         $this->global['pageTitle'] = 'BloodDonor : DonorRequests';
-        $data['tbl_request'] = $this->task_model->bloodRequests();
-
+        $data['specific_request'] = $this->task_model->specificRequest();
+        $data['notifications'] = $this->task_model->countNotifications();
         $this->loadViews('donorDashboard', $this->global, $data, NULL);
     }
 

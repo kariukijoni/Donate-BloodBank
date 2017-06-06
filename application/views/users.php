@@ -1,16 +1,17 @@
 <div class="content-wrapper" style="background-color: #FFFFFF">
     <!-- Content Header (Page header) -->
     <section class="content-header">
-        <h1>
-            <i class="fa fa-users"></i> User Management
-            <small>Add, Edit, Delete</small>
-        </h1>
+        <h4>
+            <i class="fa fa-users"></i> All System Users
+            <small>Add | Edit | Delete</small>
+            <div class="badge" style="background-color:  #00733e"><?php echo $countAllUsers['count_rows']; ?></div>
+        </h4>
     </section>
     <section class="content">
         <div class="row">
             <div class="col-xs-12 text-right">
                 <div class="form-group">
-                    <a class="btn btn-bitbucket" href="<?php echo base_url(); ?>addNew"><i class="fa fa-plus"></i> Add New</a>
+                    <a class="btn btn-bitbucket btn-sm" href="<?php echo base_url(); ?>addNew"><i class="fa fa-plus"></i> Add New</a>
                 </div>
             </div>
         </div>

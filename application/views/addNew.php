@@ -1,10 +1,10 @@
-<div class="content-wrapper">
+<div class="content-wrapper" style="background-color: #ffffff">
     <!-- Content Header (Page header) -->
     <section class="content-header">
-        <h3>
+        <h4>
             <i class="fa fa-users"></i> User Management
             <small>Add User</small>
-        </h3>
+        </h4>
     </section>
 
     <section class="content">
