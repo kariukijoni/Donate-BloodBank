@@ -119,7 +119,10 @@ class Task_model extends CI_Model {
      */
 
     function bloodRequests() {
-        $q = $this->db->get('tbl_requests');
+        $this->db->select('tbl_requests.*');
+        $this->db->from('tbl_requests');
+        $this->db->order_by('date_requested');
+        $q = $this->db->get();
         if ($q->num_rows() > 0) {
             return $q->result();
         }
@@ -129,15 +132,32 @@ class Task_model extends CI_Model {
     /*
      * get blood requests for a specific user
      */
-
-    function specificRequest() {
-        $this->db->select('tbl_requests.blood_type,tbl_requests.blood_type_requested,tbl_requests.date_requested,'
-                . 'tbl_requests.quantity_requested,tbl_donors_preexam.userid');
-        $this->db->from('tbl_requests');
-        $this->db->join('tbl_donors_preexam', 'tbl_donors_preexam.blood_type=tbl_requests.blood_type');
+    
+    public function blood_type(){
+        $this->db->select('tbl_donors_preexam.blood_type');
+        $this->db->where('userid', $this->session->userdata('userId'));
+        $this->db->from('tbl_donors_preexam');
         $query = $this->db->get();
         $result = $query->result();
+        
+        return $result[0]->blood_type;
+    }
+
+    function specificRequest() {
+        $blood_type = $this->blood_type();
+        $this->db->select('tbl_requests.*');
+        $this->db->where('blood_type', $blood_type);
+        $this->db->from('tbl_requests');
+        $query = $this->db->get();
+        $result = $query->result();
+//        print_r($result);
+//        die();
         return $result;
+
+//        print_r($this->session->userdata('userId'));
+//        print_r($this->session->userdata('name'));
+//        print_r($this->session->userdata ( 'roleText' ));
+//        die();
     }
 
     /*
@@ -151,7 +171,7 @@ class Task_model extends CI_Model {
     }
 
     /*
-     * Sum blood donation totals
+     * Sum blood donation amount_donated_cc and groupings totals
      */
 
     function bloodStock() {

@@ -1,4 +1,4 @@
-<div class="content-wrapper" style="background: #ffffff">
+<div class="content-wrapper" style="background-color: #ffffff">
     <div class="row">
         <div class="col-md-6">
             <div class="panel panel-default">

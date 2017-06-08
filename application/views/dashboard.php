@@ -1,4 +1,4 @@
-<div class="content-wrapper" style="background-color: #ffffff">
+<div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>

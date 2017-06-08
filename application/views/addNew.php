@@ -1,4 +1,4 @@
-<div class="content-wrapper" style="background-color: #ffffff">
+<div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h4>
@@ -122,10 +122,44 @@
                                 <div class="col-md-4">
                                     <label for="dateOfBirth">Date Of Birth</label>
                                     <div class="form-group">
-                                        <input type="date" class="form-control required" id="dateOfBirth" name="dateOfBirth" value="<?= set_value('dateOfBirth'); ?>" placeholder="Date Of Birth">
-                                        <script>
+                                        <input type="date" class="form-control required" id="dateOfBirth" name="dateOfBirth" value="<?= set_value('dateOfBirth'); ?>" placeholder="DD/MM/YYYY">
+<!--                                        <script>
                                             $(function () {
-                                                $('#dateOfBirth').datepicker();
+                                                $('#dateOfBirth').datepicker(
+                                                        {
+                                                            startDate: '-18Y',
+                                                            endDate:'today'
+                                                        });
+                                            });
+                                        </script>-->
+                                        <script>
+                                            $(document).ready(function () {
+                                                $("#dateOfBirth").dropdate({
+                                                    onSelect: function (value, ui) {
+                                                        var current = new Date().getTime(),
+                                                                dateSelect = new Date(value).getTime();
+                                                        age = current - dateSelect;
+                                                        // age / ms / sec / min / hour / days in a year
+                                                        ageGet = Math.floor(age / 1000 / 60 / 60 / 24 / 365.25);
+                                                        if (ageGet < 18) {
+                                                            less_than_18(ageGet);
+                                                        } else {
+                                                            greater_than_18(ageGet);
+                                                        }
+                                                    },
+                                                    yearRange: '1900:+0d', //base year:current year
+                                                    changeMonth: true,
+                                                    changeYear: true,
+                                                    defaultDate: '-18yr',
+                                                }).attr("readonly", "readonly"); //prevent manual changes
+
+
+                                                function less_than_18(theAge) {
+                                                    alert("Failed! your age is less than 18. Age: " + theAge);
+                                                }
+                                                function greater_than_18(theAge) {
+                                                    alert("Done! your age is greater or equal to 18. Age: " + theAge);
+                                                }
                                             });
                                         </script>
                                     </div>

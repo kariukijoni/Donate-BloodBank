@@ -1,4 +1,4 @@
-<div class="content-wrapper" style="background-color: #FFFFFF">
+<div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h4>
@@ -58,6 +58,8 @@
                                     </tr>
                                     <?php
                                 }
+                            } elseif (empty($userRecords)) {
+                                echo 'No Record Found';
                             }
                             ?>
                         </table>

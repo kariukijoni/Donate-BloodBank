@@ -192,9 +192,10 @@ class User_model extends CI_Model {
         /**
          *  All queries relating to data donors
          * */
-        $this->db->select('BaseTbl.userId, BaseTbl.email, BaseTbl.name, BaseTbl.mobile, Role.role');
+        $this->db->select('BaseTbl.userId, BaseTbl.email, BaseTbl.name, BaseTbl.mobile, tbl_donors_preexam.blood_type');
         $this->db->from('tbl_users as BaseTbl');
-        $this->db->join('tbl_roles as Role', 'Role.roleId = BaseTbl.roleId', 'left');
+        $this->db->join('tbl_donors_preexam', 'tbl_donors_preexam.userid = BaseTbl.userid','left');
+        $this->db->join('tbl_roles as Role','Role.roleid=BaseTbl.roleid');
         $this->db->where('isDeleted', 0);
         $this->db->where('don_status', 1);
         $this->db->where('Role.roleId', 3);

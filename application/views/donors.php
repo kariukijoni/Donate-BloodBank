@@ -11,7 +11,7 @@
                             <td>Name</td>
                             <td>Email</td>
                             <td>Mobile</td>
-                            <td>Role</td>
+                            <td>Blood Group</td>
                             <td>Action</td>
                         </tr>
                     </thead>
@@ -34,7 +34,7 @@
                                 </td>
 
                                 <td>
-                                    <?= $row->role ?>
+                                    <?= $row->blood_type ?>
                                 </td>
                                 <td>    
                                     <a href="<?php echo base_url() . 'task/donate?user_id=' . $row->userId; ?>" 

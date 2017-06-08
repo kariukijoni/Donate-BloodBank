@@ -13,6 +13,7 @@ class Task extends BaseController {
     public function __construct() {
         parent::__construct();
         $this->load->model('task_model');
+        $this->load->model('login_model');
         $this->isLoggedIn();
     }
 
@@ -122,8 +123,7 @@ class Task extends BaseController {
             $rid = $this->task_model->makeRequests($request);
 
             $notification = array(
-                'rqid' => $rid,
-                'date_sent' => date('Y-m-d')
+                'rqid' => $rid,'date_sent' => date('Y-m-d H:i:sa')
             );
             $this->task_model->notifications($notification);
         }

@@ -10,7 +10,7 @@
         <link href="assets/bootstrap/css/customHome.css" rel="stylesheet" type="text/css" />
 
     </head>    
-    <body class="container colorpicker-with-alpha">
+    <body class="container colorpicker-with-alpha wrapper">
         <nav class="navbar navbar-default" role="navigation">
             <!-- BloodDonor and toggle get grouped for better mobile display -->
             <div class="navbar-header">
@@ -36,50 +36,50 @@
         <div class="row">
             <div class="col-md-9">
                 <div id="divHome">
-                    <div class="col-md-6">
-                        
+                    <div class="col-md-5">
+
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-7">
                         <p class="text-center">Made Requests</p>
-                                <table class="table table-responsive table-bordered table-striped">
-                                    <thead>
-                                        <tr>
-                                            <td>Blood Group</td>
-                                            <td>Blood Type</td>
-                                            <td>Date Requested</td>
-                                            <td>Quantity Requested</td>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php
-                                        foreach ($tbl_request as $row):
-                                            ?>
-                                            <tr>
-                                                <td>
-                                                    <?= $row->blood_type ?>
-                                                </td>
-                                                <td>
-                                                    <?= $row->blood_type_requested ?>
-                                                </td>
-                                                <td>
-                                                    <?= $row->date_requested ?>
-                                                </td>
-                                                <td>
-                                                    <?= $row->quantity_requested ?>
-                                                </td>
-                                            </tr>
-                                        <?php endforeach ?>
-                                    </tbody>
-                                </table> 
+                        <table class="table table-responsive table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <td>Blood Group</td>
+                                    <td>Blood Type</td>
+                                    <td>Date Requested</td>
+                                    <td>Quantity Requested</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php
+                                foreach ($tbl_request as $row):
+                                    ?>
+                                    <tr>
+                                        <td>
+                                            <?= $row->blood_type ?>
+                                        </td>
+                                        <td>
+                                            <?= $row->blood_type_requested ?>
+                                        </td>
+                                        <td>
+                                            <?= $row->date_requested ?>
+                                        </td>
+                                        <td>
+                                            <?= $row->quantity_requested ?>
+                                        </td>
+                                    </tr>
+                                <?php endforeach ?>
+                            </tbody>
+                        </table> 
                     </div>
                 </div> 
                 <div id="divDonate">
                     <div class="row">
                         <div class="col-md-6">
                             <h2>Why Donate Blood</h2>
-                            Blood is the fluid that all life is base on. Blood is composed of 60% liquid part.
-                            The liquid part called plasma, made up of 90% of water and 10% nutrients,hormones, etc is really replinished 
-                            by food, medicines,etc. But the solid part that contains RBC (Red Blood Cells), WBC (White Blood Cells)
+                            Blood is the fluid that all life is base on. Blood is composed of 60% liquid part.<br>
+                            The liquid part called plasma, made up of 90% of water and 10% nutrients,hormones, etc is really replenished 
+                            by food, medicines, etc. But the solid part that contains RBC (Red Blood Cells), WBC (White Blood Cells)
                             and platelets take valuable time to be replaced if lost.<br>
                             This is where you come in. The time taken by the patients body to replace it could cost his/her life.
                             Sometimes the body might not be in a condition to replace it at all.
@@ -189,9 +189,11 @@
 
             </div>
         </div>
-    </div>
+        <?php include 'includes/homeFooter.php'; ?>
 
-    <!--<?php include 'includes/homeFooter.php'; ?>-->
+    </body>
+
+
     <script src="<?php echo base_url(); ?>assets/js/jQuery-2.1.4.min.js"></script>
     <script src="<?php echo base_url(); ?>assets/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
     <script type="text/javascript">

@@ -5,7 +5,7 @@
         <title><?php echo $pageTitle; ?></title>
         <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
         <!-- Bootstrap 3.3.4 -->
-        <link href="<?php echo base_url(); ?>assets/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />    
+        <link href="<?php echo base_url(); ?>assets/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" /> 
         <!-- FontAwesome 4.3.0 -->
         <link href="<?php echo base_url(); ?>assets/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
         <!-- Ionicons 2.0.0 -->
@@ -19,9 +19,12 @@
                 font-weight: normal;
             }
         </style>
+        <link href="assets/bootstrap/css/customHome.css" rel="stylesheet" type="text/css" />
         <!-- jQuery 2.1.4 -->
         <script src="<?php echo base_url(); ?>assets/js/jQuery-2.1.4.min.js"></script>
-        <script src="<?php echo base_url(); ?>assets/js/bootstrap-datepicker.js"></script>
+        <!--<script src="<?php echo base_url(); ?>assets/js/bootstrap-datepicker.js"></script>-->
+        <script src="<?php echo base_url(); ?>assets/js/jquery-dropdate.js"></script>
+        <script src="<?php echo base_url(); ?>assets/js/date.format.js"></script>
         <script type="text/javascript">
             var baseURL = "<?php echo base_url(); ?>";
         </script>

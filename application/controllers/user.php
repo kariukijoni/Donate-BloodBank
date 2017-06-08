@@ -41,7 +41,7 @@ class User extends BaseController {
     function userListing() {
         if ($this->isAdmin() == TRUE) {
             $this->loadThis();
-        } else {
+        } else{
             $searchText = $this->input->post('searchText');
             $data['searchText'] = $searchText;
             $this->load->library('pagination');

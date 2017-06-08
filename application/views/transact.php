@@ -1,4 +1,4 @@
-<div class="content-wrapper" style="background: #ffffff">    
+<div class="content-wrapper" style="background-color: #ffffff">    
     <div class="row">
 
         <div class="col-md-5">
@@ -26,7 +26,7 @@
             </div>
         </div>
         <div class="col-md-7">
-            <div id="show_hos" style="background-color: #ffffff"></div>
+            <div id="show_hos"></div>
         </div>
     </div>
     <div class="row">

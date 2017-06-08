@@ -7,12 +7,16 @@
         <link href="<?php echo base_url(); ?>assets/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
         <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
         <link href="<?php echo base_url(); ?>assets/dist/css/AdminLTE.min.css" rel="stylesheet" type="text/css" />
-
+        <link href="assets/bootstrap/css/customHome.css" rel="stylesheet" type="text/css" />
     </head>
-    <body class="login-page">
+    <body class="login-page background_color">
         <div class="login-box">
             <div class="login-logo">
-                <a href="#"><b>BloodDonor</b></a>
+                <h3>  
+                    <a href="#">
+                        <b  style="color: #f00000">BloodDonor</b>
+                    </a>
+                </h3>
             </div><!-- /.login-logo -->
             <div class="login-box-body">
                 <p class="login-box-msg">Forgot Password</p>
@@ -35,7 +39,7 @@
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
                         <?php echo $this->session->flashdata('error'); ?>                    
                     </div>
-                <?php
+                    <?php
                 }
 
                 if ($send) {
@@ -44,7 +48,7 @@
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
                         <?php echo $send; ?>                    
                     </div>
-                <?php
+                    <?php
                 }
 
                 if ($notsend) {
@@ -53,7 +57,7 @@
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
                         <?php echo $notsend; ?>                    
                     </div>
-                <?php
+                    <?php
                 }
 
                 if ($unable) {
@@ -62,7 +66,7 @@
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
                         <?php echo $unable; ?>                    
                     </div>
-                <?php
+                    <?php
                 }
 
                 if ($invalid) {
@@ -83,7 +87,7 @@
                         <div class="col-xs-8">
                         </div><!-- /.col -->
                         <div class="col-xs-4">
-                            <input type="submit" class="btn btn-primary btn-block btn-flat" value="Submit" />
+                            <input type="submit" class="btn btn-primary btn-block btn-sm" value="Submit" />
                         </div><!-- /.col -->
                     </div>
                 </form>
