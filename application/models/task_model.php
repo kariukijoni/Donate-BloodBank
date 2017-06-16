@@ -17,16 +17,6 @@ class Task_model extends CI_Model {
     }
 
     /*
-     * function used to populate tbl_transact
-     */
-
-    function transactBlood($trans) {
-        $this->db->trans_start();
-        $this->db->insert('tbl_transact', $trans);
-        $this->db->trans_complete();
-    }
-
-    /*
      * function used to insert data to table tbl_donation
      */
 
@@ -132,14 +122,14 @@ class Task_model extends CI_Model {
     /*
      * get blood requests for a specific user
      */
-    
-    public function blood_type(){
+
+    public function blood_type() {
         $this->db->select('tbl_donors_preexam.blood_type');
         $this->db->where('userid', $this->session->userdata('userId'));
         $this->db->from('tbl_donors_preexam');
         $query = $this->db->get();
         $result = $query->result();
-        
+
         return $result[0]->blood_type;
     }
 
@@ -186,10 +176,17 @@ class Task_model extends CI_Model {
 //        print_r($result);
 //        die();
         return $result;
-        if ($result->num_rows() > 0) {
-            return $result->result();
-        }
-        return array();
+        
+    }
+
+    /*
+     * function used to populate tbl_transact
+     */
+
+    function transactBlood($trans) {
+        $this->db->trans_start();
+        $this->db->insert('tbl_transact', $trans);
+        $this->db->trans_complete();
     }
 
     /*

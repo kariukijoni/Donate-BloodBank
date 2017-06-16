@@ -4,7 +4,7 @@
         <div class="col-md-5">
             <div class="panel panel-default">
                 <div class="panel-heading"> Add New Hospital
-                    <button type="text" class="fa fa-refresh btn-sm pull-right" id="show">Show Hospitals</button>
+                    <button type="text" class="fa fa-refresh btn-sm btn-bitbucket pull-right" id="show">Show Hospitals</button>
                 </div>
                 <form action="<?php echo base_url() ?>task/addHos" id="addHos" method="post" role="form">
                     <div class="panel-body">
@@ -19,7 +19,7 @@
                     </div>                    
                     <div class="row">
                         <div class="col-md-offset-1">
-                            <button type="submit" class="btn btn-bitbucket btn-sm">Add</button>
+                            <button type="submit" class="btn btn-bitbucket btn-sm">Save</button>
                         </div>
                     </div>
                 </form>
