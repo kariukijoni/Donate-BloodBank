@@ -51,11 +51,11 @@
                                             Notifications
                                         </a>-->
                     <ul class="nav nav-tabs" role="tablist">
-                        <li> <button class="btn btn-instagram btn-sm" type="button" id="dropdownMenu1" data-toggle="dropdown">
+<!--                        <li> <button class="btn btn-instagram btn-sm" type="button" id="dropdownMenu1" data-toggle="dropdown">
                                 Notifications
                             </button>
-                        </li>
-                        <li class="dropdown">
+                        </li>-->
+                        <li class="dropdown pull-right">
                             <button class="btn btn-instagram btn-sm" type="button" id="dropdownMenu1" data-toggle="dropdown">
                                 More
                                 <span class="caret"></span>

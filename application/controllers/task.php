@@ -76,9 +76,7 @@ class Task extends BaseController {
          * Array to input record to tbl_donation_records
          */
         $donationRecord = array(
-            'donation_date' => date('Y-m-d H:i:sa'),
-            'bbid' => $this->input->post('bbid'),
-        );
+            'donation_date' => date('Y-m-d H:i:sa'));
         $this->task_model->donationRecord($donationRecord);
 
         /*
@@ -119,11 +117,11 @@ class Task extends BaseController {
                 'date_requested' => date('Y-m-d H:i:sa'),
                 'quantity_requested' => $this->input->post('quantity_requested')
             );
-
+            $this->session->set_flashdata('response', "Request made Successfully");
             $rid = $this->task_model->makeRequests($request);
-
+//            $this->session->set_flashdata('response', "Request made successfully");
             $notification = array(
-                'rqid' => $rid,'date_sent' => date('Y-m-d H:i:sa')
+                'rqid' => $rid, 'date_sent' => date('Y-m-d H:i:sa')
             );
             $this->task_model->notifications($notification);
         }
@@ -131,15 +129,19 @@ class Task extends BaseController {
         $data['type'] = $this->task_model->getDonationType();
         $data['tbl_request'] = $this->task_model->bloodRequests();
 
+//        $message=array();
+//        $message[]="Request Successfully Made...";
+//        $data['message']=$message;
         $this->global['pageTitle'] = 'BloodDonor : Requests';
-
         $this->loadViews("requests", $this->global, $data, Null);
+//        print_r($message);
+//        die();
     }
 
     function donorDashboard() {
         $this->global['pageTitle'] = 'BloodDonor : DonorRequests';
         $data['specific_request'] = $this->task_model->specificRequest();
-        $data['specific_report']=  $this->task_model->specificDonorsReport();
+        $data['specific_report'] = $this->task_model->specificDonorsReport();
         $data['notifications'] = $this->task_model->countNotifications();
         $this->loadViews('donorDashboard', $this->global, $data, NULL);
     }
@@ -168,6 +170,22 @@ class Task extends BaseController {
         $data['reportDonors'] = $this->task_model->reportDonors();
         $data['reportHos'] = $this->task_model->reportHos();
         $this->loadViews('reports', $this->global, $data, NULL);
+    }
+
+    /*
+     * function deleteReq
+     */
+
+    function deleteReq($rqid = NULL) {
+//        print_r($this->task_model->delRequest());
+//        die();
+//        $data['tbl_request'] = $this->task_model->bloodRequests();
+//        $this->loadViews("requests", $this->global, $data, Null);
+        $status = $this->task_model->delRequest($rqid);
+        header('Content-type: application/json');
+        echo json_encode(array('success' => $status));
+        $data['tbl_request'] = $this->task_model->bloodRequests();
+        $this->loadViews("requests", $this->global, $data, Null);
     }
 
 }

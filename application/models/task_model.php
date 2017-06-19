@@ -221,7 +221,7 @@ class Task_model extends CI_Model {
     function specificDonorsReport() {
         $this->db->select('tbl_donation.did,tbl_donation.userid,tbl_donation.donation_type,tbl_donation.nextSafeDonation, '
                 . 'tbl_donation_records.donation_date');
-         $this->db->where('tbl_donation.userid', $this->session->userdata('userId'));
+        $this->db->where('tbl_donation.userid', $this->session->userdata('userId'));
         $this->db->from('tbl_donation');
         $this->db->join('tbl_donation_records', 'tbl_donation_records.did=tbl_donation.did', 'inner');
 //        $this->db->where('tbl_donation.userid', $this->session->userdata('userId'));
@@ -231,7 +231,6 @@ class Task_model extends CI_Model {
 //        die();
         return $result;
     }
-
 
     /*
      * function duration to set date_frequencies
@@ -285,5 +284,27 @@ class Task_model extends CI_Model {
 
         return $this->db->affected_rows();
     }
+
+    function getMales() {
+        $q = $this->db->query("SELECT COUNT(*) as count_rows FROM tbl_donors_preexam left join "
+                . "tbl_users on tbl_donors_preexam.userid=tbl_users.userid where isDeleted='0' AND gender='male'");
+        return $q->row_array();
+    }
+
+    function getFemales() {
+         $q = $this->db->query("SELECT COUNT(*) as count_rows FROM tbl_donors_preexam left join "
+                . "tbl_users on tbl_donors_preexam.userid=tbl_users.userid where isDeleted='0' AND gender='female'");
+        return $q->row_array();
+    }
+    
+   /*
+    * function deleterequest
+    */
+   function delRequest($rqid=NULL)
+   {
+//       $this->db->where('rqid');
+//       $this->db->delete('tbl_requests');
+        return $this->db->delete('tbl_requests',array('rqid'=>$rqid));
+   }
 
 }

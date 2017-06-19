@@ -32,6 +32,8 @@ class User extends BaseController {
 
         $data['countDonors'] = $this->task_model->countDonors();
         $data['countAllUsers'] = $this->task_model->getCountAllUsers();
+        $data['getmales'] = $this->task_model->getMales();
+        $data['getfemales'] = $this->task_model->getFemales();
         $this->loadViews("dashboard", $this->global, $data, NULL);
     }
 
