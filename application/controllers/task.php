@@ -139,6 +139,7 @@ class Task extends BaseController {
     function donorDashboard() {
         $this->global['pageTitle'] = 'BloodDonor : DonorRequests';
         $data['specific_request'] = $this->task_model->specificRequest();
+        $data['specific_report']=  $this->task_model->specificDonorsReport();
         $data['notifications'] = $this->task_model->countNotifications();
         $this->loadViews('donorDashboard', $this->global, $data, NULL);
     }

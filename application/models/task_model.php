@@ -176,7 +176,6 @@ class Task_model extends CI_Model {
 //        print_r($result);
 //        die();
         return $result;
-        
     }
 
     /*
@@ -214,6 +213,25 @@ class Task_model extends CI_Model {
         $result = $query->result();
         return $result;
     }
+
+    /*
+     * specific donors report
+     */
+
+    function specificDonorsReport() {
+        $this->db->select('tbl_donation.did,tbl_donation.userid,tbl_donation.donation_type,tbl_donation.nextSafeDonation, '
+                . 'tbl_donation_records.donation_date');
+         $this->db->where('tbl_donation.userid', $this->session->userdata('userId'));
+        $this->db->from('tbl_donation');
+        $this->db->join('tbl_donation_records', 'tbl_donation_records.did=tbl_donation.did', 'inner');
+//        $this->db->where('tbl_donation.userid', $this->session->userdata('userId'));
+        $query = $this->db->get();
+        $result = $query->result();
+//        print_r($result);
+//        die();
+        return $result;
+    }
+
 
     /*
      * function duration to set date_frequencies

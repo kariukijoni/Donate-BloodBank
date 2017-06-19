@@ -28,7 +28,7 @@
                     <li><a href="#" id="headerHome">Home</a></li>
                     <li><a href="#" id="whyDonate">Why Donate Blood</a></li>
                     <li><a href="#" id="giveBlood">Give Blood</a></li>
-                    <li><a href="#" id="aboutUs">About Us</a></li>
+                    <li><a href="#" id="aboutUs">Who We Are</a></li>
                 </ul>               
             </div><!-- /.navbar-collapse -->
         </nav>
@@ -196,27 +196,45 @@
                 </div>
                 <div id="divBlood">Blood</div>
                 <div id="divAboutUs">
-                    Our important work is only possible through the incredible donations of over half a million unpaid 
-                    voluntary donors.
+                    We stand for hope. We stand for life. We stand for helping people to do something extraordinary, save
+                    and improve the lives of others.<br>
+                    The donors who make our work possible do so selflessly, giving life and changing life for the better. It 
+                    is because of them, and the people who need their life saving and life enhancing donations, that we strive 
+                    to be the best in all we do.
                     <br>
-                    <h3>
-                        <strong>
-                            Saving Lives Through the Power of Humanity
-                        </strong>                        
-                    </h3>
-                    The <b>BloodBonor</b> is a division of the Kenya RedCross and we subscribe fully to its 
-                    humanitarian principles.
-                    <br>
-                    <h3>
-                        <strong>Vision</strong>
-                    </h3>
-                    To improve the lives of patient's through the power of humanity.
-                    <br>
-                    <h3>
-                        <strong>Our Mission</strong>
-                    </h3>
-                    To perform a critical role in health-care by providing a safe, secure and cost effective supply of
-                    quality products, essential services and leading edge research to meet the need of patients.
+                    <div class="col-md-6">
+                        <h4>
+                            <strong>
+                                We are responsible for:
+                                <hr>
+                            </strong>
+                        </h4>
+                        <li>Encouraging people to donate blood</li>
+                        <li>Optimizing the safety and supply of blood and matching the to patients</li>
+                        <li>Helping to raise the quality, effectiveness and clinical outcomes of blood</li>
+                        <li>Commissioning and conducting research and development to improve outcomes for patients</li>
+                    </div>
+                    <div class="col-md-6">
+                        <h4>
+                            <strong>
+                                Saving Lives Through the Power of Humanity
+                                <hr>
+                            </strong>                        
+                        </h4>
+                        The <b>BloodBonor</b> is a division of the Kenya RedCross and we subscribe fully to its 
+                        humanitarian principles.
+                        <br>
+                        <h4>
+                            <strong>Vision</strong>
+                        </h4>
+                        To improve the lives of patient's through the power of humanity.
+                        <br>
+                        <h4>
+                            <strong>Our Mission</strong>
+                        </h4>
+                        To perform a critical role in health-care by providing a safe, secure and cost effective supply of
+                        quality products, essential services and leading edge research to meet the need of patients.
+                    </div>
                 </div>
             </div>
             <div class="col-md-3">
@@ -244,7 +262,7 @@
                             ?>
                             <div class="alert alert-danger alert-dismissable">
                                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                            <?php echo $error; ?>                    
+                                <?php echo $error; ?>                    
                             </div>
                             <?php
                         }
@@ -253,9 +271,9 @@
                             ?>
                             <div class="alert alert-success alert-dismissable">
                                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                            <?php echo $success; ?>                    
+                                <?php echo $success; ?>                    
                             </div>
-<?php } ?>
+                        <?php } ?>
 
                         <form action="<?php echo base_url(); ?>loginMe" method="post">
                             <div class="form-group has-feedback">
@@ -273,21 +291,27 @@
                         </form>
                     </div>
                     <div class="panel-footer">
-                        <a href="<?php echo base_url() ?>login/createAccount">Not Yet Registered? Create Account</a><br>         
+<!--                        <a href="<?php echo base_url() ?>login/createAccount">Not Yet Registered? Create Account</a><br>         -->
+                        <button class="btn btn-bitbucket btn-sm" data-toggle="modal" data-target="#myModal"> 
+                            Not Yet Registered? Create Account
+                        </button>
+                        <!-- Modal -->
+                        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                                        <h5 class="modal-title text-center" id="myModalLabel">Give Blood Stock to Registered Hospitals</h5>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div><!-- /.login-box-body -->
-<!--                <h4>
-                    <strong>
-                        Blood 2020: A strategy for the blood supply                                          
-                    </strong>
-                </h4> 
-                The BLood 2020 strategy outlines a range of initiatives and activities that will help us achieve our ambition to 
-                be the best organization of our type in the world. From donor to patient we will use technology to improve the experience
-                and extend our 24/7 service. We will draw on world leading research and innovation to improve our products. We will continue
-                to work with hospitals to improve blood usage and integrate our usage.-->
             </div>
         </div>
-<?php include 'includes/homeFooter.php'; ?>
+        <?php include 'includes/homeFooter.php'; ?>
 
     </body>
 

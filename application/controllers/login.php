@@ -36,7 +36,7 @@ class Login extends CI_Controller {
 
         if (!isset($isLoggedIn) || $isLoggedIn != TRUE) {
             $data['tbl_request'] = $this->task_model->bloodRequests();
-            $this->load->view('login',$data);
+            $this->load->view('login', $data);
         } else {
             redirect('/dashboard');
         }
@@ -198,10 +198,6 @@ class Login extends CI_Controller {
 
             redirect("/login");
         }
-    }
-
-    public function createAccount() {
-        $this->load->view('createAccount');
     }
 
 }
