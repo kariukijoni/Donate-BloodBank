@@ -1,10 +1,19 @@
 <div class="content-wrapper" style="background-color: #ffffff">
     <div class="row">
+        <div class="row">
+            <div class="col-md-4">
+                <?php if (isset($success)) { ?>
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                    <div class="form-control alert alert-success">
+                        <?php echo $success; ?>
+                    </div>
+                <?php } ?>
+            </div> 
+        </div>
         <div class="col-md-4">
             <div class="panel panel-default">
                 <div class="panel-heading">Make Requests</div>
-                <form action="<?php echo base_url() ?>task/requests" method="post" id="requestForm" onsubmit="alert(
-                                'Request made success...')">
+                <form action="<?php echo base_url() ?>task/requests" method="post" id="requestForm">
                     <div class="panel-body">
                         <div class="row">
                             <div class="form-group">
@@ -84,7 +93,7 @@
                                         <?= $row->quantity_requested ?>
                                     </td>
                                     <td>
-                                        <a class="btn btn-sm btn-danger" href="<?php echo base_url().'task/deleteReq/'.$row->rqid;?>">
+                                        <a class="btn btn-sm btn-danger" href="<?php echo base_url() . 'task/deleteReq/' . $row->rqid; ?>">
                                             <i class="fa fa-trash"></i></a>
                                         <!--<a class="btn btn-sm btn-info" href="<?php echo base_url() . 'editOld/'; ?>"><i class="fa fa-pencil"></i></a>-->
                                     </td>

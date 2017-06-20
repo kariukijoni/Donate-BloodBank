@@ -91,14 +91,6 @@
                                 </div>
                             </div>
                         </li> 
-                        <!--                        <div class="row">
-                                                    <div class="col-sm-4">
-                                                        <a href="<?php echo base_url(); ?>loadChangePass" class="btn btn-twitter btn-sm"><i class="fa fa-key"></i> Change Password</a>
-                                                    </div>
-                                                    <div class="col-sm-offset-3 col-sm-4">
-                                                        <a href="<?php echo base_url(); ?>logout" class="btn btn-twitter btn-sm"><i class="fa fa-sign-out"></i> Log Out</a>
-                                                    </div>
-                                                </div>-->
                         <li class="treeview">
                             <a href="<?php echo base_url(); ?>dashboard">
                                 <i class="fa fa-dashboard"></i> <span>Dashboard</span></i>

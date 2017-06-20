@@ -4,7 +4,7 @@ if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
 require APPPATH . '/libraries/BaseController.php';
-
+require  APPPATH . '/libraries/fpdf/fpdf.php';
 class Task extends BaseController {
 
     /**
@@ -117,21 +117,16 @@ class Task extends BaseController {
                 'date_requested' => date('Y-m-d H:i:sa'),
                 'quantity_requested' => $this->input->post('quantity_requested')
             );
-            $this->session->set_flashdata('response', "Request made Successfully");
             $rid = $this->task_model->makeRequests($request);
-//            $this->session->set_flashdata('response', "Request made successfully");
             $notification = array(
                 'rqid' => $rid, 'date_sent' => date('Y-m-d H:i:sa')
             );
             $this->task_model->notifications($notification);
+            $data['success'] = 'haha';
         }
 
         $data['type'] = $this->task_model->getDonationType();
         $data['tbl_request'] = $this->task_model->bloodRequests();
-
-//        $message=array();
-//        $message[]="Request Successfully Made...";
-//        $data['message']=$message;
         $this->global['pageTitle'] = 'BloodDonor : Requests';
         $this->loadViews("requests", $this->global, $data, Null);
 //        print_r($message);
@@ -182,10 +177,32 @@ class Task extends BaseController {
 //        $data['tbl_request'] = $this->task_model->bloodRequests();
 //        $this->loadViews("requests", $this->global, $data, Null);
         $status = $this->task_model->delRequest($rqid);
-        header('Content-type: application/json');
-        echo json_encode(array('success' => $status));
+//        header('Content-type:application/json');
+  //      echo json_encode(array('success' => $status));
         $data['tbl_request'] = $this->task_model->bloodRequests();
-        $this->loadViews("requests", $this->global, $data, Null);
+        redirect("task/requests");
+    }
+
+    /*
+     * function printPDF reports
+     */
+
+    function printPDF() {
+        //A4 width 219 mm
+        //default margin; 10mm each
+        $pdf=new FPDF('p','mm','A4');
+        $pdf->AddPage();
+        //set font to arial bold and 14 pt
+        $pdf->SetFont('Arial','B',14);
+        //cell(width, height, text, border, endline, align)
+        $pdf->Cell(189, 5, 'Donation Reports', 1, 0);
+//        $pdf->Cell(59, 5, '', 1, 1);//endline
+//        $this->task_model->reportDonors();
+//        $query="SELECT tbl_donation.did,tbl_donation.donation_type,tbl_donation.nextSafeDonation, FROM tbl_donation left join "
+//                . "tbl_donation_records on tbl_donation.did=tbl_donation_records.donation_date.did";
+//        $result=  mysqli_query($query);
+        
+        $pdf->Output();
     }
 
 }

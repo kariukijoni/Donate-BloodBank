@@ -56,6 +56,7 @@ class Task_model extends CI_Model {
      */
 
     function countNotifications() {
+//        $this->session->userdata('userId');
         $q = $this->db->query("SELECT COUNT(*) as count_rows FROM tbl_notifications where status='unread'");
         return $q->row_array();
     }

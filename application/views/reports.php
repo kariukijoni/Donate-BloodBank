@@ -21,10 +21,11 @@
                                 <tr>
                                     <td><?= $report->did ?></td>
                                     <td><?= $report->donation_type ?></td>
-                                    <td><?=$report-> donation_date?></td>
+                                    <td><?= $report->donation_date ?></td>
                                     <td><?= $report->nextSafeDonation ?></td>
                                     <td>
-                                        <i class="fa fa-print" style="color: #1e282c"></i>
+                                        <!--<i class="fa fa-print" style="color: #1e282c"></i>-->
+                                        <a class="fa fa-print" style="color: #1e282c" href="<?php echo base_url() . 'task/printPDF/' . $report->did; ?>">
                                     </td>
                                 </tr>
                             <?php endforeach ?>
