@@ -328,6 +328,9 @@ class AfricasTalkingGateway
 		
 		if(!isset($providerData_['destinationChannel']) || strlen($providerData_['destinationChannel']) == 0)
 			throw new AfricasTalkingGatewayException("Missing field destinationChannel");
+
+    if(!isset($providerData_['destinationAccount']) || strlen($providerData_['destinationAccount']) == 0)
+      throw new AfricasTalkingGatewayException("Missing field destinationAccount");
 		
 		if(!isset($providerData_['transferType']) || strlen($providerData_['transferType']) == 0)
 			throw new AfricasTalkingGatewayException("Missing field transferType");
@@ -338,6 +341,7 @@ class AfricasTalkingGateway
 										"amount"=>$amount_,
 										'provider' => $providerData_['provider'],
 										'destinationChannel' => $providerData_['destinationChannel'],
+                    'destinationAccount' => $providerData_['destinationAccount'],
 										'transferType' => $providerData_['transferType'],
 										'metadata' => $metadata_);
 		

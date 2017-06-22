@@ -1,16 +1,14 @@
 <div class="content-wrapper" style="background-color: #ffffff">
-    <div class="row">
-        <div class="row">
-            <div class="col-md-4">
-                <?php if (isset($success)) { ?>
-                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+    <div class="row">       
+        <div class="col-md-4">
+            <div class="row">
+                <?php if (isset($success)) { ?>                    
                     <div class="form-control alert alert-success">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
                         <?php echo $success; ?>
                     </div>
                 <?php } ?>
-            </div> 
-        </div>
-        <div class="col-md-4">
+            </div>
             <div class="panel panel-default">
                 <div class="panel-heading">Make Requests</div>
                 <form action="<?php echo base_url() ?>task/requests" method="post" id="requestForm">
@@ -53,7 +51,16 @@
                 </form>
             </div>
         </div>
+
         <div class="col-md-7">
+            <div class="row">
+                <?php if (isset($delete)) { ?>                    
+                    <div class="form-control alert alert-danger">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                        <?php echo $delete; ?>
+                    </div>
+                <?php } ?>
+            </div>
             <div class="panel panel-default">
                 <div class="panel-heading">Show Made Requests</div>
                 <div class="panel-body" style="height: 200px; overflow-y:scroll">

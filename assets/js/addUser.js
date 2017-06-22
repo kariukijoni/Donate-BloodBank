@@ -22,7 +22,7 @@ $(document).ready(function () {
             temperature: {required: true},
             blood_pressure: {required: true},
             blood_type: {required: true},
-            nextSafeDonation:{required: true},
+//            nextSafeDonation:{required: true},
             password: {required: true},
             cpassword: {required: true, equalTo: "#password"},
             role: {required: true, selected: true}

@@ -32,6 +32,7 @@ class User extends BaseController {
 
         $data['countDonors'] = $this->task_model->countDonors();
         $data['countAllUsers'] = $this->task_model->getCountAllUsers();
+        $data['specificNextSafeD'] = $this->task_model->specificNextSafeDonation();
         $data['getmales'] = $this->task_model->getMales();
         $data['getfemales'] = $this->task_model->getFemales();
         $this->loadViews("dashboard", $this->global, $data, NULL);
@@ -43,7 +44,7 @@ class User extends BaseController {
     function userListing() {
         if ($this->isAdmin() == TRUE) {
             $this->loadThis();
-        } else{
+        } else {
             $searchText = $this->input->post('searchText');
             $data['searchText'] = $searchText;
             $this->load->library('pagination');
@@ -301,7 +302,7 @@ class User extends BaseController {
 
     function donors() {
         $this->global['pageTitle'] = 'BloodDonor : Donors';
-        $data['tbl_users'] = $this->user_model->getAllDonors();       
+        $data['tbl_users'] = $this->user_model->getAllDonors();
         $data['getNextProbableDonors'] = $this->user_model->getNextProbableDonors();
         $this->loadViews("donors", $this->global, $data, NULL);
     }

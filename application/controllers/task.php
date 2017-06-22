@@ -4,7 +4,8 @@ if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
 require APPPATH . '/libraries/BaseController.php';
-require  APPPATH . '/libraries/fpdf/fpdf.php';
+require APPPATH . '/libraries/fpdf/fpdf.php';
+
 class Task extends BaseController {
 
     /**
@@ -117,20 +118,75 @@ class Task extends BaseController {
                 'date_requested' => date('Y-m-d H:i:sa'),
                 'quantity_requested' => $this->input->post('quantity_requested')
             );
-            $rid = $this->task_model->makeRequests($request);
-            $notification = array(
-                'rqid' => $rid, 'date_sent' => date('Y-m-d H:i:sa')
-            );
-            $this->task_model->notifications($notification);
-            $data['success'] = 'haha';
+            $user_id = $this->task_model->get_users_with_blood_type($request);
+            $status = "not";
+            $last_in_array = end($user_id);
+            $user_numbers_available = NULL;
+            foreach ($user_id as $user) {
+                if ($user != $last_in_array) {
+                    $comma = ",";
+                } else {
+                    $comma = "";
+                }
+                $phone_number = $this->db->get_where('tbl_users', array('userId' => $user->userid))->row('mobile');
+                $message_text = "New message\nFrom John";
+                $phone_numbers_to_send = $phone_number . $comma;
+                $user_numbers_available = $user_numbers_available . $phone_numbers_to_send;
+            }
+            $sending_text = $this->send_text_message($user_numbers_available, $message_text);
+            if ($sending_text) {
+                $rid = $this->task_model->makeRequests($request);
+                $notification = array(
+                    'rqid' => $rid, 'date_sent' => date('Y-m-d H:i:sa')
+                );
+                $this->task_model->notifications($notification);
+                $data['success'] = 'Request made successfully...';
+            } else {
+                $data['success'] = 'Not sent...';
+            }
+
+            
         }
 
         $data['type'] = $this->task_model->getDonationType();
         $data['tbl_request'] = $this->task_model->bloodRequests();
         $this->global['pageTitle'] = 'BloodDonor : Requests';
         $this->loadViews("requests", $this->global, $data, Null);
-//        print_r($message);
-//        die();
+    }
+
+    function send_text_message($user_numbers_available, $message_text) {
+        // Be sure to include the file you've just downloaded
+        require_once('AfricasTalkingGateway.php');
+        // Specify your login credentials
+        $username = "kariukye";
+        $apikey = "eb1c4fee194466de85c928027a317b4d233e6d06b29d88e7aa604ff3f4d34409";
+        // NOTE: If connecting to the sandbox, please use your sandbox login credentials
+        // Specify the numbers that you want to send to in a comma-separated list
+        // Please ensure you include the country code (+254 for Kenya in this case)
+        $recipients = $user_numbers_available;
+        // And of course we want our recipients to know what we really do
+        $message = $message_text;
+        // Create a new instance of our awesome gateway class
+        $gateway = new AfricasTalkingGateway($username, $apikey);
+        // NOTE: If connecting to the sandbox, please add the sandbox flag to the constructor:
+        /*         * ***********************************************************************************
+         * ***SANDBOX****
+          $gateway    = new AfricasTalkingGateway($username, $apiKey, "sandbox");
+         * ************************************************************************************ */
+        // Any gateway error will be captured by our custom Exception class below, 
+        // so wrap the call in a try-catch block
+        try {
+            // Thats it, hit send and we'll take care of the rest. 
+            $results = $gateway->sendMessage($recipients, $message);
+            if ($results) {
+                return TRUE;
+            } else {
+                return FALSE;
+            }
+        } catch (AfricasTalkingGatewayException $e) {
+            return FALSE;
+        }
+        // DONE!!! 
     }
 
     function donorDashboard() {
@@ -172,15 +228,12 @@ class Task extends BaseController {
      */
 
     function deleteReq($rqid = NULL) {
-//        print_r($this->task_model->delRequest());
-//        die();
-//        $data['tbl_request'] = $this->task_model->bloodRequests();
-//        $this->loadViews("requests", $this->global, $data, Null);
-        $status = $this->task_model->delRequest($rqid);
-//        header('Content-type:application/json');
-  //      echo json_encode(array('success' => $status));
+        $this->global['pageTitle'] = 'BloodDonor : Delete';
+        $this->task_model->delRequest($rqid);
+        $data['delete'] = 'Deletion Success...';
         $data['tbl_request'] = $this->task_model->bloodRequests();
-        redirect("task/requests");
+        $this->loadViews('requests', $this->global, $data, NULL);
+//        redirect("task/requests");
     }
 
     /*
@@ -190,10 +243,10 @@ class Task extends BaseController {
     function printPDF() {
         //A4 width 219 mm
         //default margin; 10mm each
-        $pdf=new FPDF('p','mm','A4');
+        $pdf = new FPDF('p', 'mm', 'A4');
         $pdf->AddPage();
         //set font to arial bold and 14 pt
-        $pdf->SetFont('Arial','B',14);
+        $pdf->SetFont('Arial', 'B', 14);
         //cell(width, height, text, border, endline, align)
         $pdf->Cell(189, 5, 'Donation Reports', 1, 0);
 //        $pdf->Cell(59, 5, '', 1, 1);//endline
@@ -201,7 +254,7 @@ class Task extends BaseController {
 //        $query="SELECT tbl_donation.did,tbl_donation.donation_type,tbl_donation.nextSafeDonation, FROM tbl_donation left join "
 //                . "tbl_donation_records on tbl_donation.did=tbl_donation_records.donation_date.did";
 //        $result=  mysqli_query($query);
-        
+
         $pdf->Output();
     }
 

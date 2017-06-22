@@ -293,19 +293,47 @@ class Task_model extends CI_Model {
     }
 
     function getFemales() {
-         $q = $this->db->query("SELECT COUNT(*) as count_rows FROM tbl_donors_preexam left join "
+        $q = $this->db->query("SELECT COUNT(*) as count_rows FROM tbl_donors_preexam left join "
                 . "tbl_users on tbl_donors_preexam.userid=tbl_users.userid where isDeleted='0' AND gender='female'");
         return $q->row_array();
     }
-    
-   /*
-    * function deleterequest
-    */
-   function delRequest($rqid=NULL)
-   {
+
+    /*
+     * function deleterequest
+     */
+
+    function delRequest($rqid = NULL) {
 //       $this->db->where('rqid');
 //       $this->db->delete('tbl_requests');
-        return $this->db->delete('tbl_requests',array('rqid'=>$rqid));
-   }
+        return $this->db->delete('tbl_requests', array('rqid' => $rqid));
+    }
+
+    /*
+     * specific nextSafeDonation
+     */
+
+    function specificNextSafeDonation() {
+        $this->db->select('nextSafeDonation as nextSafe');        
+        $this->db->from('tbl_donation');
+        $this->db->where('userid', $this->session->userdata('userId'));
+//        $this->db->join('tbl_donation_records', 'tbl_donation_records.did=tbl_donation.did', 'inner');
+        $query = $this->db->get();
+        $result = $query->result();
+        return $result;
+    }
+    
+    public function get_users_with_blood_type($request){   
+        $this->db->where('blood_type', $request['blood_type']);
+        $query = $this->db->get('tbl_donors_preexam');
+        if ($query){
+            if ($query->num_rows() > 0){
+                return $query->result();
+            } else {
+                return FALSE;
+            }
+        } else {
+            return FALSE;
+        }
+    }
 
 }
