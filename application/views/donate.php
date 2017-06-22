@@ -19,7 +19,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <input type="number" name="amount_donated_cc" id="amount_donated_cc" min="0" class="form-control" placeholder="Amount Donated CC">
+                                <input type="text" name="amount_donated_cc" id="amount_donated_cc" min="0" class="form-control" placeholder="Amount Donated CC">
                             </div>
                         </div>
                     </div>

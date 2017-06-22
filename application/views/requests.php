@@ -7,6 +7,7 @@
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
                         <?php echo $success; ?>
                     </div>
+
                 <?php } ?>
             </div>
             <div class="panel panel-default">
@@ -39,7 +40,7 @@
                         </div>
                         <div class="row">
                             <div class="form-group">
-                                <input type="number" class="form-control" name="quantity_requested" id="quantity_requested" 
+                                <input type="text" class="form-control" name="quantity_requested" id="quantity_requested" 
                                        min="0" placeholder="Quantity requested" required>
                             </div>
                         </div>
@@ -113,3 +114,4 @@
         </div>
     </div>
 </div>
+<script src="<?php echo base_url(); ?>assets/js/requestForm.js" type="text/javascript"></script>

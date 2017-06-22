@@ -119,7 +119,7 @@ class Task extends BaseController {
                 'quantity_requested' => $this->input->post('quantity_requested')
             );
             $user_id = $this->task_model->get_users_with_blood_type($request);
-            $status = "not";
+//            $status = "not";
             $last_in_array = end($user_id);
             $user_numbers_available = NULL;
             foreach ($user_id as $user) {
@@ -135,17 +135,18 @@ class Task extends BaseController {
             }
             $sending_text = $this->send_text_message($user_numbers_available, $message_text);
             if ($sending_text) {
-                $rid = $this->task_model->makeRequests($request);
-                $notification = array(
-                    'rqid' => $rid, 'date_sent' => date('Y-m-d H:i:sa')
-                );
-                $this->task_model->notifications($notification);
+                foreach ($user_id as $row):
+                    $rid = $this->task_model->makeRequests($request);
+                    $notification = array(
+                        'rqid' => $rid, 'date_sent' => date('Y-m-d H:i:sa'), 'userid' => $row->userid
+                    );
+                    $this->task_model->notifications($notification);
+
+                endforeach;
                 $data['success'] = 'Request made successfully...';
             } else {
                 $data['success'] = 'Not sent...';
             }
-
-            
         }
 
         $data['type'] = $this->task_model->getDonationType();
@@ -159,7 +160,7 @@ class Task extends BaseController {
         require_once('AfricasTalkingGateway.php');
         // Specify your login credentials
         $username = "kariukye";
-        $apikey = "eb1c4fee194466de85c928027a317b4d233e6d06b29d88e7aa604ff3f4d34409";
+        $apikey = "ae614497c492d3422a59ab32218dcde218d31bdfacab7a9eacb0dff5c5f98a2a";
         // NOTE: If connecting to the sandbox, please use your sandbox login credentials
         // Specify the numbers that you want to send to in a comma-separated list
         // Please ensure you include the country code (+254 for Kenya in this case)

@@ -83,15 +83,15 @@
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label for="weightLBS">WeightLBS</label>
-                                    <input type="number" class="form-control required digits" id="weightLBS" name="weightLBS" 
+                                    <label for="weightLBS">Weight Kgs</label>
+                                    <input type="text" class="form-control required digits" id="weightLBS" name="weightLBS" 
                                            min="0" value="<?= set_value('weightLBS'); ?>">
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="temperature">Temperature</label>
-                                    <input type="number" class="form-control required" id="temperature" name="temperature" 
+                                    <input type="text" class="form-control required" id="temperature" name="temperature" 
                                            min="0" max="55" value="<?= set_value('temperature'); ?>">
                                 </div>
                             </div>
@@ -100,7 +100,7 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="blood_pressure">Blood Pressure</label>
-                                    <input type="number" class="form-control required" id="blood_pressure" name="blood_pressure" 
+                                    <input type="text" class="form-control required" id="blood_pressure" name="blood_pressure" 
                                            min="0" max="120" value="<?= set_value('blood_pressure'); ?>">
                                 </div>
                             </div>
@@ -122,7 +122,7 @@
                             <div class="col-md-4">
                                 <label for="dateOfBirth">Date Of Birth</label>
                                 <div class="form-group">
-                                    <input type="date" class="form-control required" id="dateOfBirth" name="dateOfBirth" value="<?= set_value('dateOfBirth'); ?>" 
+                                    <input type="date" class="form-control required" readonly id="dateOfBirth" name="dateOfBirth" value="<?= set_value('dateOfBirth'); ?>" 
                                            placeholder="DD/MM/YYYY">
                                     <script type="text/javascript">
                                         var endDate = new Date(); //startDate
