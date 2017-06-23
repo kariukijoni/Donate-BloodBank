@@ -21,10 +21,9 @@
             }
         </style>
         <link href="assets/bootstrap/css/customHome.css" rel="stylesheet" type="text/css" />
-        <!-- jQuery 2.1.4 -->
+        <!-- jQuery 2.1.4 -->        
         <script src="<?php echo base_url(); ?>assets/js/jQuery-2.1.4.min.js"></script>
         <script src="<?php echo base_url(); ?>assets/js/bootstrap-datepicker.js"></script>
-
         <script type="text/javascript">
             var baseURL = "<?php echo base_url(); ?>";
         </script>
@@ -51,10 +50,10 @@
                                             Notifications
                                         </a>-->
                     <ul class="nav nav-tabs" role="tablist">
-<!--                        <li> <button class="btn btn-instagram btn-sm" type="button" id="dropdownMenu1" data-toggle="dropdown">
-                                Notifications
-                            </button>
-                        </li>-->
+                        <!--                        <li> <button class="btn btn-instagram btn-sm" type="button" id="dropdownMenu1" data-toggle="dropdown">
+                                                        Notifications
+                                                    </button>
+                                                </li>-->
                         <li class="dropdown pull-right">
                             <button class="btn btn-instagram btn-sm" type="button" id="dropdownMenu1" data-toggle="dropdown">
                                 More
@@ -145,6 +144,12 @@
                                 <span>Reports</span>
                                 </a>
                             </li>
+                            <li class="treeview">
+                                <a href="<?php echo base_url(); ?>task/Help"/> 
+                                <i class="fa fa-question-circle"></i>
+                                <span>Help</span>
+                                </a>                               
+                            </li>
                             <?php
                         }
                         ?>
@@ -152,4 +157,5 @@
                 </section>
                 <!-- /.sidebar -->
             </aside>
+            <!--<script src="<?php echo base_url(); ?>assets/bootstrap/js/bootstrap.min.js"></script>-->
             <script src="<?php echo base_url(); ?>assets/js/dropdown.js"></script>

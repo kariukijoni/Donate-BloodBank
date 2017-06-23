@@ -10,7 +10,7 @@ if (!empty($userInfo)) {
         $userId = $uf->userId;
         $name = $uf->name;
         $email = $uf->email;
-        $mobile = $uf->mobile;
+//        $mobile = $uf->mobile;
         $roleId = $uf->roleId;
     }
 }
@@ -71,9 +71,12 @@ if (!empty($userInfo)) {
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="mobile">Mobile Number</label>
-                                        <input type="text" class="form-control" id="mobile" placeholder="Mobile Number" name="mobile" value="<?php echo $mobile; ?>" maxlength="10">
+                                    <label for="mobile">Mobile Number</label>
+                                    <div class="input-group">                                        
+                                        <span class="input-group-addon btn btn-bitbucket" style="background: #00517e">+254
+                                            <input type="hidden" class="form-control required digits" id="code" name="code" value="+254">
+                                        </span>
+                                        <input type="text" class="form-control" id="mobile" placeholder="Mobile Number" name="mobile" value="<?php echo $mobile; ?>" maxlength="9" minlength="9">
                                     </div>
                                 </div>
                                 <div class="col-md-6">

@@ -107,7 +107,7 @@ class User extends BaseController {
 
             $this->form_validation->set_rules('fname', 'Full Name', 'trim|required|max_length[128]|xss_clean');
             $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email|xss_clean|max_length[128]');
-            $this->form_validation->set_rules('mobile', 'Mobile Number', 'required|min_length[10]|xss_clean');
+            $this->form_validation->set_rules('mobile', 'Mobile Number', 'required|min_length[9]|xss_clean');
             $this->form_validation->set_rules('gender', 'Gender', 'trim|required');
             $this->form_validation->set_rules('weightLBS', 'WeightLBS', 'trim|required');
             $this->form_validation->set_rules('temperature', 'Temperature', 'trim|required');
@@ -125,7 +125,7 @@ class User extends BaseController {
                 $email = $this->input->post('email');
                 $password = $this->input->post('password');
                 $roleId = $this->input->post('role');
-                $mobile = $this->input->post('mobile');
+                $mobile =$this->input->post('code').$this->input->post('mobile');
 
                 $userInfo = array('email' => $email, 'password' => getHashedPassword($password), 'roleId' => $roleId, 'name' => $name,
                     'mobile' => $mobile, 'createdBy' => $this->vendorId, 'createdDtm' => date('Y-m-d H:i:sa'));
@@ -193,7 +193,7 @@ class User extends BaseController {
             $this->form_validation->set_rules('password', 'Password', 'matches[cpassword]|max_length[20]');
             $this->form_validation->set_rules('cpassword', 'Confirm Password', 'matches[password]|max_length[20]');
             $this->form_validation->set_rules('role', 'Role', 'trim|required|numeric');
-            $this->form_validation->set_rules('mobile', 'Mobile Number', 'required|min_length[10]|xss_clean');
+            $this->form_validation->set_rules('mobile', 'Mobile Number', 'required|min_length[9]|xss_clean');
 
             if ($this->form_validation->run() == FALSE) {
                 $this->editOld($userId);
@@ -202,7 +202,7 @@ class User extends BaseController {
                 $email = $this->input->post('email');
                 $password = $this->input->post('password');
                 $roleId = $this->input->post('role');
-                $mobile = $this->input->post('mobile');
+                $mobile = $this->input->post('code').$this->input->post('mobile');
 
                 $userInfo = array();
 

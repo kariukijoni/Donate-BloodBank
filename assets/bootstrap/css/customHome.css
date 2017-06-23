@@ -57,3 +57,8 @@ a:hover, .navbar-default .navbar-nav > .active > a:focus {
     border-style: solid;
     border-width: 1px;
 }
+.scroll {
+   overflow-y:auto;
+   height: 650px; 
+   overflow-x: hidden;
+}

@@ -7,7 +7,7 @@
                     <div class="badge" style="background-color: #000000">
                         <a href="#">
                             Notifications
-                            <?php echo $notifications['count_rows']; ?>
+                            <?php echo count($notifications); ?>
                         </a>
                     </div>
                 </div>

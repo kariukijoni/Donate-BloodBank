@@ -2,16 +2,15 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>BloodDonor | Log in</title>
+        <title>BloodDonor | Home</title>
         <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
         <link href="<?php echo base_url(); ?>assets/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
         <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
         <link href="<?php echo base_url(); ?>assets/dist/css/AdminLTE.min.css" rel="stylesheet" type="text/css" />
-        <link href="assets/bootstrap/css/customHome.css" rel="stylesheet" type="text/css" />
+        <link href="<?php echo base_url(); ?>assets/bootstrap/css/customHome.css" rel="stylesheet" type="text/css" />
     </head>    
     <body class="container-fluid colorpicker-with-alpha wrapper">
-        <!--<div class="row" style="overflow-y:scroll; overflow-x: hidden">-->
-        <div class="row"> 
+        <div class="row scroll"> 
             <nav class="navbar navbar-default" role="navigation">
                 <!-- BloodDonor and toggle get grouped for better mobile display -->
                 <div class="navbar-header">
@@ -294,7 +293,6 @@
                                 </form>
                             </div>
                             <div class="panel-footer">
-        <!--                        <a href="<?php echo base_url() ?>login/createAccount">Not Yet Registered? Create Account</a><br>         -->
                                 <button class="btn btn-bitbucket btn-sm" data-toggle="modal" data-target="#myModal"> 
                                     Not Yet Registered? Create Account
                                 </button>
@@ -331,7 +329,7 @@
 
 
     <script src="<?php echo base_url(); ?>assets/js/jQuery-2.1.4.min.js"></script>
-    <script src="<?php echo base_url(); ?>assets/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="<?php echo base_url(); ?>assets/bootstrap/js/bootstrap.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
             $("#divBlood").hide();

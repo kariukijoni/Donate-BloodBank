@@ -57,8 +57,21 @@ class Task_model extends CI_Model {
 
     function countNotifications() {
 //        $this->session->userdata('userId');
-        $q = $this->db->query("SELECT COUNT(*) as count_rows FROM tbl_notifications where status='unread'");
-        return $q->row_array();
+//        $q = $this->db->query("SELECT COUNT(*) as count_rows FROM tbl_notifications where status='unread'");
+//        return $q->row_array();
+        $results=array();
+        $this->db->select('status');
+        $this->db->from('tbl_notifications');
+        $this->db->where('userid',  $this->session->userdata('userId'));
+        $query=  $this->db->get();
+        $num_of_records=$query->num_rows();
+        if($num_of_records>0)
+        {
+            $results=$query->result_array();
+        }
+//        print_r($this->session->userdata('userId'));
+//        die();
+        return $results;
     }
 
     /*

@@ -66,8 +66,13 @@
                             </div>
                             <div class="col-md-4">
                                 <label for="mobile">Mobile Number</label>
-                                <div class="form-group"> 
-                                    <input type="text" class="form-control required digits" id="mobile" name="mobile" value="<?= set_value('mobile'); ?>" maxlength="10">
+<!--                                <input type="hidden" class="form-control required digits" id="code" name="code" value="+254">-->
+
+                                <div class="input-group"> 
+                                    <span class="input-group-addon btn btn-bitbucket" style="background: #00517e">+254
+                                        <input type="hidden" class="form-control required digits" id="code" name="code" value="+254">
+                                    </span>
+                                    <input type="text" class="form-control required digits" id="mobile" name="mobile" value="<?= set_value('mobile'); ?>" minlength="9" maxlength="9">
                                 </div>
                             </div>
                         </div>
@@ -75,7 +80,8 @@
                             <div class="col-md-4">                                   
                                 <label for="gender">Gender</label>
                                 <div class="form-group">
-                                    <select class="form-control" id="gender" name="gender">
+                                    <select class="form-control" id="gender" name="gender" required>
+                                        <option value="">--Select Gender--</option>
                                         <option value="male">Male</option>
                                         <option value="female" >Female</option>
                                     </select>
@@ -106,8 +112,9 @@
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label for="blood_type">Blood Type</label>
-                                    <select class="form-control" id="blood_type" name="blood_type" value="<?= set_value('blood_type'); ?>">
+                                    <label for="blood_type">Blood Group</label>
+                                    <select class="form-control" id="blood_type" name="blood_type" value="<?= set_value('blood_type'); ?>" required>
+                                        <option value="">--Select Blood Group--</option>
                                         <option value="O+">O+</option>
                                         <option value="O-">O-</option>
                                         <option value="A+">A+</option>
@@ -126,7 +133,7 @@
                                            placeholder="DD/MM/YYYY">
                                     <script type="text/javascript">
                                         var endDate = new Date(); //startDate
-                                        var startDate=new Date(); //endDate
+                                        var startDate = new Date(); //endDate
                                         endDate.setFullYear(new Date().getFullYear() - 18);
                                         startDate.setFullYear(new Date().getFullYear() - 55);
                                         $('#dateOfBirth').datepicker(
@@ -185,10 +192,12 @@
             </form>
         </div>
         <div class="col-md-4">
-            <div class="panel panel-default">
+            <div class="panel panel-default" style="margin-right: 2px;">
                 <div class="panel-heading"><b>Admission Rules</b></div>
                 <div class="panel-body">
                     <li>All input fields must be filled</li>
+                    <li>All input fields <b>must not</b> have <b>zero</b> as first element</li>
+                    <li>Phone numbers start with the <b>second</b> digit, i.e 0717978086 <b>to</b> 717978086</li>
                     <li>Users' role should be defined with caution</li>
                     <li>Correct email address should be used as will be required during resetting of passwords</li>
                     <li>All donors should be atleast <b>18yrs</b> and maximum of <b>55yrs</b> of age</li>
@@ -198,3 +207,13 @@
     </div> 
 </div>
 <script src="<?php echo base_url(); ?>assets/js/addUser.js" type="text/javascript"></script>
+<script type="text/javascript">
+                                        $("input").blur(function () {
+                                            var val = $(this).val();
+                                            if (val.indexOf("0") == 0) {
+                                                $(this).val("");
+                                                $(this).attr("placeholder", "Invalid");
+                                            }
+                                        });
+
+</script>

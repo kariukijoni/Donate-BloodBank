@@ -17,7 +17,7 @@
                         <div class="row">
                             <div class="form-group">
                                 <select class="form-control" id="blood_group" name="blood_group">
-                                    <!--<option value="--Select Blood Group--">Select Blood Group</option>-->
+                                    <!--<option value="blank"></option>-->
                                     <option value="O+">O+</option>
                                     <option value="O-">O-</option>
                                     <option value="A+">A+</option>
@@ -28,6 +28,7 @@
                                     <option value="AB-">AB-</option>
                                 </select>
                             </div>
+
                         </div>
                         <div class="row">
                             <div class="form-group">

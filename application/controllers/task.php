@@ -259,4 +259,15 @@ class Task extends BaseController {
         $pdf->Output();
     }
 
+    function help() {
+        $this->global['pageTitle'] = 'BloodDonor : Help';
+//        $data['countDonors'] = $this->task_model->countDonors();
+//        $data['countAllUsers'] = $this->task_model->getCountAllUsers();
+//        $data['specificNextSafeD'] = $this->task_model->specificNextSafeDonation();
+//        $data['getmales'] = $this->task_model->getMales();
+//        $data['getfemales'] = $this->task_model->getFemales();
+//        $this->loadViews("help", $this->global, $data, NULL);
+        $this->loadViews("help", $this->global, NULL, NULL);
+    }
+
 }
