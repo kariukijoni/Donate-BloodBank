@@ -69,11 +69,6 @@ class Login extends CI_Controller {
                     );
 
                     $this->session->set_userdata($sessionArray);
-//                    if ($role == ROLE_ADMIN || $role == ROLE_MANAGER) {
-//                        redirect('/dashboard');
-//                    }  else {
-//                        redirect('task/donorDashboard');    
-//                    }
                     redirect('/dashboard');
                 }
             } else {

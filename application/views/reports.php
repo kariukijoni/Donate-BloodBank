@@ -1,11 +1,11 @@
 <div class="content-wrapper" style="background-color: #ffffff">
-    <div class="row">
+    <div class="row" style="margin: 1px">
         <div class="col-md-6">
             <div class="panel panel-default">
                 <div class="panel-heading text-center">Donation Reports</div>
                 <div class="panel-body" style="height: 400px; overflow-y:scroll">
-                    <table class="table table-responsive table-bordered">
-                        <thead style="background-color: #f9fafc">
+                    <table class="table table-responsive table-striped">
+                        <thead style="background-color: #FFD6B3">
                             <tr>
                                 <td>#</td>
                                 <td>Blood Type</td>
@@ -38,8 +38,8 @@
             <div class="panel panel-default">
                 <div class="panel-heading text-center">Transaction Reports</div>
                 <div class="panel-body" style="height: 400px; overflow-y:scroll">
-                    <table class="table table-responsive table-bordered">
-                        <thead style="background-color: #f9fafc">
+                    <table class="table table-responsive table-striped">
+                        <thead style="background-color: #FFD6B3">
                             <tr>
                                 <td>#</td>
                                 <td>Hospital name</td>
@@ -68,7 +68,7 @@
                                         <?= $report->blood_type ?>
                                     </td>
                                     <td>
-                                        <?= $report->amount_donated_cc ?>
+                                        <?= $report->amount_donated ?>
                                     </td>
                                     <td>
                                         <?= $report->transact_date ?>

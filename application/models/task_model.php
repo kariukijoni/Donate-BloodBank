@@ -22,9 +22,15 @@ class Task_model extends CI_Model {
 
     function donateUser($donor) {
         $this->db->trans_start();
-        $this->db->insert('tbl_donation', $donor);
-        $this->db->trans_complete();
-//        return $insert_id;
+        $query = $this->db->insert('tbl_donation', $donor);
+//        $this->db->trans_complete();
+        if ($query) {
+            $this->db->trans_complete();
+            return TRUE;
+        } else {
+            $this->db->trans_complete();
+            return FALSE;
+        }
     }
 
     /*
@@ -56,18 +62,16 @@ class Task_model extends CI_Model {
      */
 
     function countNotifications() {
-//        $this->session->userdata('userId');
-//        $q = $this->db->query("SELECT COUNT(*) as count_rows FROM tbl_notifications where status='unread'");
-//        return $q->row_array();
-        $results=array();
-        $this->db->select('status');
+        $results = array();
+        $this->db->select('tbl_notifications.status,tbl_donors_preexam.blood_type');
         $this->db->from('tbl_notifications');
-        $this->db->where('userid',  $this->session->userdata('userId'));
-        $query=  $this->db->get();
-        $num_of_records=$query->num_rows();
-        if($num_of_records>0)
-        {
-            $results=$query->result_array();
+        $this->db->join('tbl_donors_preexam', 'tbl_notifications.userid=tbl_donors_preexam.userid');
+        $this->db->where('tbl_donors_preexam.userid', $this->session->userdata('userId'));
+        $this->db->where('tbl_notifications.status', 'unread');
+        $query = $this->db->get();
+        $num_of_records = $query->num_rows();
+        if ($num_of_records > 0) {
+            $results = $query->result_array();
         }
 //        print_r($this->session->userdata('userId'));
 //        die();
@@ -143,7 +147,6 @@ class Task_model extends CI_Model {
         $this->db->from('tbl_donors_preexam');
         $query = $this->db->get();
         $result = $query->result();
-
         return $result[0]->blood_type;
     }
 
@@ -154,8 +157,6 @@ class Task_model extends CI_Model {
         $this->db->from('tbl_requests');
         $query = $this->db->get();
         $result = $query->result();
-//        print_r($result);
-//        die();
         return $result;
 
 //        print_r($this->session->userdata('userId'));
@@ -179,16 +180,27 @@ class Task_model extends CI_Model {
      */
 
     function bloodStock() {
+        $this->db->join('tbl_donors_preexam', 'tbl_donation.userid=tbl_donors_preexam.userid');
         $this->db->select('tbl_donation.donation_type,tbl_donors_preexam.blood_type');
         $this->db->select_sum('tbl_donation.amount_donated_cc');
         $this->db->group_by('tbl_donation.donation_type');
         $this->db->group_by('tbl_donors_preexam.blood_type');
         $this->db->from('tbl_donation');
-        $this->db->join('tbl_donors_preexam', 'tbl_donation.userid=tbl_donors_preexam.userid');
         $query = $this->db->get();
         $result = $query->result();
-//        print_r($result);
-//        die();
+        /*
+         * do substraction from bloodStock
+         */
+        foreach ($result as $data) {
+            $this->db->select_sum('tbl_transaction.amount_donated');
+            $this->db->where('donation_type', $data->donation_type);
+            $this->db->where('blood_type', $data->blood_type);
+            $this->db->from('tbl_transaction');
+            $query3 = $this->db->get();
+            $result3 = $query3->result();
+            $data->balance = $data->amount_donated_cc - $result3[0]->amount_donated;
+        }
+
         return $result;
     }
 
@@ -198,8 +210,15 @@ class Task_model extends CI_Model {
 
     function transactBlood($trans) {
         $this->db->trans_start();
-        $this->db->insert('tbl_transact', $trans);
-        $this->db->trans_complete();
+        $query = $this->db->insert('tbl_transaction', $trans);
+        if ($query) {
+            $this->db->trans_complete();
+            return TRUE;
+        } else {
+            $this->db->trans_complete();
+            return FALSE;
+        }
+//        $this->db->trans_complete();
     }
 
     /*
@@ -207,8 +226,8 @@ class Task_model extends CI_Model {
      */
 
     function reportHos() {
-        $this->db->select('trans_id,hos_name,donation_type,blood_type,amount_donated_cc,transact_date');
-        $this->db->from('tbl_transact');
+        $this->db->select('trans_id,hos_name,donation_type,blood_type,amount_donated,transact_date');
+        $this->db->from('tbl_transaction');
         $query = $this->db->get();
         $result = $query->result();
         return $result;
@@ -326,7 +345,7 @@ class Task_model extends CI_Model {
      */
 
     function specificNextSafeDonation() {
-        $this->db->select('nextSafeDonation as nextSafe');        
+        $this->db->select('nextSafeDonation as nextSafe');
         $this->db->from('tbl_donation');
         $this->db->where('userid', $this->session->userdata('userId'));
 //        $this->db->join('tbl_donation_records', 'tbl_donation_records.did=tbl_donation.did', 'inner');
@@ -334,12 +353,12 @@ class Task_model extends CI_Model {
         $result = $query->result();
         return $result;
     }
-    
-    public function get_users_with_blood_type($request){   
+
+    public function get_users_with_blood_type($request) {
         $this->db->where('blood_type', $request['blood_type']);
         $query = $this->db->get('tbl_donors_preexam');
-        if ($query){
-            if ($query->num_rows() > 0){
+        if ($query) {
+            if ($query->num_rows() > 0) {
                 return $query->result();
             } else {
                 return FALSE;
@@ -347,6 +366,37 @@ class Task_model extends CI_Model {
         } else {
             return FALSE;
         }
+    }
+
+    /*
+     * insert response
+     */
+
+    function responses($response) {
+        $this->db->trans_start();
+        $query = $this->db->insert('tbl_response', $response);
+        if ($query) {
+            $this->db->trans_complete();
+            return TRUE;
+        } else {
+            $this->db->trans_complete();
+            return FALSE;
+        }
+    }
+
+    /*
+     * fetch all responses
+     */
+
+    function all_responses() {
+        $this->db->select('tbl_response.userid,tbl_response.textArea,tbl_response.responseDate, '
+                . 'tbl_donors_preexam.blood_type');
+        $this->db->from('tbl_response');
+        $this->db->join('tbl_donors_preexam', 'tbl_response.userid=tbl_donors_preexam.userid', 'inner');
+        $this->db->order_by('tbl_response.responseDate', 'desc');
+        $query = $this->db->get();
+        $result = $query->result();
+        return $result;
     }
 
 }

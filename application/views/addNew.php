@@ -208,12 +208,12 @@
 </div>
 <script src="<?php echo base_url(); ?>assets/js/addUser.js" type="text/javascript"></script>
 <script type="text/javascript">
-                                        $("input").blur(function () {
-                                            var val = $(this).val();
-                                            if (val.indexOf("0") == 0) {
-                                                $(this).val("");
-                                                $(this).attr("placeholder", "Invalid");
-                                            }
-                                        });
+    $("input").blur(function () {
+        var val = $(this).val();
+        if (val.indexOf("0") == 0) {
+            $(this).val("");
+            $(this).attr("placeholder", "Invalid");
+        }
+    });
 
 </script>

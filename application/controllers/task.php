@@ -19,24 +19,34 @@ class Task extends BaseController {
     }
 
     function transact() {
-        $this->global['pageTitle'] = 'BloodDonor : Transact';
-        $data['record'] = $this->task_model->bloodStock(); //retrieve array with bloodstock
-        $data['hos_name'] = $this->task_model->getNameRegHos(); //getHosName       
-        $this->loadViews("transact", $this->global, $data, Null);
+        if ($this->isTicketter() == TRUE) {
+            $this->loadThis();
+        } else {
+            $this->global['pageTitle'] = 'BloodDonor : Transact';
+            $data['record'] = $this->task_model->bloodStock(); //retrieve array with bloodstock
+            $data['hos_name'] = $this->task_model->getNameRegHos(); //getHosName       
+            $this->loadViews("transact", $this->global, $data, Null);
+        }
     }
 
     function transactHos() {
-//        print_r($this->input->post('hos_id'));
-//        die();
-        $transact = array(
-            'hos_name' => $this->input->post('hos_name'),
-            'donation_type' => $this->input->post('blood_group'),
-            'blood_type' => $this->input->post('blood_type'),
-            'amount_donated_cc' => $this->input->post('amount_donated_cc'),
-            'transact_date' => date('Y-m-d')
-        );
-        $this->task_model->transactBlood($transact);
-        redirect('task/transact');
+        $this->load->library('form_validation');
+
+        $this->form_validation->set_rules('hos_name', 'trim|required|xss_clean');
+        $this->form_validation->set_rules('blood_group', '','trim|required|xss_clean');
+        $this->form_validation->set_rules('blood_type', '','trim|required');
+        $this->form_validation->set_rules('amount_donated', '','trim|required');
+        if ($this->form_validation->run() == TRUE) {
+            $transact = array(
+                'hos_name' => $this->input->post('hos_name'),
+                'donation_type' => $this->input->post('blood_type'),
+                'blood_type' => $this->input->post('blood_group'),
+                'amount_donated' => $this->input->post('amount_donated'),
+                'transact_date' => date('Y-m-d')
+            );
+            $this->task_model->transactBlood($transact);
+            redirect('task/transact');
+        }
     }
 
     /**
@@ -107,52 +117,56 @@ class Task extends BaseController {
      */
 
     function requests() {
-
-        if (isset($_POST['type_requested']) & isset($_POST['quantity_requested'])) {
-            $this->load->library('form_validation');
-            $this->form_validation->set_rules('blood_type_requested', 'Blood Type', 'required');
-            $this->form_validation->set_rules('quantity_requested', 'Quantity Requested', 'required');
-            $request = array(
-                'blood_type' => $this->input->post('blood_group'),
-                'blood_type_requested' => $this->input->post('type_requested'),
-                'date_requested' => date('Y-m-d H:i:sa'),
-                'quantity_requested' => $this->input->post('quantity_requested')
-            );
-            $user_id = $this->task_model->get_users_with_blood_type($request);
+        if ($this->isTicketter() == TRUE) {
+            $this->loadThis();
+        } else {
+            if (isset($_POST['type_requested']) & isset($_POST['quantity_requested'])) {
+                $this->load->library('form_validation');
+                $this->form_validation->set_rules('blood_type_requested', 'Blood Type', 'required');
+                $this->form_validation->set_rules('quantity_requested', 'Quantity Requested', 'required');
+                $request = array(
+                    'blood_type' => $this->input->post('blood_group'),
+                    'blood_type_requested' => $this->input->post('type_requested'),
+                    'date_requested' => date('Y-m-d H:i:sa'),
+                    'quantity_requested' => $this->input->post('quantity_requested')
+                );
+                $user_id = $this->task_model->get_users_with_blood_type($request);
 //            $status = "not";
-            $last_in_array = end($user_id);
-            $user_numbers_available = NULL;
-            foreach ($user_id as $user) {
-                if ($user != $last_in_array) {
-                    $comma = ",";
-                } else {
-                    $comma = "";
+                $last_in_array = end($user_id);
+                $user_numbers_available = NULL;
+                foreach ($user_id as $user) {
+                    if ($user != $last_in_array) {
+                        $comma = ",";
+                    } else {
+                        $comma = "";
+                    }
+                    $phone_number = $this->db->get_where('tbl_users', array('userId' => $user->userid))->row('mobile');
+                    $message_text = "New message\nFrom John";
+                    $phone_numbers_to_send = $phone_number . $comma;
+                    $user_numbers_available = $user_numbers_available . $phone_numbers_to_send;
                 }
-                $phone_number = $this->db->get_where('tbl_users', array('userId' => $user->userid))->row('mobile');
-                $message_text = "New message\nFrom John";
-                $phone_numbers_to_send = $phone_number . $comma;
-                $user_numbers_available = $user_numbers_available . $phone_numbers_to_send;
-            }
-            $sending_text = $this->send_text_message($user_numbers_available, $message_text);
-            if ($sending_text) {
-                foreach ($user_id as $row):
-                    $rid = $this->task_model->makeRequests($request);
-                    $notification = array(
-                        'rqid' => $rid, 'date_sent' => date('Y-m-d H:i:sa'), 'userid' => $row->userid
-                    );
-                    $this->task_model->notifications($notification);
+                $sending_text = $this->send_text_message($user_numbers_available, $message_text);
+                if ($sending_text) {
+                    foreach ($user_id as $row):
+                        $rid = $this->task_model->makeRequests($request);
+                        $notification = array(
+                            'rqid' => $rid, 'date_sent' => date('Y-m-d H:i:sa'), 'userid' => $row->userid
+                        );
+                        $this->task_model->notifications($notification);
 
-                endforeach;
-                $data['success'] = 'Request made successfully...';
-            } else {
-                $data['success'] = 'Not sent...';
+                    endforeach;
+                    $data['success'] = 'Request made successfully...';
+                } else {
+                    $data['danger'] = 'Not sent...';
+                }
             }
+
+            $data['type'] = $this->task_model->getDonationType();
+            $data['tbl_request'] = $this->task_model->bloodRequests();
+            $data['tbl_response'] = $this->task_model->all_responses();
+            $this->global['pageTitle'] = 'BloodDonor : Requests';
+            $this->loadViews("requests", $this->global, $data, Null);
         }
-
-        $data['type'] = $this->task_model->getDonationType();
-        $data['tbl_request'] = $this->task_model->bloodRequests();
-        $this->global['pageTitle'] = 'BloodDonor : Requests';
-        $this->loadViews("requests", $this->global, $data, Null);
     }
 
     function send_text_message($user_numbers_available, $message_text) {
@@ -195,6 +209,7 @@ class Task extends BaseController {
         $data['specific_request'] = $this->task_model->specificRequest();
         $data['specific_report'] = $this->task_model->specificDonorsReport();
         $data['notifications'] = $this->task_model->countNotifications();
+        $data['success'] = 'Response Success...';
         $this->loadViews('donorDashboard', $this->global, $data, NULL);
     }
 
@@ -218,10 +233,14 @@ class Task extends BaseController {
     }
 
     function reports() {
-        $this->global['pageTitle'] = 'BloodDonor : Reports';
-        $data['reportDonors'] = $this->task_model->reportDonors();
-        $data['reportHos'] = $this->task_model->reportHos();
-        $this->loadViews('reports', $this->global, $data, NULL);
+        if ($this->isTicketter() == TRUE) {
+            $this->loadThis();
+        } else {
+            $this->global['pageTitle'] = 'BloodDonor : Reports';
+            $data['reportDonors'] = $this->task_model->reportDonors();
+            $data['reportHos'] = $this->task_model->reportHos();
+            $this->loadViews('reports', $this->global, $data, NULL);
+        }
     }
 
     /*
@@ -250,24 +269,48 @@ class Task extends BaseController {
         $pdf->SetFont('Arial', 'B', 14);
         //cell(width, height, text, border, endline, align)
         $pdf->Cell(189, 5, 'Donation Reports', 1, 0);
-//        $pdf->Cell(59, 5, '', 1, 1);//endline
-//        $this->task_model->reportDonors();
-//        $query="SELECT tbl_donation.did,tbl_donation.donation_type,tbl_donation.nextSafeDonation, FROM tbl_donation left join "
-//                . "tbl_donation_records on tbl_donation.did=tbl_donation_records.donation_date.did";
-//        $result=  mysqli_query($query);
 
         $pdf->Output();
     }
 
     function help() {
         $this->global['pageTitle'] = 'BloodDonor : Help';
-//        $data['countDonors'] = $this->task_model->countDonors();
-//        $data['countAllUsers'] = $this->task_model->getCountAllUsers();
-//        $data['specificNextSafeD'] = $this->task_model->specificNextSafeDonation();
-//        $data['getmales'] = $this->task_model->getMales();
-//        $data['getfemales'] = $this->task_model->getFemales();
-//        $this->loadViews("help", $this->global, $data, NULL);
         $this->loadViews("help", $this->global, NULL, NULL);
+    }
+
+//    function response() {
+//        $this->global['pageTitle'] = 'BloodDonor : Response';
+//        $this->loadViews("donor_response", $this->global, NULL, NULL);
+//    }
+
+    /*
+     * insert into tbl_responses
+     */
+
+    function responses() {
+        if (isset($_POST['textAreaMsg'])) {
+            $data = array(
+                'userid' => $this->session->userdata('userId'),
+                'textArea' => $this->input->post('textAreaMsg'),
+                'responseDate' => date('Y-m-d H:i:sa')
+            );
+
+            $send_response = $this->task_model->responses($data);
+            if ($send_response) {
+                /*
+                 * update status tbl_notifications
+                 */
+                $this->db->set('status', 'read');
+                $this->db->where('userid', $this->session->userdata('userId'));
+                $this->db->update('tbl_notifications');
+                $data_['success'] = 'Response Success...';
+            } else {
+                return FALSE;
+            }
+        }
+        $data_[''] = '';
+        $this->global['pageTitle'] = 'BloodDonor : Response';
+        $this->loadViews("donor_response", $this->global, $data_, NULL);
     }
 
 }

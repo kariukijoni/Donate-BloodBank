@@ -1,5 +1,5 @@
 <div class="content-wrapper" style="background-color: #ffffff">
-    <div class="row">       
+    <div class="row" style="margin: 1px">       
         <div class="col-md-4">
             <div class="row">
                 <?php if (isset($success)) { ?>                    
@@ -8,6 +8,14 @@
                         <?php echo $success; ?>
                     </div>
 
+                    <?php
+                }
+                if (isset($danger)) {
+                    ?>
+                    <div class="form-control alert alert-danger">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                        <?php echo $danger; ?>
+                    </div>
                 <?php } ?>
             </div>
             <div class="panel panel-default">
@@ -63,14 +71,15 @@
                     </div>
                 <?php } ?>
             </div>
-            <div class="panel panel-default">
-                <div class="panel-heading">Show Made Requests</div>
+            <div class="panel panel-default">   
+                <div class="panel-heading">
+                    Show Made Requests
+                </div>
                 <div class="panel-body" style="height: 200px; overflow-y:scroll">
                     <table class="table table-responsive table-bordered">
                         <thead>
                             <tr>
                                 <td>#</td>
-                                <!--<td>UserId</td>-->
                                 <td>Blood Group</td>
                                 <td>Blood Type</td>
                                 <td>Date Requested</td>
@@ -85,10 +94,7 @@
                                 <tr>
                                     <td>
                                         <?= $row->rqid ?>
-                                    </td>                                        
-    <!--                                        <td>
-                                    <?= $row->userid ?>
-                                    </td>-->
+                                    </td>
                                     <td>
                                         <?= $row->blood_type ?>
                                     </td>
@@ -103,8 +109,49 @@
                                     </td>
                                     <td>
                                         <a class="btn btn-sm btn-danger" href="<?php echo base_url() . 'task/deleteReq/' . $row->rqid; ?>">
-                                            <i class="fa fa-trash"></i></a>
-                                        <!--<a class="btn btn-sm btn-info" href="<?php echo base_url() . 'editOld/'; ?>"><i class="fa fa-pencil"></i></a>-->
+                                            <i class="fa fa-trash"></i>
+                                        </a>                                       
+                                    </td>
+                                </tr>
+                            <?php endforeach ?>
+                        </tbody>
+                    </table> 
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row" style="margin: 1px">
+        <div class="col-md-8">
+            <div class="panel panel-success">
+                <div class="panel-heading">
+                    Made Requests Responses
+                </div>
+                <div class="panel-body" style="height: 200px; overflow-y:scroll">
+                    <table class="table table-responsive table-bordered">
+                        <thead>
+                            <tr>
+                                <td>#</td>
+                                <td>Blood Group</td>
+                                <td>Message</td>
+                                <td>Response Date</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                            foreach ($tbl_response as $row):
+                                ?>
+                                <tr>
+                                    <td>
+                                        <?= $row->userid ?>
+                                    </td>
+                                    <td>
+                                        <?= $row->blood_type ?>
+                                    </td>
+                                    <td>
+                                        <?= $row->textArea ?>
+                                    </td>
+                                    <td>
+                                        <?= $row->responseDate ?>
                                     </td>
                                 </tr>
                             <?php endforeach ?>

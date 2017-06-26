@@ -144,15 +144,16 @@
                                 <span>Reports</span>
                                 </a>
                             </li>
-                            <li class="treeview">
-                                <a href="<?php echo base_url(); ?>task/Help"/> 
-                                <i class="fa fa-question-circle"></i>
-                                <span>Help</span>
-                                </a>                               
-                            </li>
                             <?php
                         }
                         ?>
+                        <li class="treeview">
+                            <a href="<?php echo base_url(); ?>task/Help"/> 
+                            <i class="fa fa-question-circle"></i>
+                            <span>Help</span>
+                            </a>                               
+                        </li>
+
                     </ul>
                 </section>
                 <!-- /.sidebar -->

@@ -11,7 +11,7 @@
         <div class="row">
             <div class="col-xs-12 text-right">
                 <div class="form-group">
-                    <a class="btn btn-bitbucket btn-sm" href="<?php echo base_url(); ?>addNew"><i class="fa fa-plus"></i> Add New</a>
+                    <a class="btn btn-bitbucket btn-sm" href="<?php echo base_url(); ?>addNew"><i class="fa fa-plus"></i> Add New User</a>
                 </div>
             </div>
         </div>

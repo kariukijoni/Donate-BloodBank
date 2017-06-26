@@ -125,7 +125,7 @@ class User extends BaseController {
                 $email = $this->input->post('email');
                 $password = $this->input->post('password');
                 $roleId = $this->input->post('role');
-                $mobile =$this->input->post('code').$this->input->post('mobile');
+                $mobile = $this->input->post('code') . $this->input->post('mobile');
 
                 $userInfo = array('email' => $email, 'password' => getHashedPassword($password), 'roleId' => $roleId, 'name' => $name,
                     'mobile' => $mobile, 'createdBy' => $this->vendorId, 'createdDtm' => date('Y-m-d H:i:sa'));
@@ -202,7 +202,7 @@ class User extends BaseController {
                 $email = $this->input->post('email');
                 $password = $this->input->post('password');
                 $roleId = $this->input->post('role');
-                $mobile = $this->input->post('code').$this->input->post('mobile');
+                $mobile = $this->input->post('code') . $this->input->post('mobile');
 
                 $userInfo = array();
 
@@ -301,10 +301,14 @@ class User extends BaseController {
      */
 
     function donors() {
-        $this->global['pageTitle'] = 'BloodDonor : Donors';
-        $data['tbl_users'] = $this->user_model->getAllDonors();
-        $data['getNextProbableDonors'] = $this->user_model->getNextProbableDonors();
-        $this->loadViews("donors", $this->global, $data, NULL);
+        if ($this->isTicketter() == TRUE) {
+            $this->loadThis();
+        } else {
+            $this->global['pageTitle'] = 'BloodDonor : Donors';
+            $data['tbl_users'] = $this->user_model->getAllDonors();
+            $data['getNextProbableDonors'] = $this->user_model->getNextProbableDonors();
+            $this->loadViews("donors", $this->global, $data, NULL);
+        }
     }
 
 }

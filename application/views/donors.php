@@ -1,5 +1,5 @@
 <div class="content-wrapper" style="background-color: #ffffff">   
-    <div class="row">
+    <div class="row" style="margin: 1px">
         <div class="col-md-6">
             <h4>Potential Donors
             </h4>
