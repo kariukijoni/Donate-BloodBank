@@ -31,10 +31,10 @@
                                 </div>
                             </form>
                         </div>
-                       
+
                     </div><!-- /.box-header -->
                     <div class="box-body table-responsive no-padding">
-                        <table class="table table-hover table-striped">
+                        <table class="table table-hover table-striped" id="users">
                             <tr>
                                 <th>Id</th>
                                 <th>Name</th>

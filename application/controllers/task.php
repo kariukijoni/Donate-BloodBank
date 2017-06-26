@@ -4,7 +4,6 @@ if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
 require APPPATH . '/libraries/BaseController.php';
-require APPPATH . '/libraries/fpdf/fpdf.php';
 
 class Task extends BaseController {
 
@@ -33,9 +32,9 @@ class Task extends BaseController {
         $this->load->library('form_validation');
 
         $this->form_validation->set_rules('hos_name', 'trim|required|xss_clean');
-        $this->form_validation->set_rules('blood_group', '','trim|required|xss_clean');
-        $this->form_validation->set_rules('blood_type', '','trim|required');
-        $this->form_validation->set_rules('amount_donated', '','trim|required');
+        $this->form_validation->set_rules('blood_group', '', 'trim|required|xss_clean');
+        $this->form_validation->set_rules('blood_type', '', 'trim|required');
+        $this->form_validation->set_rules('amount_donated', '', 'trim|required');
         if ($this->form_validation->run() == TRUE) {
             $transact = array(
                 'hos_name' => $this->input->post('hos_name'),
@@ -83,33 +82,36 @@ class Task extends BaseController {
      */
 
     function donateUser() {
-        /*
-         * Array to input record to tbl_donation_records
-         */
-        $donationRecord = array(
-            'donation_date' => date('Y-m-d H:i:sa'));
-        $this->task_model->donationRecord($donationRecord);
+        if ($this->isTicketter() == TRUE) {
+            $this->loadThis();
+        } else {
+            /*
+             * Array to input record to tbl_donation_records
+             */
+            $donationRecord = array('donation_date' => date('Y-m-d H:i:sa'));
+            $this->task_model->donationRecord($donationRecord);
 
-        /*
-         * Array to input record to tbl_donation
-         */
-        $duration = $this->task_model->duration($this->input->post('donation_type'));
-        $next_safe = date("Y-m-d", strtotime('+ ' . $duration[0]->frequency_days . ' days')); //render nextSafeDonationDate
-        $data = array(
-            'donation_type' => $this->input->post('donation_type'),
-            'userid' => $this->input->post('userId'),
-            'amount_donated_cc' => $this->input->post('amount_donated_cc'),
-            'nextSafeDonation' => $next_safe
-        );
-        $this->task_model->donateUser($data);
+            /*
+             * Array to input record to tbl_donation
+             */
+            $duration = $this->task_model->duration($this->input->post('donation_type'));
+            $next_safe = date("Y-m-d", strtotime('+ ' . $duration[0]->frequency_days . ' days')); //render nextSafeDonationDate
+            $data = array(
+                'donation_type' => $this->input->post('donation_type'),
+                'userid' => $this->input->post('userId'),
+                'amount_donated_cc' => $this->input->post('amount_donated_cc'),
+                'nextSafeDonation' => $next_safe
+            );
+            $this->task_model->donateUser($data);
 
-        /*
-         * update don_status controller
-         */
-        $userId = $this->input->post('userId');
-        $userInfo = array('don_status' => 0);
-        $this->task_model->donStatus($userId, $userInfo);
-        redirect('user/donors');
+            /*
+             * update don_status controller
+             */
+            $userId = $this->input->post('userId');
+            $userInfo = array('don_status' => 0);
+            $this->task_model->donStatus($userId, $userInfo);
+            redirect('user/donors');
+        }
     }
 
     /*
@@ -174,7 +176,7 @@ class Task extends BaseController {
         require_once('AfricasTalkingGateway.php');
         // Specify your login credentials
         $username = "kariukye";
-        $apikey = "ae614497c492d3422a59ab32218dcde218d31bdfacab7a9eacb0dff5c5f98a2a";
+        $apikey = "8c31c220fe5a0a1603feaf0abd75f4860ca262b2c7cbe63f0edbfc1a1108579a";
         // NOTE: If connecting to the sandbox, please use your sandbox login credentials
         // Specify the numbers that you want to send to in a comma-separated list
         // Please ensure you include the country code (+254 for Kenya in this case)
@@ -256,32 +258,10 @@ class Task extends BaseController {
 //        redirect("task/requests");
     }
 
-    /*
-     * function printPDF reports
-     */
-
-    function printPDF() {
-        //A4 width 219 mm
-        //default margin; 10mm each
-        $pdf = new FPDF('p', 'mm', 'A4');
-        $pdf->AddPage();
-        //set font to arial bold and 14 pt
-        $pdf->SetFont('Arial', 'B', 14);
-        //cell(width, height, text, border, endline, align)
-        $pdf->Cell(189, 5, 'Donation Reports', 1, 0);
-
-        $pdf->Output();
-    }
-
     function help() {
         $this->global['pageTitle'] = 'BloodDonor : Help';
         $this->loadViews("help", $this->global, NULL, NULL);
     }
-
-//    function response() {
-//        $this->global['pageTitle'] = 'BloodDonor : Response';
-//        $this->loadViews("donor_response", $this->global, NULL, NULL);
-//    }
 
     /*
      * insert into tbl_responses

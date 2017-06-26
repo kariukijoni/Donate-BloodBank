@@ -171,8 +171,14 @@ class Task_model extends CI_Model {
 
     function donationRecord($record) {
         $this->db->trans_start();
-        $this->db->insert('tbl_donation_records', $record);
-        $this->db->trans_complete();
+        $query = $this->db->insert('tbl_donation_records', $record);
+        if ($query) {
+            $this->db->trans_complete();
+            return TRUE;
+        } else {
+            $this->db->trans_complete();
+            return FALSE;
+        }
     }
 
     /*
@@ -396,7 +402,11 @@ class Task_model extends CI_Model {
         $this->db->order_by('tbl_response.responseDate', 'desc');
         $query = $this->db->get();
         $result = $query->result();
-        return $result;
+        if ($result) {
+            return $result;
+        } else {
+            return FALSE;
+        }
     }
 
 }

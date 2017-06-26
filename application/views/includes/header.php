@@ -7,6 +7,9 @@
         <!-- Bootstrap 3.3.4 -->
         <link href="<?php echo base_url(); ?>assets/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
         <link href="<?php echo base_url(); ?>assets/bootstrap/css/datepicker.css" rel="stylesheet" type="text/css" />
+        <link href="<?php echo base_url(); ?>assets/bootstrap/css/dataTables.css" rel="stylesheet" type="text/css" />
+        <link href="<?php echo base_url(); ?>assets/bootstrap/css/buttons.dataTables.min.css" rel="stylesheet" type="text/css" />        
+        <!--<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.13/datatables.min.css"/>-->
         <!-- FontAwesome 4.3.0 -->
         <link href="<?php echo base_url(); ?>assets/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
         <!-- Ionicons 2.0.0 -->
@@ -24,6 +27,10 @@
         <!-- jQuery 2.1.4 -->        
         <script src="<?php echo base_url(); ?>assets/js/jQuery-2.1.4.min.js"></script>
         <script src="<?php echo base_url(); ?>assets/js/bootstrap-datepicker.js"></script>
+        <script src="<?php echo base_url(); ?>assets/js/jquery.dataTables.min.js"></script>
+        <script src="<?php echo base_url(); ?>assets/js/dataTables.buttons.min.js"></script>
+        <script src="<?php echo base_url(); ?>assets/js/buttons.print.min.js"></script>
+        
         <script type="text/javascript">
             var baseURL = "<?php echo base_url(); ?>";
         </script>

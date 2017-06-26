@@ -28,7 +28,7 @@
             </div>
         </div>
         <div class="col-md-7">
-            <div id="show_hos"></div>
+            <!--<div id="show_hos"></div>-->
         </div>
     </div>
     <div class="row" style="margin: 1px">
@@ -36,7 +36,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading text-center">Blood Stock</div>
                 <div class="panel-body">
-                    <table class="table table-responsive table-striped">
+                    <table class="table table-responsive table-striped" id="bloodStock">
                         <thead>
                             <tr>
                                 <td>Blood Group</td>
@@ -106,28 +106,9 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-6">
-            <div class="panel panel-danger">
-                <div class="panel-heading">Blood Groups Having less than</div>
-                <div class="panel-body">
-                    <table class="table table-responsive table-striped">
-                        <thead>
-                            <tr>
-                                <td>Blood Group</td>
-                                <td>Blood Type</td>
-                                <td>Amount Remaining</td>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php
-//                            foreach ($balance as $bal):
-                            ?>
+        <!--div class show hospitals--->
+        <div class="col-md-6" id="show_hos">
 
-                            <?php // endforeach; ?>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
         </div>
     </div>
 </div>
@@ -164,6 +145,11 @@
         $('#modalBloodAmount').val(amount);
 //        console.log(amount);
     });
-
+    $('#bloodStock').DataTable({
+        dom: 'Bfrtip',
+        buttons: [
+            'print'
+        ]
+    });
 </script>
 

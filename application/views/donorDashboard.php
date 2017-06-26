@@ -11,8 +11,8 @@
                         </button>                      
                     </div>                  
                 </div>
-                <div class="panel-body" style="height: 200px; overflow-y:scroll">
-                    <table class="table table-responsive table-bordered">
+                <div class="panel-body">
+                    <table class="table table-responsive table-bordered" id="notifications">
                         <thead>
                             <tr>
                                 <td>Blood Group</td>
@@ -53,8 +53,8 @@
         <div class="col-md-5">
             <div class="panel panel-default">
                 <div class="panel-heading text-center">Donation Reports</div>
-                <div class="panel-body" style="height: 200px; overflow-y:scroll">
-                    <table class="table table-responsive table-bordered">
+                <div class="panel-body">
+                    <table class="table table-responsive table-bordered" id="specific_donor_reports">
                         <thead style="background-color: #f9fafc">
                             <tr>
                                 <td>#</td>
@@ -80,4 +80,10 @@
             </div>
         </div>
     </div>
-</div
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#specific_donor_reports').DataTable();
+        $('#notifications').DataTable();
+    });
+</script>

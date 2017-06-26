@@ -194,8 +194,8 @@ class User_model extends CI_Model {
          * */
         $this->db->select('BaseTbl.userId, BaseTbl.email, BaseTbl.name, BaseTbl.mobile, tbl_donors_preexam.blood_type');
         $this->db->from('tbl_users as BaseTbl');
-        $this->db->join('tbl_donors_preexam', 'tbl_donors_preexam.userid = BaseTbl.userid','left');
-        $this->db->join('tbl_roles as Role','Role.roleid=BaseTbl.roleid');
+        $this->db->join('tbl_donors_preexam', 'tbl_donors_preexam.userid = BaseTbl.userid', 'left');
+        $this->db->join('tbl_roles as Role', 'Role.roleid=BaseTbl.roleid');
         $this->db->where('isDeleted', 0);
         $this->db->where('don_status', 1);
         $this->db->where('Role.roleId', 3);
@@ -209,14 +209,38 @@ class User_model extends CI_Model {
      */
 
     function getNextProbableDonors() {
-        $this->db->select('BaseTbl.email, BaseTbl.name, tbl_donation.nextSafeDonation');
+        $this->db->select('BaseTbl.userid, BaseTbl.name, BaseTbl.email,tbl_donation.nextSafeDonation');
         $this->db->from('tbl_users as BaseTbl');
         $this->db->join('tbl_donation as tbl_donation', 'tbl_donation.userid = BaseTbl.userid', 'left');
-        $this->db->where('isDeleted', 0);
-        $this->db->where('don_status', 0);
+        $this->db->where('BaseTbl.isDeleted', 0);
+        $this->db->where('BaseTbl.don_status', 0);
         $query = $this->db->get();
         $result = $query->result();
-        return $result;
+        if ($result) {
+            return $result;
+        } else {
+
+            return FALSE;
+        }
+    }
+
+    /*
+     * update donation status of a specific userid
+     */
+
+    function updateDonationStatus() {
+
+        $query = 'update tbl_donation join tbl_users ON tbl_donation.userid=tbl_users.userid '
+                . 'SET tbl_users.don_status=1 where tbl_donation.nextSafeDonation-date("Y-m-d")<= 0 '
+                . 'AND tbl_users.isDeleted =0';
+
+        if ($query) {
+            $this->db->query($query);
+            return TRUE;
+        } else {
+            $this->db->query($query);
+            return FALSE;
+        }
     }
 
 }

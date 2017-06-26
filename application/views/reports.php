@@ -1,17 +1,17 @@
 <div class="content-wrapper" style="background-color: #ffffff">
+
     <div class="row" style="margin: 1px">
         <div class="col-md-6">
             <div class="panel panel-default">
                 <div class="panel-heading text-center">Donation Reports</div>
-                <div class="panel-body" style="height: 400px; overflow-y:scroll">
-                    <table class="table table-responsive table-striped">
+                <div class="panel-body">
+                    <table class="table table-responsive table-striped" id="donationReports">
                         <thead style="background-color: #FFD6B3">
                             <tr>
                                 <td>#</td>
                                 <td>Blood Type</td>
                                 <td>Donation Date</td>
                                 <td>Next Safe Donation</td>
-                                <td>Print</td>
                             </tr>
                         </thead>
                         <tbody>
@@ -23,10 +23,6 @@
                                     <td><?= $report->donation_type ?></td>
                                     <td><?= $report->donation_date ?></td>
                                     <td><?= $report->nextSafeDonation ?></td>
-                                    <td>
-                                        <!--<i class="fa fa-print" style="color: #1e282c"></i>-->
-                                        <a class="fa fa-print" style="color: #1e282c" href="<?php echo base_url() . 'task/printPDF/' . $report->did; ?>">
-                                    </td>
                                 </tr>
                             <?php endforeach ?>
                         </tbody>
@@ -37,8 +33,8 @@
         <div class="col-md-6">
             <div class="panel panel-default">
                 <div class="panel-heading text-center">Transaction Reports</div>
-                <div class="panel-body" style="height: 400px; overflow-y:scroll">
-                    <table class="table table-responsive table-striped">
+                <div class="panel-body">
+                    <table class="table table-responsive table-striped" id="transactionReports">
                         <thead style="background-color: #FFD6B3">
                             <tr>
                                 <td>#</td>
@@ -47,7 +43,6 @@
                                 <td>Blood Type</td>
                                 <td>Amount</td>
                                 <td>Date</td>
-                                <td>Print</td>
                             </tr>
                         </thead>
                         <tbody>
@@ -73,10 +68,6 @@
                                     <td>
                                         <?= $report->transact_date ?>
                                     </td>
-                                    <td>
-                                        <i class="fa fa-print" style="color: #1e282c"></i>
-                                    </td>
-                                </tr>
 
                             <?php endforeach ?>
                         </tbody>
@@ -86,3 +77,19 @@
         </div>
     </div>
 </div>
+<script>
+    $(document).ready(function () {
+        $('#donationReports').DataTable({
+            dom: 'Bfrtip',
+            buttons: [
+                'print'
+            ]
+        });
+         $('#transactionReports').DataTable({
+            dom: 'Bfrtip',
+            buttons: [
+                'print'
+            ]
+        });
+    });
+</script>

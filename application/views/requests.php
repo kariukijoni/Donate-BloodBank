@@ -62,7 +62,48 @@
             </div>
         </div>
 
-        <div class="col-md-7">
+    </div>
+    <div class="row" style="margin: 1px">
+        <div class="col-md-6">
+            <div class="panel panel-success">
+                <div class="panel-heading">
+                    Made Requests Responses
+                </div>
+                <div class="panel-body">
+                    <table class="table table-responsive table-bordered" id="requestResponses">
+                        <thead>
+                            <tr>
+                                <td>#</td>
+                                <td>Blood Group</td>
+                                <td>Message</td>
+                                <td>Response Date</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                            foreach ($tbl_response as $row):
+                                ?>
+                                <tr>
+                                    <td>
+                                        <?= $row->userid ?>
+                                    </td>
+                                    <td>
+                                        <?= $row->blood_type ?>
+                                    </td>
+                                    <td>
+                                        <?= $row->textArea ?>
+                                    </td>
+                                    <td>
+                                        <?= $row->responseDate ?>
+                                    </td>
+                                </tr>
+                            <?php endforeach ?>
+                        </tbody>
+                    </table> 
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
             <div class="row">
                 <?php if (isset($delete)) { ?>                    
                     <div class="form-control alert alert-danger">
@@ -75,8 +116,8 @@
                 <div class="panel-heading">
                     Show Made Requests
                 </div>
-                <div class="panel-body" style="height: 200px; overflow-y:scroll">
-                    <table class="table table-responsive table-bordered">
+                <div class="panel-body">
+                    <table class="table table-responsive table-bordered" id="madeRequests">
                         <thead>
                             <tr>
                                 <td>#</td>
@@ -120,46 +161,11 @@
             </div>
         </div>
     </div>
-    <div class="row" style="margin: 1px">
-        <div class="col-md-8">
-            <div class="panel panel-success">
-                <div class="panel-heading">
-                    Made Requests Responses
-                </div>
-                <div class="panel-body" style="height: 200px; overflow-y:scroll">
-                    <table class="table table-responsive table-bordered">
-                        <thead>
-                            <tr>
-                                <td>#</td>
-                                <td>Blood Group</td>
-                                <td>Message</td>
-                                <td>Response Date</td>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php
-                            foreach ($tbl_response as $row):
-                                ?>
-                                <tr>
-                                    <td>
-                                        <?= $row->userid ?>
-                                    </td>
-                                    <td>
-                                        <?= $row->blood_type ?>
-                                    </td>
-                                    <td>
-                                        <?= $row->textArea ?>
-                                    </td>
-                                    <td>
-                                        <?= $row->responseDate ?>
-                                    </td>
-                                </tr>
-                            <?php endforeach ?>
-                        </tbody>
-                    </table> 
-                </div>
-            </div>
-        </div>
-    </div>
 </div>
 <script src="<?php echo base_url(); ?>assets/js/requestForm.js" type="text/javascript"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#madeRequests').DataTable();
+        $('#requestResponses').DataTable();
+    });
+</script>
