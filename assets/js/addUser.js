@@ -16,6 +16,7 @@ $(document).ready(function () {
         rules: {
             fname: {required: true},
             email: {required: true, email: true, remote: {url: baseURL + "checkEmailExists", type: "post"}},
+            code: {required: true},
             mobile: {required: true, digits: true},
             gender: {required: true},
             weightLBS: {required: true},
@@ -30,6 +31,7 @@ $(document).ready(function () {
         messages: {
             fname: {required: "Enter your full name"},
             email: {required: "Enter your email", email: "Please enter valid email address", remote: "Email already taken"},
+            code: {required: "This field is required", selected: "Please select atleast one option"},
             mobile: {required: "Enter your mobile number", digits: "Please enter numbers only"},
             gender: {required: "This field is required"},
             weightLBS: {required: "This field is required", digits: "Please enter numbers only"},

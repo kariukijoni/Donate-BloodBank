@@ -40,12 +40,19 @@
                                     <li>User's role must be defined with caution</li>
                                     <li>Correct email address should be used as will be required during resetting of passwords</li>
                                     <li>All donors should be atleast <b>18yrs</b> and maximum of <b>55yrs</b> of age</li>
+                                    <li>After feeding data on all input fields submit button to save users details</li>
                                 </div>
                                 <div class="col-md-6">
                                     <h4>
                                         Editing Users
                                         <hr> 
                                     </h4>
+                                    <li>Login into the system as an administrator</li>
+                                    <li>Navigate to <b>Users</b> module in the dashboard</li>
+                                    <li>Click on edit button in the users listing table</li>
+                                    <li>Edit the users details and match his/her user privelledges with alot of caution</li>
+                                    <li>Click submit button to save the changes</li>
+
                                 </div>
                             </div>
                             <div class="row">
@@ -54,12 +61,23 @@
                                         Delete Users
                                         <hr>
                                     </h4>
+                                    <li>Login into the system as system administrator</li>
+                                    <li>Navigate to users module in the dashboard</li>
+                                    <li>In the user listing window search the user you want to delete in the search button using 
+                                        <b>name, email or mobile number</b>
+                                    </li>
+                                    <li>Click on delete button on the user listing table to remove user from the system</li>
                                 </div>
                                 <div class="col-md-6">
                                     <h4>
                                         Search Users
                                         <hr> 
                                     </h4>
+                                    <li>Login into the system as system administrator</li>
+                                    <li>Navigate to users module in the dashboard</li>
+                                    <li>In the user listing window search the user you want to delete in the search button using 
+                                        <b>name, email or mobile number</b>
+                                    </li>
                                 </div>
                             </div>
                         </div>

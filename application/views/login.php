@@ -38,11 +38,11 @@
                     <div class="col-md-9">
                         <div id="divHome">
                             <div class="col-md-4">
-                                <h4>
+                                <h3>
                                     <strong>
                                         Blood Donation Tips
                                     </strong>
-                                </h4>  
+                                </h3>  
                                 <h4>What You Should Eat Before Donating Blood</h4>
                                 <hr>
                                 A healthy diet helps ensure a successful <br> blood donation, and also makes you feel
@@ -57,41 +57,45 @@
                                 <li>Quick physical check will be done to check temperate, blood pressure, pulse and hemoglobin content
                                     to ensure you are a healthy donor</li>
                                 <li>If found fit to donate, blood donation process starts.</li>
+                                <br>
+                                
                                 <!--Blood 2020-->                
 
                             </div>
                             <div class="col-md-8">
-                                <p class="text-center">Made Requests</p>
-                                <table class="table table-responsive table-bordered table-striped">
-                                    <thead>
-                                        <tr>
-                                            <td>Blood Group</td>
-                                            <td>Blood Type</td>
-                                            <td>Date Requested</td>
-                                            <td>Quantity Requested</td>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php
-                                        foreach ($tbl_request as $row):
-                                            ?>
+                                <div class="panel panel-danger">
+                                    <div class="panel-heading text-center">Made Request</div>
+                                    <table class="table table-responsive table-bordered table-striped">
+                                        <thead>
                                             <tr>
-                                                <td>
-                                                    <?= $row->blood_type ?>
-                                                </td>
-                                                <td>
-                                                    <?= $row->blood_type_requested ?>
-                                                </td>
-                                                <td>
-                                                    <?= $row->date_requested ?>
-                                                </td>
-                                                <td>
-                                                    <?= $row->quantity_requested ?>
-                                                </td>
+                                                <td>Blood Group</td>
+                                                <td>Blood Type</td>
+                                                <td>Date Requested</td>
+                                                <td>Quantity Requested</td>
                                             </tr>
-                                        <?php endforeach ?>
-                                    </tbody>
-                                </table> 
+                                        </thead>
+                                        <tbody>
+                                            <?php
+                                            foreach ($tbl_request as $row):
+                                                ?>
+                                                <tr>
+                                                    <td>
+                                                        <?= $row->blood_type ?>
+                                                    </td>
+                                                    <td>
+                                                        <?= $row->blood_type_requested ?>
+                                                    </td>
+                                                    <td>
+                                                        <?= $row->date_requested ?>
+                                                    </td>
+                                                    <td>
+                                                        <?= $row->quantity_requested ?>
+                                                    </td>
+                                                </tr>
+                                            <?php endforeach ?>
+                                        </tbody>
+                                    </table> 
+                                </div>
                                 <!--Blood donation tips-->  
                                 <div class="row">
                                     <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
@@ -113,8 +117,7 @@
                                             <div class="item">
                                                 <img src="assets/images/home_two.jpg" alt="...">
                                                 <div class="carousel-caption">
-                                                    <p>Be a Bloody Legend 
-                                                        <button class="btn btn-danger">Save Lives</button></p>
+                                                    <button class="btn btn-danger">Be a Bloody Legend:Save Lives</button>
                                                 </div>
                                             </div>
                                             <div class="item">
@@ -144,7 +147,10 @@
                         <div id="divDonate">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <h2>Why Donate Blood</h2>
+                                    <h2>
+                                        Why Donate Blood
+                                        <hr>
+                                    </h2>
                                     Blood is the fluid that all life is based on. Blood is composed of 60% liquid part.<br>
                                     The liquid part called plasma, made up of 90% of water and 10% nutrients,hormones, etc is really replenished 
                                     by food, medicines, etc. But the solid part that contains RBC (Red Blood Cells), WBC (White Blood Cells)
@@ -155,6 +161,26 @@
                                     needs blood.
                                     Saving a life does not require heroic deeds. You could just do it with a small thought and an even smaller
                                     effort. 
+
+                                    <br>
+                                    <h3>
+                                        Need to know Before Donating Blood
+                                        <hr>
+                                    </h3>
+                                    <li>Should be at current healthy status</li>
+                                    <li>Be <b>18</b>yrs old</li>
+                                    <li>Weigh atleast 50kg and above</li>
+                                    <li>Should not have any chronic conditions 
+                                        i.e diabetics, HIV, Cancer, Epilepsy and any other allegy</li> 
+                                    <br>
+                                    <h3>
+                                        What to Carry
+                                        <hr>
+                                    </h3>
+                                    <br>
+                                    <li>Donor card, for regular donors</i>
+                                    <li>If under medication bring the medicines</li>
+                                    <br>
                                 </div>
                                 <div class="col-md-6">
                                     <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
@@ -193,12 +219,58 @@
                                             <span class="glyphicon glyphicon-chevron-right"></span>
                                         </a>
                                     </div>
+                                    <h3>
+                                        Benefits of donating blood
+                                        <hr>
+                                    </h3>
+
+                                    <br>
+                                    <li>
+                                        Free health screening: Every time you give blood, a medical technician, 
+                                        doctor or a nurse will check your blood pressure and give you free health screening.
+                                    </li>
+                                    <li>
+                                        Reduced risk of heart disease: Some doctors and scientists believe that giving blood 
+                                        may prevent heart disease.
+                                    </li>
+                                    <li>
+                                        Blood donation giving a wonderful feeling of saving someone's life
+                                    </li>
+                                    <li>
+                                        One can diet or remain fit by donating blood regularly. One pint of blood (450ml) when donated 
+                                        burns 650 calories in donors body.
+                                    </li>
+                                    <li>
+                                        After donating blood the count in blood cells decreases in our body, which stimulates the
+                                        bone marrow to produce new blood cells in order to replenish the loss.
+                                    </li>
+                                    <li>
+                                        Regular blood donation helps especially males in loosing iron on regular basis. 
+                                        It helps in reducing the chance of heart attack to one  third.
+                                    </li>
                                 </div>
                             </div>
                         </div>
                         <div id="divContactUS">
                             <div class="col-md-6">
-                                <iframe src=""></iframe>
+                                <iframe src="https://www.google.com/maps/embed?pb=!1m28!1m12!1m3!1d3989.0712369473886!2d36.64135696421083!3d-1.108797885769717!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m13!3e6!4m5!1s0x182f27cf34fb4711%3A0x832130807950f253!2sLimuru+Bus+Park%2C+Limuru+Town.%2C+Kiambu+County%2C+Kenya!3m2!1d-1.1078025999999999!2d36.6433213!4m5!1s0x182f27c8ebd25e71%3A0x3b78083308494033!2sUshirika+Centre%2C+Kiambu+Road%2C+Limuru+Town.%2C+Kenya!3m2!1d-1.1091944999999999!2d36.6433579!5e0!3m2!1sen!2sin!4v1498578681154" width="400" height="300" frameborder="0" style="border:0" allowfullscreen></iframe>
+                                <div class="col-md-12 text-center">
+                                    <h3>
+                                        <b>Head Quarters</b>
+                                        <hr>
+                                    </h3>
+                                    Blood Bank LTD
+                                    KIAMBU ROAD LIMURU
+                                    <br>
+                                    USHIRIKA CENTER,3RD FLOOR
+                                    <br>
+                                    P.O BOX 699, NAIROBI
+                                    <br>
+                                    WEBSITE: OOBA.CO.KE
+                                    <br>
+                                    <i class="fa fa-phone">+254717978086</i>
+
+                                </div>
                             </div>
                             <div class="col-md-6">
                                 <h2>Contact Form</h2>
@@ -226,21 +298,21 @@
                                         <div  class="col-md-2">
                                             <label for="phone">Phone* </label>
                                         </div>
-                                        <div class="col-md-2">
+                                        <div class="col-md-4">
                                             <!--<button class="btn btn-sm btn-bitbucket">-->
-                                            <select class="form-group" name="code">
+                                            <select class="form-group form-control btn btn-sm btn-bitbucket" name="code" required="">
                                                 <option value="">--Code--</option>
                                                 <option value="+254">+254</option>
                                                 <option value="+257">+257</option>
                                             </select>
                                             <!--</button>-->
                                         </div>
-                                        <div class="col-md-8">
-                                            <input class="form-control col-md-10" type="tel" name="phone" required>
+                                        <div class="col-md-6">
+                                            <input class="form-control col-md-10" type="tel" name="phone" required minlength="9" maxlength="9">
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <textarea class="form-control" name="textArea" rows="5" cols="50" required> 
+                                        <textarea class="form-control" name="textArea" rows="5" cols="50" required maxlength="100"> 
                                         </textarea>
                                     </div>
                                     <button class="btn btn-bitbucket btn-sm" type="submit" >Submit</i></button>
@@ -360,10 +432,12 @@
                                                     </strong>
                                                 </h3>
                                                 As a member of this <b>BloodDonor</b> blood bank, you will touch many peoples 
-                                                lives. Your membership will make it possible for us to continue our voluntary 
+                                                lives.
+                                                <br>
+                                                Your membership will make it possible for us to continue our voluntary 
                                                 and aid work, first aid courses and many other good projects.
-
-
+                                                <br>
+                                                Please fill the <b>Contact Form</b> in contact us page to enhance contact with us
                                             </div>
 
                                         </div>

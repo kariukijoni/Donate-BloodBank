@@ -1,171 +1,173 @@
 <div class="content-wrapper" style="background-color: #ffffff">
-    <div class="row" style="margin: 1px">       
-        <div class="col-md-4">
-            <div class="row">
-                <?php if (isset($success)) { ?>                    
-                    <div class="form-control alert alert-success">
-                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                        <?php echo $success; ?>
-                    </div>
+    <small>
+        <div class="row" style="margin: 1px">       
+            <div class="col-md-4">
+                <div class="row">
+                    <?php if (isset($success)) { ?>                    
+                        <div class="form-control alert alert-success">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                            <?php echo $success; ?>
+                        </div>
 
-                    <?php
-                }
-                if (isset($danger)) {
-                    ?>
-                    <div class="form-control alert alert-danger">
-                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                        <?php echo $danger; ?>
-                    </div>
-                <?php } ?>
+                        <?php
+                    }
+                    if (isset($danger)) {
+                        ?>
+                        <div class="form-control alert alert-danger">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                            <?php echo $danger; ?>
+                        </div>
+                    <?php } ?>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">Make Requests</div>
+                    <form action="<?php echo base_url() ?>task/requests" method="post" id="requestForm">
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="form-group">
+                                    <select class="form-control" id="blood_group" name="blood_group">
+                                        <!--<option value="blank"></option>-->
+                                        <option value="O+">O+</option>
+                                        <option value="O-">O-</option>
+                                        <option value="A+">A+</option>
+                                        <option value="A-">A-</option>
+                                        <option value="B+">B+</option>
+                                        <option value="B-">B-</option>
+                                        <option value="AB+">AB+</option>
+                                        <option value="AB-">AB-</option>
+                                    </select>
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <div class="form-group">
+                                    <select type="text" name="type_requested" id="type_requested" class="form-control">
+                                        <?php foreach ($type as $row) { ?>
+                                            <option value="<?php echo $row->type ?>"><?php echo $row->type ?></option>
+                                        <?php } ?>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" name="quantity_requested" id="quantity_requested" 
+                                           min="0" placeholder="Quantity requested" required>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <button class="btn btn-bitbucket btn-sm" id="request">Request</button>
+
+                            </div>                        
+                        </div>
+                    </form>
+                </div>
             </div>
-            <div class="panel panel-default">
-                <div class="panel-heading">Make Requests</div>
-                <form action="<?php echo base_url() ?>task/requests" method="post" id="requestForm">
+
+        </div>
+        <div class="row" style="margin: 1px">
+            <div class="col-md-6">
+                <div class="panel panel-success">
+                    <div class="panel-heading">
+                        Made Requests Responses
+                    </div>
                     <div class="panel-body">
-                        <div class="row">
-                            <div class="form-group">
-                                <select class="form-control" id="blood_group" name="blood_group">
-                                    <!--<option value="blank"></option>-->
-                                    <option value="O+">O+</option>
-                                    <option value="O-">O-</option>
-                                    <option value="A+">A+</option>
-                                    <option value="A-">A-</option>
-                                    <option value="B+">B+</option>
-                                    <option value="B-">B-</option>
-                                    <option value="AB+">AB+</option>
-                                    <option value="AB-">AB-</option>
-                                </select>
-                            </div>
-
-                        </div>
-                        <div class="row">
-                            <div class="form-group">
-                                <select type="text" name="type_requested" id="type_requested" class="form-control">
-                                    <?php foreach ($type as $row) { ?>
-                                        <option value="<?php echo $row->type ?>"><?php echo $row->type ?></option>
-                                    <?php } ?>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="form-group">
-                                <input type="text" class="form-control" name="quantity_requested" id="quantity_requested" 
-                                       min="0" placeholder="Quantity requested" required>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <button class="btn btn-bitbucket btn-sm" id="request">Request</button>
-
-                        </div>                        
-                    </div>
-                </form>
-            </div>
-        </div>
-
-    </div>
-    <div class="row" style="margin: 1px">
-        <div class="col-md-6">
-            <div class="panel panel-success">
-                <div class="panel-heading">
-                    Made Requests Responses
-                </div>
-                <div class="panel-body">
-                    <table class="table table-responsive table-bordered" id="requestResponses">
-                        <thead>
-                            <tr>
-                                <td>#</td>
-                                <td>Blood Group</td>
-                                <td>Message</td>
-                                <td>Response Date</td>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php
-                            foreach ($tbl_response as $row):
-                                ?>
+                        <table class="table table-responsive table-bordered" id="requestResponses">
+                            <thead>
                                 <tr>
-                                    <td>
-                                        <?= $row->userid ?>
-                                    </td>
-                                    <td>
-                                        <?= $row->blood_type ?>
-                                    </td>
-                                    <td>
-                                        <?= $row->textArea ?>
-                                    </td>
-                                    <td>
-                                        <?= $row->responseDate ?>
-                                    </td>
+                                    <td>#</td>
+                                    <td>Blood Group</td>
+                                    <td>Message</td>
+                                    <td>Response Date</td>
                                 </tr>
-                            <?php endforeach ?>
-                        </tbody>
-                    </table> 
-                </div>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="row">
-                <?php if (isset($delete)) { ?>                    
-                    <div class="form-control alert alert-danger">
-                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                        <?php echo $delete; ?>
+                            </thead>
+                            <tbody>
+                                <?php
+                                foreach ($tbl_response as $row):
+                                    ?>
+                                    <tr>
+                                        <td>
+                                            <?= $row->userid ?>
+                                        </td>
+                                        <td>
+                                            <?= $row->blood_type ?>
+                                        </td>
+                                        <td>
+                                            <?= $row->textArea ?>
+                                        </td>
+                                        <td>
+                                            <?= $row->responseDate ?>
+                                        </td>
+                                    </tr>
+                                <?php endforeach ?>
+                            </tbody>
+                        </table> 
                     </div>
-                <?php } ?>
-            </div>
-            <div class="panel panel-default">   
-                <div class="panel-heading">
-                    Show Made Requests
                 </div>
-                <div class="panel-body">
-                    <table class="table table-responsive table-bordered" id="madeRequests">
-                        <thead>
-                            <tr>
-                                <td>#</td>
-                                <td>Blood Group</td>
-                                <td>Blood Type</td>
-                                <td>Date Requested</td>
-                                <td>Quantity Requested</td>
-                                <td>Action</td>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php
-                            foreach ($tbl_request as $row):
-                                ?>
+            </div>
+            <div class="col-md-6">
+                <div class="row">
+                    <?php if (isset($delete)) { ?>                    
+                        <div class="form-control alert alert-danger">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                            <?php echo $delete; ?>
+                        </div>
+                    <?php } ?>
+                </div>
+                <div class="panel panel-default">   
+                    <div class="panel-heading">
+                        Show Made Requests
+                    </div>
+                    <div class="panel-body">
+                        <table class="table table-responsive table-bordered" id="madeRequests">
+                            <thead>
                                 <tr>
-                                    <td>
-                                        <?= $row->rqid ?>
-                                    </td>
-                                    <td>
-                                        <?= $row->blood_type ?>
-                                    </td>
-                                    <td>
-                                        <?= $row->blood_type_requested ?>
-                                    </td>
-                                    <td>
-                                        <?= $row->date_requested ?>
-                                    </td>
-                                    <td>
-                                        <?= $row->quantity_requested ?>
-                                    </td>
-                                    <td>
-                                        <a class="btn btn-sm btn-danger" href="<?php echo base_url() . 'task/deleteReq/' . $row->rqid; ?>">
-                                            <i class="fa fa-trash"></i>
-                                        </a>                                       
-                                    </td>
+                                    <td>#</td>
+                                    <td>Blood Group</td>
+                                    <td>Blood Type</td>
+                                    <td>Date Requested</td>
+                                    <td>Quantity Requested</td>
+                                    <td>Action</td>
                                 </tr>
-                            <?php endforeach ?>
-                        </tbody>
-                    </table> 
+                            </thead>
+                            <tbody>
+                                <?php
+                                foreach ($tbl_request as $row):
+                                    ?>
+                                    <tr>
+                                        <td>
+                                            <?= $row->rqid ?>
+                                        </td>
+                                        <td>
+                                            <?= $row->blood_type ?>
+                                        </td>
+                                        <td>
+                                            <?= $row->blood_type_requested ?>
+                                        </td>
+                                        <td>
+                                            <?= $row->date_requested ?>
+                                        </td>
+                                        <td>
+                                            <?= $row->quantity_requested ?>
+                                        </td>
+                                        <td>
+                                            <a class="btn btn-sm btn-danger" href="<?php echo base_url() . 'task/deleteReq/' . $row->rqid; ?>">
+                                                <i class="fa fa-trash"></i>
+                                            </a>                                       
+                                        </td>
+                                    </tr>
+                                <?php endforeach ?>
+                            </tbody>
+                        </table> 
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    </small>
 </div>
 <script src="<?php echo base_url(); ?>assets/js/requestForm.js" type="text/javascript"></script>
 <script type="text/javascript">
-    $(document).ready(function () {
+        $(document).ready(function () {
         $('#madeRequests').DataTable();
-        $('#requestResponses').DataTable();
+    $('#requestResponses').DataTable();
     });
 </script>
