@@ -14,7 +14,7 @@
                                     <input type="text" class="form-control required" id="hos_name" name="hos_name" placeholder="Name">
                                 </div>
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control required0" id="hos_location" name="hos_location" placeholder="Location">
+                                    <input type="text" class="form-control required" id="hos_location" name="hos_location" placeholder="Location">
                                 </div>
                             </div>
                         </div>                    
@@ -64,8 +64,8 @@
                                     <td>
                                         <button class="btn btn-bitbucket btn-sm fa fa-ambulance donateBlood" data-toggle="modal" data-target="#myModal"> </button>
                                         <!-- Modal -->
-                                        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                            <div class="modal-dialog">
+                                        <div class="modal fade bs-example-modal-sm" id="myModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog modal-sm">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
                                                         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
@@ -81,13 +81,13 @@
                                                                 </select>
                                                             </div>                                                        
                                                             <div class="form-group">
-                                                                <input type="text" class="form-control blood_group" name="blood_group" id="modalBloodGroup" style="border: none">
+                                                                <input type="text" class="form-control blood_group" name="blood_group" id="modalBloodGroup">
                                                             </div>
                                                             <div class="form-group">
-                                                                <input type="text" class="form-control blood_type" name="blood_type" id="modalBloodType" style="border: none">
+                                                                <input type="text" class="form-control blood_type" name="blood_type" id="modalBloodType">
                                                             </div>
                                                             <div class="form-group">
-                                                                <input type="text" class="form-control amount_donated" name="amount_donated" id="modalBloodAmount" style="border: none">
+                                                                <input type="text" class="form-control amount_donated" name="amount_donated" id="modalBloodAmount">
                                                             </div>
                                                         </div>
                                                         <div class="modal-footer">

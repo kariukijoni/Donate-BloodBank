@@ -1,6 +1,7 @@
 <?php
 
-if (!defined('BASEPATH')) exit('No direct script access allowed');
+if (!defined('BASEPATH'))
+    exit('No direct script access allowed');
 
 class Login_model extends CI_Model {
 
@@ -98,6 +99,18 @@ class Login_model extends CI_Model {
         $this->db->where('isDeleted', 0);
         $this->db->update('tbl_users', array('password' => getHashedPassword($password)));
         $this->db->delete('tbl_reset_password', array('email' => $email));
+    }
+
+    function home_contact($contact) {
+        $this->db->trans_start();
+        $query = $this->db->insert('tbl_contact', $contact);
+        if ($query) {
+            $this->db->trans_complete();
+            return TRUE;
+        } else {
+            $this->db->trans_complete();
+            return FALSE;
+        }
     }
 
 }

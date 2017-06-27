@@ -21,6 +21,7 @@ class User extends BaseController {
         parent::__construct();
         $this->load->model('user_model');
         $this->load->model('task_model');
+        $this->load->model('login_model');
         $this->isLoggedIn();
     }
 
@@ -309,6 +310,47 @@ class User extends BaseController {
             $data['getNextProbableDonors'] = $this->user_model->getNextProbableDonors();
             $this->loadViews("donors", $this->global, $data, NULL);
         }
+    }
+
+    /*
+     * function unRegistered Users
+     */
+
+    function unregistered_users() {
+        if ($this->isTicketter() == TRUE) {
+            $this->loadThis();
+        } else {
+            $this->global['pageTitle'] = 'BloodDonor : Unregistered Users';
+            $data['unregistered'] = $this->user_model->unregistered();
+            $data['read_msg']=  $this->user_model->contact_users_readmsg();
+            $data['contact_form'] = $this->user_model->getContactFormNotification();
+            $this->loadViews("unRegisteredUsers", $this->global, $data, NULL);
+        }
+    }
+
+    /*
+     * function read message
+     */
+
+    function read_msg($val) {
+        if ($this->isTicketter() == TRUE) {
+            $this->loadThis();
+        } else {
+            if (isset($_POST['readmsg'])) {
+                $this->db->set('status', 'read');
+                $this->db->set('once_read', 1);
+                $this->db->where('contact_id', $val);
+                $this->db->update('tbl_contact');
+                redirect('user/unregistered_users');
+            }
+
+            $this->global['pageTitle'] = 'BloodDonor : Read Message';
+            $data['textArea'] = $this->user_model->textArea($val);
+//            $data['codekey'] = $val;
+            $this->loadViews("read_msg", $this->global, $data, NULL);
+        }
+//        redirect('user/unRegisteredUsers');
+//        $this->loadViews("unRegisteredUsers", $this->global, NULL, NULL);
     }
 
 }

@@ -3,13 +3,11 @@
         <div class="col-md-7">
             <div class="panel panel-default">
 
-                <div class="panel-heading text-center">Made Requests            
-                    <div class="badge" style="background-color: #000000">
-                        <button class="btn btn-success btn-sm" id="status_check">
-                            Notifications
-                            <?php echo count($notifications); ?>
-                        </button>                      
-                    </div>                  
+                <div class="panel-heading text-center">Made Requests 
+                    <button class="btn btn-sm" id="status_check">
+                        Notifications<a class="fa fa-bell-o" ></a>
+                        <?php echo count($notifications); ?>
+                    </button>                
                 </div>
                 <div class="panel-body">
                     <table class="table table-responsive table-bordered" id="notifications">

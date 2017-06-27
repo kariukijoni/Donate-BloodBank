@@ -243,4 +243,70 @@ class User_model extends CI_Model {
         }
     }
 
+    /*
+     * function unregistered users
+     */
+
+    function unregistered() {
+        $this->db->select('tbl_contact.*');
+        $this->db->where('status', 'unread');
+        $this->db->where('once_read', 0);
+        $this->db->from('tbl_contact');
+        $query = $this->db->get();
+        $result = $query->result();
+        if ($result) {
+            return $result;
+        } else {
+
+            return FALSE;
+        }
+    }
+
+    /*
+     * count notification from contactForm
+     */
+
+    function getContactFormNotification() {
+        $q = $this->db->query("SELECT COUNT(*) as count_rows FROM tbl_contact where status='unread'");
+        return $q->row_array();
+    }
+
+    /*
+     * select textArea
+     */
+
+    function textArea($userid) {
+        $this->db->select('textArea');
+        $this->db->where('contact_id', $userid);
+        $this->db->where('status', 'unread');
+        $this->db->where('once_read', 0);
+        $this->db->from('tbl_contact');
+        $query = $this->db->get();
+        $result = $query->result();
+        if ($result) {
+            return $result;
+        } else {
+
+            return FALSE;
+        }
+    }
+    /*
+     * read users contact 
+     */
+    function contact_users_readmsg()
+    {
+       $this->db->select('tbl_contact.*');
+        $this->db->where('status', 'read');
+        $this->db->where('once_read', 1);
+        $this->db->from('tbl_contact');
+        $query = $this->db->get();
+        $result = $query->result();
+        if ($result) {
+            return $result;
+        } else {
+
+            return FALSE;
+        }  
+    }
+
 }

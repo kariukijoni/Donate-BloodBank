@@ -35,6 +35,23 @@ class Login extends CI_Controller {
         $isLoggedIn = $this->session->userdata('isLoggedIn');
 
         if (!isset($isLoggedIn) || $isLoggedIn != TRUE) {
+            $this->load->library('form_validation');
+
+            $this->form_validation->set_rules('fullName', 'trim|required|xss_clean');
+            $this->form_validation->set_rules('email', '', 'trim|required|xss_clean');
+//            $this->form_validation->set_rules('code', '', 'trim|required');
+            $this->form_validation->set_rules('phone', '', 'trim|required');
+            $this->form_validation->set_rules('textArea', '', 'trim|required');
+            if ($this->form_validation->run() == TRUE) {
+                $contact = array(
+                    'fullName' => $this->input->post('fullName'),
+                    'email' => $this->input->post('email'),
+                    'phone' => $this->input->post('code').$this->input->post('phone'),
+                    'textArea' => $this->input->post('textArea'),
+                    'date' => date('Y-m-d')
+                );
+                $this->login_model->home_contact($contact);
+            }
             $data['tbl_request'] = $this->task_model->bloodRequests();
             $this->load->view('login', $data);
         } else {

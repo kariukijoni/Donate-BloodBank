@@ -30,7 +30,7 @@
         <script src="<?php echo base_url(); ?>assets/js/jquery.dataTables.min.js"></script>
         <script src="<?php echo base_url(); ?>assets/js/dataTables.buttons.min.js"></script>
         <script src="<?php echo base_url(); ?>assets/js/buttons.print.min.js"></script>
-        
+
         <script type="text/javascript">
             var baseURL = "<?php echo base_url(); ?>";
         </script>
@@ -129,12 +129,12 @@
                                     <span>Requests</span>
                                 </a>
                             </li>
-                            <!--                            <li class="treeview">
-                                                            <a href="#" >
-                                                                <i class="fa fa-upload"></i>
-                                                                <span>Task Uploads</span>
-                                                            </a>
-                                                        </li>-->
+<!--                            <li class="treeview">
+                                <a href="<?php echo base_url(); ?>user/unregistered_users" >
+                                    <i class="fa fa-upload"></i>
+                                    <span>Unregistered</span>
+                                </a>
+                            </li>-->
                             <?php
                         }
                         if ($role == ROLE_ADMIN) {

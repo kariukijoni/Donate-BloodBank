@@ -28,8 +28,8 @@
                     <ul class="nav navbar-nav">
                         <li><a href="#" id="headerHome">Home</a></li>
                         <li><a href="#" id="whyDonate">Why Donate Blood</a></li>
-                        <li><a href="#" id="giveBlood">Give Blood</a></li>
                         <li><a href="#" id="aboutUs">Who We Are</a></li>
+                        <li><a href="#" id="contactUS">Contact Us</a></li>
                     </ul>               
                 </div><!-- /.navbar-collapse -->
             </nav>
@@ -196,7 +196,58 @@
                                 </div>
                             </div>
                         </div>
-                        <div id="divBlood">Blood</div>
+                        <div id="divContactUS">
+                            <div class="col-md-6">
+                                <iframe src=""></iframe>
+                            </div>
+                            <div class="col-md-6">
+                                <h2>Contact Form</h2>
+                                <small>All input fields must <b>not</b> start with a zero <b>(0)</b></small>
+                                <form action="<?php echo base_url() ?>" method="post" id="contact">
+                                    <div class="form-group row">
+                                        <label for="fullName" class="col-md-2">
+                                            Full Name*
+                                        </label>
+                                        <div class="col-md-10">
+                                            <input class="form-control" type="text" name="fullName" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div  class="col-md-2">
+                                            <label for="email">
+                                                Email*
+                                            </label>
+                                        </div>
+                                        <div class="col-md-10">
+                                            <input class="form-control" type="email" name="email" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div  class="col-md-2">
+                                            <label for="phone">Phone* </label>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <!--<button class="btn btn-sm btn-bitbucket">-->
+                                            <select class="form-group" name="code">
+                                                <option value="">--Code--</option>
+                                                <option value="+254">+254</option>
+                                                <option value="+257">+257</option>
+                                            </select>
+                                            <!--</button>-->
+                                        </div>
+                                        <div class="col-md-8">
+                                            <input class="form-control col-md-10" type="tel" name="phone" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <textarea class="form-control" name="textArea" rows="5" cols="50" required> 
+                                        </textarea>
+                                    </div>
+                                    <button class="btn btn-bitbucket btn-sm" type="submit" >Submit</i></button>
+                                </form>
+                            </div>
+
+                        </div>
                         <div id="divAboutUs">
                             We stand for hope. We stand for life. We stand for helping people to do something extraordinary, save
                             and improve the lives of others.<br>
@@ -294,7 +345,7 @@
                             </div>
                             <div class="panel-footer">
                                 <button class="btn btn-bitbucket btn-sm" data-toggle="modal" data-target="#myModal"> 
-                                    Not Yet Registered? Create Account
+                                    Not Yet Registered? Create Account With Us
                                 </button>
                                 <!-- Modal -->
                                 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -327,49 +378,57 @@
         </div>
     </body>
 
-
+    <script src="<?php echo base_url(); ?>assets/js/contactForm.js"></script>
     <script src="<?php echo base_url(); ?>assets/js/jQuery-2.1.4.min.js"></script>
     <script src="<?php echo base_url(); ?>assets/bootstrap/js/bootstrap.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
-            $("#divBlood").hide();
+            $("#divContactUS").hide();
             $("#divDonate").hide();
             $("#divAboutUs").hide();
             $("#divHome").show();
         });
 
         $("#headerHomeIcon").click(function () {
-            $("#divBlood").hide();
+            $("#divContactUS").hide();
             $("#divDonate").hide();
             $("#divAboutUs").hide();
             $("#divHome").show();
         });
         $("#whyDonate").click(function () {
-            $("#divBlood").hide();
+            $("#divContactUS").hide();
             $("#divDonate").show();
             $("#divAboutUs").hide();
             $("#divHome").hide();
         });
 
-        $("#giveBlood").click(function ()
+        $("#contactUS").click(function ()
         {
             $("#divDonate").hide();
-            $("#divBlood").show();
+            $("#divContactUS").show();
             $("#divAboutUs").hide();
             $("#divHome").hide();
         });
         $("#headerHome").click(function ()
         {
             $("#divDonate").hide();
-            $("#divBlood").hide();
+            $("#divContactUS").hide();
             $("#divAboutUs").hide();
             $("#divHome").show();
         });
         $("#aboutUs").click(function ()
         {
             $("#divDonate").hide();
-            $("#divBlood").hide();
+            $("#divContactUS").hide();
             $("#divHome").hide();
             $("#divAboutUs").show();
         });
+        $("input").blur(function () {
+            var val = $(this).val();
+            if (val.indexOf("0") == 0) {
+                $(this).val("");
+                $(this).attr("placeholder", "Invalid");
+            }
+        });
+
     </script>
