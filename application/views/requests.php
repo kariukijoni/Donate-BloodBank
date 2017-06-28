@@ -20,7 +20,9 @@
                     <?php } ?>
                 </div>
                 <div class="panel panel-default">
-                    <div class="panel-heading">Make Requests</div>
+                    <div class="panel-heading">
+                        <b>Make Requests</b>
+                    </div>
                     <form action="<?php echo base_url() ?>task/requests" method="post" id="requestForm">
                         <div class="panel-body">
                             <div class="row">
@@ -51,16 +53,25 @@
                             <div class="row">
                                 <div class="form-group">
                                     <input type="text" class="form-control" name="quantity_requested" id="quantity_requested" 
-                                           min="0" placeholder="Quantity requested" required>
+                                           min="0" max="2000" placeholder="Quantity requested (mml)" required>
                                 </div>
                             </div>
                             <div class="row">
                                 <button class="btn btn-bitbucket btn-sm" id="request">Request</button>
-
                             </div>                        
                         </div>
                     </form>
                 </div>
+            </div>
+            <div class="col-md-offset-1 col-md-6">
+                <h5>
+                <li>Requests are made and SMS sent to only registered users with that blood group type requested</li>
+                <li>An error message is displayed on the screen when message doesn't go through, incase this error is generated
+                a <br>re-request should be made</li>
+                <li>Results made in table <b>Made Request responses</b> and <b>Show Made Requests</b> can be filtered 
+                    using any of the table columns</li>
+                <li>A search can be implemented using any of the table columns</li>
+                </h5>
             </div>
 
         </div>
@@ -68,7 +79,7 @@
             <div class="col-md-6">
                 <div class="panel panel-success">
                     <div class="panel-heading">
-                        Made Requests Responses
+                        <b> Made Requests Responses</b>
                     </div>
                     <div class="panel-body">
                         <table class="table table-responsive table-bordered" id="requestResponses">
@@ -115,7 +126,9 @@
                 </div>
                 <div class="panel panel-default">   
                     <div class="panel-heading">
-                        Show Made Requests
+                        <b> Show Made Requests</b>
+                        <br>
+                        Deleted Requests wont be displayed in the home page
                     </div>
                     <div class="panel-body">
                         <table class="table table-responsive table-bordered" id="madeRequests">
@@ -166,8 +179,8 @@
 </div>
 <script src="<?php echo base_url(); ?>assets/js/requestForm.js" type="text/javascript"></script>
 <script type="text/javascript">
-        $(document).ready(function () {
+    $(document).ready(function () {
         $('#madeRequests').DataTable();
-    $('#requestResponses').DataTable();
+        $('#requestResponses').DataTable();
     });
 </script>

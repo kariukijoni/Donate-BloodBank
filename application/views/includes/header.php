@@ -102,68 +102,72 @@
                                 <i class="fa fa-dashboard"></i> <span>Dashboard</span></i>
                             </a>
                         </li>
-                        <li class="treeview">
-                            <a href="<?php echo base_url(); ?>task/donorDashboard">
-                                <i class="fa fa-life-bouy"></i><span>Donor</span></i>
-                            </a>
-                        </li>
                         <?php
-                        if ($role == ROLE_ADMIN || $role == ROLE_MANAGER) {
+                        if ($role == ROLE_EMPLOYEE) {
                             ?>
                             <li class="treeview">
-                                <a href="<?php echo base_url(); ?>user/donors" >
-                                    <i class="fa fa-user"></i>
-                                    <span>All Donors</span>
+                                <a href="<?php echo base_url(); ?>task/donorDashboard">
+                                    <i class="fa fa-life-bouy"></i><span>Donor</span></i>
                                 </a>
                             </li>
-                            <li class="treeview">
-                                <a href="<?php echo base_url(); ?>task/transact" >
-                                    <i class="fa fa-ticket"></i>
-                                    <span>Transact</span>
-                                </a>
-                            </li>
-
-                            <li class="treeview">
-                                <a href="<?php echo base_url(); ?>task/requests" >
-                                    <i class="fa fa-thumb-tack"></i>
-                                    <span>Requests</span>
-                                </a>
-                            </li>
-<!--                            <li class="treeview">
-                                <a href="<?php echo base_url(); ?>user/unregistered_users" >
-                                    <i class="fa fa-upload"></i>
-                                    <span>Unregistered</span>
-                                </a>
-                            </li>-->
+                            <?PHP } ?>
                             <?php
-                        }
-                        if ($role == ROLE_ADMIN) {
+                            if ($role == ROLE_ADMIN || $role == ROLE_MANAGER) {
+                                ?>
+                                <li class="treeview">
+                                    <a href="<?php echo base_url(); ?>user/donors" >
+                                        <i class="fa fa-user"></i>
+                                        <span>All Donors</span>
+                                    </a>
+                                </li>
+                                <li class="treeview">
+                                    <a href="<?php echo base_url(); ?>task/transact" >
+                                        <i class="fa fa-ticket"></i>
+                                        <span>Transact</span>
+                                    </a>
+                                </li>
+
+                                <li class="treeview">
+                                    <a href="<?php echo base_url(); ?>task/requests" >
+                                        <i class="fa fa-thumb-tack"></i>
+                                        <span>Requests</span>
+                                    </a>
+                                </li>
+                                <!--                            <li class="treeview">
+                                                                <a href="<?php echo base_url(); ?>user/unregistered_users" >
+                                                                    <i class="fa fa-upload"></i>
+                                                                    <span>Unregistered</span>
+                                                                </a>
+                                                            </li>-->
+                                <?php
+                            }
+                            if ($role == ROLE_ADMIN) {
+                                ?>
+                                <li class="treeview">
+                                    <a href="<?php echo base_url(); ?>userListing">
+                                        <i class="fa fa-users"></i>
+                                        <span>Users</span>
+                                    </a>
+                                </li>
+                                <li class="treeview">
+                                    <a href="<?php echo base_url(); ?>task/reports"/> 
+                                    <i class="fa fa-files-o"></i>
+                                    <span>Reports</span>
+                                    </a>
+                                </li>
+                                <?php
+                            }
                             ?>
                             <li class="treeview">
-                                <a href="<?php echo base_url(); ?>userListing">
-                                    <i class="fa fa-users"></i>
-                                    <span>Users</span>
-                                </a>
+                                <a href="<?php echo base_url(); ?>task/Help"/> 
+                                <i class="fa fa-question-circle"></i>
+                                <span>Help</span>
+                                </a>                               
                             </li>
-                            <li class="treeview">
-                                <a href="<?php echo base_url(); ?>task/reports"/> 
-                                <i class="fa fa-files-o"></i>
-                                <span>Reports</span>
-                                </a>
-                            </li>
-                            <?php
-                        }
-                        ?>
-                        <li class="treeview">
-                            <a href="<?php echo base_url(); ?>task/Help"/> 
-                            <i class="fa fa-question-circle"></i>
-                            <span>Help</span>
-                            </a>                               
-                        </li>
 
-                    </ul>
-                </section>
-                <!-- /.sidebar -->
-            </aside>
-            <!--<script src="<?php echo base_url(); ?>assets/bootstrap/js/bootstrap.min.js"></script>-->
-            <script src="<?php echo base_url(); ?>assets/js/dropdown.js"></script>
+                        </ul>
+                    </section>
+                    <!-- /.sidebar -->
+                </aside>
+                <!--<script src="<?php echo base_url(); ?>assets/bootstrap/js/bootstrap.min.js"></script>-->
+                <script src="<?php echo base_url(); ?>assets/js/dropdown.js"></script>

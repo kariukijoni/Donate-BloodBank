@@ -3,7 +3,9 @@
         <div class="row" style="margin: 1px">
             <div class="col-md-6">
                 <div class="panel panel-default">
-                    <div class="panel-heading text-center">Donation Reports</div>
+                    <div class="panel-heading text-center">
+                        <b>Donation Reports</b>
+                    </div>
                     <div class="panel-body">
                         <table class="table table-responsive table-striped" id="donationReports">
                             <thead style="background-color: #FFD6B3">
@@ -32,7 +34,9 @@
             </div>
             <div class="col-md-6">
                 <div class="panel panel-default">
-                    <div class="panel-heading text-center">Transaction Reports</div>
+                    <div class="panel-heading text-center">
+                        <b>Transaction Reports</b>
+                    </div>
                     <div class="panel-body">
                         <table class="table table-responsive table-striped" id="transactionReports">
                             <thead style="background-color: #FFD6B3">

@@ -3,7 +3,10 @@
     <div class="row">
         <div class="col-md-6">
             <div class="panel  panel-default">
-                <div class="panel-heading">Donate</div>
+                <div class="panel-heading">
+                    Donate <br>
+                    <small> Amount Donated should not be less than 200ml</small>
+                </div>
 
                 <form action="<?php echo base_url() ?>task/donateUser" id="donate_blood" method="post">  
                     <div class="panel-body">
@@ -19,13 +22,13 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <input type="text" name="amount_donated_cc" id="amount_donated_cc" min="0" class="form-control" placeholder="Amount Donated CC">
+                                <input type="text" name="amount_donated_cc" id="amount_donated_cc" min="200" class="form-control" placeholder="Amount Donated CC mml">
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-offset-1">
-                             <button type="submit" class="btn btn-bitbucket btn-sm">Save</button>
+                            <button type="submit" class="btn btn-bitbucket btn-sm">Save</button>
                         </div>
                     </div>
                 </form>

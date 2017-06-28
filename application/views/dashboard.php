@@ -74,8 +74,14 @@
             ?>
             <div class="small-box bg-teal-active">
                 <div class="inner">
-                    <h3><?php echo $specificNextSafeD['nextSafe']; ?></h3>
-                    <p>Next Safe Donation Date</p>
+                    <!--<h3><?php echo $specificNextSafeD['nextSafe']; ?></h3>-->
+                    <!--<p>Next Safe Donation Date</p>-->
+                    Thank you for your blood donation.<br>
+                    Your contribution will help sustain the <b>stock</b> to keep 
+                    <br>up with the continuous
+                    demand for blood by our patients.
+                    <br>
+                    With your blood donation, you have done great service to the nation.
                 </div>
                 <div class="icon">
                     <i class="ion ion-bag"></i>

@@ -4,14 +4,15 @@
             <div class="col-md-6">
                 <div class="box-body table-responsive no-padding">
                     <div class="panel panel-default" style="margin: 2px">
-                        <div class="panel-heading">Information concerning Unregistered users
+                        <div class="panel-heading">
+                            <b>Information concerning Unregistered users</b>
                             <a class="badge fa fa-bell-o">
                                 <?php echo $contact_form['count_rows']; ?>
                             </a>
                             <div class="">
                                 <small>Once a message is read, it <b>won't</b> be displayed
                                     <br>
-                                    Users are required to <b>click table rows</b> to read the message
+                                    Users are required to <b>click table rows displayed links</b> to read the message
                                 </small>
 
                             </div>
@@ -24,7 +25,7 @@
                                         <th>Name</th>
                                         <th>Email</th>
                                         <th>Mobile</th>
-                                        <th>Text</th>
+                                        <th>Text Area</th>
                                         <th>Date Sent</th>
                                     </tr>
                                 </thead>

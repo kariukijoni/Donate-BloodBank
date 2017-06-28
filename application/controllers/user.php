@@ -115,8 +115,8 @@ class User extends BaseController {
             $this->form_validation->set_rules('blood_pressure', 'Blood Pressure', 'trim|required');
             $this->form_validation->set_rules('blood_type', 'Blood Type', 'trim|required');
             $this->form_validation->set_rules('dateOfBirth', 'Date Of Birth', 'trim|required');
-            $this->form_validation->set_rules('password', 'Password', 'required|max_length[20]');
-            $this->form_validation->set_rules('cpassword', 'Confirm Password', 'trim|required|matches[password]|max_length[20]');
+            $this->form_validation->set_rules('password', 'Password', 'required|max_length[20]|min_length[6]');
+            $this->form_validation->set_rules('cpassword', 'Confirm Password', 'trim|required|matches[password]|max_length[6]|min_length[6]');
             $this->form_validation->set_rules('role', 'Role', 'trim|required|numeric');
 
             if ($this->form_validation->run() == FALSE) {
@@ -191,8 +191,8 @@ class User extends BaseController {
 
             $this->form_validation->set_rules('fname', 'Full Name', 'trim|required|max_length[128]|xss_clean');
             $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email|xss_clean|max_length[128]');
-            $this->form_validation->set_rules('password', 'Password', 'matches[cpassword]|max_length[20]');
-            $this->form_validation->set_rules('cpassword', 'Confirm Password', 'matches[password]|max_length[20]');
+            $this->form_validation->set_rules('password', 'Password', 'matches[cpassword]|max_length[20]|min_length[6]');
+            $this->form_validation->set_rules('cpassword', 'Confirm Password', 'matches[password]|max_length[20]|min_length[6]');
             $this->form_validation->set_rules('role', 'Role', 'trim|required|numeric');
             $this->form_validation->set_rules('mobile', 'Mobile Number', 'required|min_length[9]|xss_clean');
 
@@ -265,8 +265,8 @@ class User extends BaseController {
     function changePassword() {
         $this->load->library('form_validation');
         $this->form_validation->set_rules('oldPassword', 'Old password', 'required|max_length[20]');
-        $this->form_validation->set_rules('newPassword', 'New password', 'required|max_length[20]');
-        $this->form_validation->set_rules('cNewPassword', 'Confirm new password', 'required|matches[newPassword]|max_length[20]');
+        $this->form_validation->set_rules('newPassword', 'New password', 'required|max_length[20]|min_length[6]');
+        $this->form_validation->set_rules('cNewPassword', 'Confirm new password', 'required|matches[newPassword]|max_length[20]|min_length[6]');
         if ($this->form_validation->run() == FALSE) {
             $this->loadChangePass();
         } else {

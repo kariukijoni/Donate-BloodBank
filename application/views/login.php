@@ -312,7 +312,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <textarea class="form-control" name="textArea" rows="5" cols="50" required maxlength="100"> 
+                                        <textarea class="form-control" name="textArea" rows="5" cols="50" required maxlength="150"> 
                                         </textarea>
                                     </div>
                                     <button class="btn btn-bitbucket btn-sm" type="submit" >Submit</i></button>

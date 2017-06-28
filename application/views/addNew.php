@@ -69,7 +69,7 @@
                                     <label for="mobile">Mobile Number</label>
                                     <div class="row form-group" style="padding: 0px">
                                         <div class="col-md-5">
-                                            <select class="form-group form-control btn btn-sm btn-bitbucket select" id="code" name="code" required>
+                                            <select class="form-group form-control btn btn-sm btn-bitbucket select" id="code" name="code" value="<?= set_value('code'); ?>" required>
                                                 <option value="">--Code--</option>
                                                 <option value="+254">+254</option>
                                                 <option value="+257">+257</option>
@@ -94,7 +94,7 @@
                                 <div class="col-md-4">                                   
                                     <label for="gender">Gender</label>
                                     <div class="form-group">
-                                        <select class="form-control" id="gender" name="gender" required>
+                                        <select class="form-control" id="gender" name="gender" value="<?= set_value('gender'); ?>" required>
                                             <option value="">--Select Gender--</option>
                                             <option value="male">Male</option>
                                             <option value="female" >Female</option>
@@ -105,14 +105,14 @@
                                     <div class="form-group">
                                         <label for="weightLBS">Weight Kgs</label>
                                         <input type="text" class="form-control required digits" id="weightLBS" name="weightLBS" 
-                                               min="0" value="<?= set_value('weightLBS'); ?>">
+                                               min="50" max="200" value="<?= set_value('weightLBS'); ?>">
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="temperature">Temperature</label>
                                         <input type="text" class="form-control required" id="temperature" name="temperature" 
-                                               min="0" max="55" value="<?= set_value('temperature'); ?>">
+                                               min="30" max="55" value="<?= set_value('temperature'); ?>">
                                     </div>
                                 </div>
                             </div>
@@ -121,7 +121,7 @@
                                     <div class="form-group">
                                         <label for="blood_pressure">Blood Pressure</label>
                                         <input type="text" class="form-control required" id="blood_pressure" name="blood_pressure" 
-                                               min="0" max="120" value="<?= set_value('blood_pressure'); ?>">
+                                               min="30" max="120" value="<?= set_value('blood_pressure'); ?>">
                                     </div>
                                 </div>
                                 <div class="col-md-4">
@@ -223,12 +223,12 @@
 </div>
 <script src="<?php echo base_url(); ?>assets/js/addUser.js" type="text/javascript"></script>
 <script type="text/javascript">
-                                        $("input").blur(function () {
-                                            var val = $(this).val();
-                                            if (val.indexOf("0") == 0) {
-                                                $(this).val("");
-                                                $(this).attr("placeholder", "Invalid");
-                                            }
-                                        });
+                                            $("input").blur(function () {
+                                                var val = $(this).val();
+                                                if (val.indexOf("0") == 0) {
+                                                    $(this).val("");
+                                                    $(this).attr("placeholder", "Invalid");
+                                                }
+                                            });
 
 </script>

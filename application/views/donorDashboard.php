@@ -4,7 +4,8 @@
             <div class="col-md-7">
                 <div class="panel panel-default">
 
-                    <div class="panel-heading text-center">Made Requests 
+                    <div class="panel-heading text-center">
+                        <b>Made Requests </b>
                         <button class="btn btn-sm" id="status_check">
                             Notifications<a class="fa fa-bell-o" ></a>
                             <?php echo count($notifications); ?>
@@ -51,7 +52,11 @@
             </div>
             <div class="col-md-5">
                 <div class="panel panel-default">
-                    <div class="panel-heading text-center">Donation Reports</div>
+                    <div class="panel-heading text-center">
+                        <b>
+                            Donation Reports
+                        </b>
+                    </div>
                     <div class="panel-body">
                         <table class="table table-responsive table-bordered" id="specific_donor_reports">
                             <thead style="background-color: #f9fafc">
@@ -82,8 +87,8 @@
     </small>
 </div>
 <script type="text/javascript">
-        $(document).ready(function () {
+    $(document).ready(function () {
         $('#specific_donor_reports').DataTable();
-    $('#notifications').DataTable();
+        $('#notifications').DataTable();
     });
 </script>

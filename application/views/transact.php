@@ -42,7 +42,7 @@
                                 <tr>
                                     <td>Blood Group</td>
                                     <td>Blood Type</td>
-                                    <td>Amount</td>
+                                    <td>Amount <small>(mml)</small></td>
                                     <td>Action</td>
 
                                 </tr>

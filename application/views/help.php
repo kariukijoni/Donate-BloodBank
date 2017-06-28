@@ -8,7 +8,7 @@
                     ?-->
         <div class="panel-group" id="accordion">
             <?php
-            if ($role == ROLE_ADMIN || $role == ROLE_MANAGER) {
+            if ($role == ROLE_ADMIN) {
                 ?>
                 <div class="panel panel-success">
                     <div class="panel-heading">
@@ -83,37 +83,86 @@
                         </div>
                     </div>
                 </div>
+                <?php
+            }
+            if ($role == ROLE_ADMIN || $role == ROLE_MANAGER) {
+                ?>
+            <div class="row">
+                <div class="panel panel-success">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+                                <b>
+                                    Donation Process
+                                </b>
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapseTwo" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <div class="col-md-6">
+                                <h4>
+                                    Potential Donors
+                                    <hr>
+                                </h4>
+                                <li>Login into the system as an administrator or an employee</li>
+                                <li>Navigate into <b>all donors</b> module in the dashboard</li>
+                                <li>The table potential donors highlights all the probable donors who can do donate blood 
+                                    at that moment</li>
+                                <li>Click <b>donate</b> button to trigger donation process of that specific donor</li>
+                            </div>
+                            <div class="col-md-6">
+                                <h4>
+                                    Next Probable Donors
+                                    <hr>
+                                </h4>
+                                <li>The table next probable donors highlights the next safe donors</li>
+                                <li>This donors are ready to donate blood after expiration of their set frequency days</li>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                <?php
+            }
+            if ($role == ROLE_EMPLOYEE) {
+                ?>
+                <div class="panel panel-success">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+                                <b>
+                                    Donor
+                                </b>
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapseThree" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <div class="col-md-6">
+                                <h4>
+                                    Made Requests
+                                    <hr>
+                                </h4>
+                                <li>Login into the system as a donor</li>
+                                <li>Navigate to donors module in the dashboard </li>
+                                <li>The link will direct you to made requests table</li>
+                                <li>The table has a bell (notification) icon which counts the unread notifications</li>
+                                <li>The table can be filtered using any of the table columns</li>
+                            </div>
+                            <div class="col-md-6">
+                                <h4>
+                                    Donation Reports
+                                    <hr>
+                                </h4>
+                                <li>Login into the system as a donor</li>
+                                <li>The table donation reports is used to highlight specific donor donation records</li>
+                                <li>The table can be filtered using any of the table columns</li>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             <?php } ?>
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
-                            <b>
-                                Donation Process
-                            </b>
-                        </a>
-                    </h4>
-                </div>
-                <div id="collapseTwo" class="panel-collapse collapse">
-                    <div class="panel-body">
-
-                    </div>
-                </div>
-            </div>
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
-                            Collapsible Group Item #3
-                        </a>
-                    </h4>
-                </div>
-                <div id="collapseThree" class="panel-collapse collapse">
-                    <div class="panel-body">
-                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
 </div>

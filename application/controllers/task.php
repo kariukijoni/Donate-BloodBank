@@ -143,7 +143,8 @@ class Task extends BaseController {
                         $comma = "";
                     }
                     $phone_number = $this->db->get_where('tbl_users', array('userId' => $user->userid))->row('mobile');
-                    $message_text = "New message\nFrom John";
+//                    $message_text = "New message\nFrom John";
+                    $message_text="Please contact OBBA and \n blood donation";
                     $phone_numbers_to_send = $phone_number . $comma;
                     $user_numbers_available = $user_numbers_available . $phone_numbers_to_send;
                 }
@@ -207,12 +208,16 @@ class Task extends BaseController {
     }
 
     function donorDashboard() {
-        $this->global['pageTitle'] = 'BloodDonor : DonorRequests';
-        $data['specific_request'] = $this->task_model->specificRequest();
-        $data['specific_report'] = $this->task_model->specificDonorsReport();
-        $data['notifications'] = $this->task_model->countNotifications();
-        $data['success'] = 'Response Success...';
-        $this->loadViews('donorDashboard', $this->global, $data, NULL);
+//        if ($this->isTicketter() == TRUE) {
+//            $this->loadThis();
+//        } else {
+            $this->global['pageTitle'] = 'BloodDonor : DonorRequests';
+            $data['specific_request'] = $this->task_model->specificRequest();
+            $data['specific_report'] = $this->task_model->specificDonorsReport();
+            $data['notifications'] = $this->task_model->countNotifications();
+            $data['success'] = 'Response Success...';
+            $this->loadViews('donorDashboard', $this->global, $data, NULL);
+//        }
     }
 
     /*
@@ -254,6 +259,7 @@ class Task extends BaseController {
         $this->task_model->delRequest($rqid);
         $data['delete'] = 'Deletion Success...';
         $data['tbl_request'] = $this->task_model->bloodRequests();
+        $data['tbl_response'] = $this->task_model->all_responses();
         $this->loadViews('requests', $this->global, $data, NULL);
 //        redirect("task/requests");
     }
