@@ -1,9 +1,6 @@
 <!--Footer--->
 <footer class="main-footer text-center">
-<!--    <div class="pull-right hidden-xs">
-        <b>BloodDonor</b> Admin System | Version 1.0
-    </div>-->
-    <strong>Copyright &copy; 2017 <a href="<?php echo base_url(); ?>" style="color: #f00000">BloodDonor</a>.</strong> All rights reserved.
+    <strong>Copyright &copy; 2017 <a href="<?php echo base_url(); ?>" style="color: #f00000">BloodDonor (OBBA) </a>.</strong> All rights reserved.
 </footer>
 
 <script src="<?php echo base_url(); ?>assets/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
