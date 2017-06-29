@@ -11,6 +11,7 @@
                             <thead style="background-color: #FFD6B3">
                                 <tr>
                                     <td>#</td>
+                                    <td>User ID</td>
                                     <td>Blood Type</td>
                                     <td>Donation Date</td>
                                     <td>Next Safe Donation</td>
@@ -22,6 +23,7 @@
                                     ?>
                                     <tr>
                                         <td><?= $report->did ?></td>
+                                        <td><?= $report->userid ?></td>
                                         <td><?= $report->donation_type ?></td>
                                         <td><?= $report->donation_date ?></td>
                                         <td><?= $report->nextSafeDonation ?></td>
@@ -45,7 +47,7 @@
                                     <td>Hospital name</td>
                                     <td>Blood Group</td>
                                     <td>Blood Type</td>
-                                    <td>Amount</td>
+                                    <td>Amount (mml)</td>
                                     <td>Date</td>
                                 </tr>
                             </thead>

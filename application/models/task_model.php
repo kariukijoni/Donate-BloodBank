@@ -244,7 +244,7 @@ class Task_model extends CI_Model {
      */
 
     function reportDonors() {
-        $this->db->select('tbl_donation.did,tbl_donation.donation_type,tbl_donation.nextSafeDonation, '
+        $this->db->select('tbl_donation.did,tbl_donation.userid,tbl_donation.donation_type,tbl_donation.nextSafeDonation, '
                 . 'tbl_donation_records.donation_date');
         $this->db->from('tbl_donation');
         $this->db->join('tbl_donation_records', 'tbl_donation_records.did=tbl_donation.did', 'inner');

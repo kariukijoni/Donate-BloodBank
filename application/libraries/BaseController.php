@@ -89,11 +89,7 @@ class BaseController extends CI_Controller {
 	}
 
 	/**
-     * This function used to load views
-     * @param {string} $viewName : This is view name
-     * @param {mixed} $headerInfo : This is array of header information
-     * @param {mixed} $pageInfo : This is array of page information
-     * @param {mixed} $footerInfo : This is array of footer information
+     * This function used to load views     
      * @return {null} $result : null
      */
     function loadViews($viewName = "", $headerInfo = NULL, $pageInfo = NULL, $footerInfo = NULL){
@@ -105,9 +101,6 @@ class BaseController extends CI_Controller {
 	
 	/**
 	 * This function used provide the pagination resources
-	 * @param {string} $link : This is page link
-	 * @param {number} $count : This is page count
-	 * @param {number} $perPage : This is records per page limit
 	 * @return {mixed} $result : This is array of records and pagination data
 	 */
 	function paginationCompress($link, $count, $perPage = 10) {

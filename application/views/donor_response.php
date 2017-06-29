@@ -1,7 +1,8 @@
 <div class="content-wrapper" style="background-color: #ffffff">
     <div class="panel panel-default" style="width: 400px;">
         <div class="panel-heading">
-            Response
+            Response<br>
+            <small>Please remember to include your date</small>
         </div>     
         <div class="panel-body">
             <form action="<?php echo base_url() ?>task/responses" method="post">
