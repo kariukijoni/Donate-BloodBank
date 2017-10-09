@@ -215,6 +215,7 @@
                         <li>Users' role should be defined with caution</li>
                         <li>Correct email address should be used as will be required during resetting of passwords</li>
                         <li>All donors should be atleast <b>18yrs</b> and maximum of <b>55yrs</b> of age</li>
+                        <li>All users of the system must have a minimum weight of <b>50kgs</b></li>
                     </div>
                 </div>
             </div>

@@ -1,12 +1,5 @@
 <?php defined ( 'BASEPATH' ) or exit ( 'No direct script access allowed' ); 
 
-/**
- * Class : BaseController
- * Base Class to control over all the classes
- * @author : kariuki
- * @version : 1.1
- * @since : 15 November 2016
- */
 class BaseController extends CI_Controller {
 	protected $role = '';
 	protected $vendorId = '';
@@ -15,12 +8,7 @@ class BaseController extends CI_Controller {
 	protected $global = array ();
 	
 	/**
-	 * Takes mixed data and optionally a status code, then creates the response
-	 *
-	 * @access public
-	 * @param array|NULL $data
-	 *        	Data to output to the user
-	 *        	running the script; otherwise, exit
+	 * Takes mixed data and optionally a status code, then creates the response 
 	 */
 	public function response($data = NULL) {
 		$this->output->set_status_header ( 200 )->set_content_type ( 'application/json', 'utf-8' )->set_output ( json_encode ( $data, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES ) )->_display ();
@@ -89,8 +77,7 @@ class BaseController extends CI_Controller {
 	}
 
 	/**
-     * This function used to load views     
-     * @return {null} $result : null
+     * This function used to load views 
      */
     function loadViews($viewName = "", $headerInfo = NULL, $pageInfo = NULL, $footerInfo = NULL){
 
@@ -101,7 +88,6 @@ class BaseController extends CI_Controller {
 	
 	/**
 	 * This function used provide the pagination resources
-	 * @return {mixed} $result : This is array of records and pagination data
 	 */
 	function paginationCompress($link, $count, $perPage = 10) {
 		$this->load->library ( 'pagination' );

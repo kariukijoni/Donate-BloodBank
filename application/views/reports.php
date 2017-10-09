@@ -44,9 +44,9 @@
                             <thead style="background-color: #FFD6B3">
                                 <tr>
                                     <td>#</td>
-                                    <td>Hospital name</td>
-                                    <td>Blood Group</td>
+                                    <td>Hospital name</td>                                   
                                     <td>Blood Type</td>
+                                     <td>Blood Group</td>
                                     <td>Amount (mml)</td>
                                     <td>Date</td>
                                 </tr>

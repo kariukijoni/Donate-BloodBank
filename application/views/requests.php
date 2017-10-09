@@ -64,14 +64,14 @@
                 </div>
             </div>
             <div class="col-md-offset-1 col-md-6">
-                <h5>
+                <small>
                 <li>Requests are made and SMS sent to only registered users with that blood group type requested</li>
                 <li>An error message is displayed on the screen when message doesn't go through, incase this error is generated
                 a <br>re-request should be made</li>
                 <li>Results made in table <b>Made Request responses</b> and <b>Show Made Requests</b> can be filtered 
                     using any of the table columns</li>
                 <li>A search can be implemented using any of the table columns</li>
-                </h5>
+                </small>
             </div>
 
         </div>
